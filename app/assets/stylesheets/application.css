@@ -52,6 +52,8 @@
     overflow: hidden;
 }
 
+/* https://stackoverflow.com/questions/27527204/cover-video-in-banner-element-always-centered-and-full-width-and-height */
+
 #video-banner-text {
     z-index: 1;
     font-size: 100px;
@@ -61,3 +63,7 @@
     height: 44px;
 }
 
+.signup-form-container {
+    display: flex;
+    justify-content: center;
+}
