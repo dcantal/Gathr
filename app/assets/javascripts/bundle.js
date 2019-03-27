@@ -130,6 +130,8 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -137,12 +139,14 @@ var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
 var logout = function logout() {
   return function (dispatch) {
-    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function (user) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     });
   };
@@ -424,15 +428,12 @@ function (_React$Component) {
     }
   }, {
     key: "renderErrors",
-    value: function renderErrors() {// return (
-      //     <ul>
-      //         {this.props.errors.map((error, i) => (
-      //             <li key={`error-${i}`}>
-      //                 {error}
-      //             </li>
-      //         ))}
-      //     </ul>
-      // );
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
     }
   }, {
     key: "render",
@@ -536,14 +537,17 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      debugger;
       this.props.processForm(user);
     }
   }, {
     key: "renderErrors",
     value: function renderErrors() {
       var errors = Object.values(this.props.errors);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
     }
   }, {
     key: "render",
@@ -764,7 +768,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var sessionErrors = function sessionErrors() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 

@@ -20,7 +20,6 @@ class SignupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        debugger
         this.props.processForm(user);
     }
 
@@ -28,11 +27,11 @@ class SignupForm extends React.Component {
         let errors = Object.values(this.props.errors);
         return (
             <ul>
-                {/* {errors.map((error, i) => (
+                {errors.map((error, i) => (
                     <li key={`error-${i}`}>
                         {error}
                     </li>
-                ))} */}
+                ))}
             </ul>
         );
     }
