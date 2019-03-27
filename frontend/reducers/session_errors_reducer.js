@@ -7,10 +7,12 @@ const sessionErrors = (state={}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ERRORS:
-            
-            break;
-    
+            return action.errors;
+        case RECEIVE_CURRENT_USER:
+            return [];
         default:
-            break;
+            return state;
     }
 }
+
+export default sessionErrors;
