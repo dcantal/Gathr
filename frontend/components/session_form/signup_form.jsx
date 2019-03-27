@@ -38,11 +38,12 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-container">
-                <form onSubmit={this.handleSubmit} className="login-form-box">
-                    Welcome to Meetup!
+            <div className="modal is-open signup-form-container">
+                <form onSubmit={this.handleSubmit} className="modal-form login-form-box">
+                    <span className="modal-close js-modal-close">&times;</span>
+                    <h1>Sign up</h1>
           <br />
-                    Please {this.props.formType} or {this.props.navLink}
+                    Already a member? {this.props.navLink}
                     {this.renderErrors()}
                     <div className="login-form">
                         <br />
@@ -73,6 +74,7 @@ class SignupForm extends React.Component {
                         <input className="session-submit" type="submit" value={this.props.formType} />
                     </div>
                 </form>
+                <div className="modal-screen"></div>
             </div>
         );
     }

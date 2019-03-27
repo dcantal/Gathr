@@ -557,11 +557,13 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signup-form-container"
+        className: "modal is-open signup-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
-        className: "login-form-box"
-      }, "Welcome to Meetup!", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Please ", this.props.formType, " or ", this.props.navLink, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-form login-form-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "modal-close js-modal-close"
+      }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Already a member? ", this.props.navLink, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -582,7 +584,9 @@ function (_React$Component) {
         className: "session-submit",
         type: "submit",
         value: this.props.formType
-      }))));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-screen"
+      }));
     }
   }]);
 
@@ -621,7 +625,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
     formType: 'signup',
     navLink: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/login"
-    }, "log in instead")
+    }, "Log in")
   };
 };
 
