@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,700" rel="stylesheet">
     <script>
       $(function(){
 
@@ -28,8 +28,12 @@
   <body>
     <%= yield %>
     <div class="video-banner">
-      <%# <h1 id="video-banner-text">Testing</h1> %>
+
       <%= video_tag "meetupbanner.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
+      <div class="banner-content">
+        <h1 class="banner-text">The real world is calling</h1>
+        <button>Join Meetup</button>
+      </div>
     </div>
   </body>
 </html>
