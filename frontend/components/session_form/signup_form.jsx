@@ -52,7 +52,7 @@ class SignupForm extends React.Component {
                         <form onSubmit={this.handleSubmit} className="login-form-box">
                             <h1>Sign up</h1>
                             <br />
-                            Not registered with us yet? {this.props.navLink}
+                            Already a member? {this.props.navLink}
                             <div className="login-form">
                                 <br />
                                 <label>Your name
