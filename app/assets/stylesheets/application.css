@@ -29,6 +29,17 @@
     align-items: flex-end;
  }
 
+ .overlay{
+     background: black;
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 1;
+     opacity: 0.3;
+ }
+
  .video {
     z-index: 0;
     overflow: hidden;
@@ -62,7 +73,7 @@
 
 .banner-content{
     display: flex;
-    z-index: 1;
+    z-index: 2;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -114,7 +125,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .modal-form {
@@ -125,7 +136,7 @@
   width: 360px;
   padding: 20px;
   background: #fff;
-  z-index: 3;
+  z-index: 4;
   border-radius: 5px;
   border: 1px solid #000;
 }

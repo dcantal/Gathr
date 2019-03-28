@@ -28,7 +28,7 @@
   <body>
     <%= yield %>
     <div class="video-banner">
-
+      <div class="overlay"></div>
       <%= video_tag "meetupbanner.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
       <div class="banner-content">
         <div class="banner-content-item">
