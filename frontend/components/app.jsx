@@ -11,6 +11,8 @@ import {
 import NavBarContainer from './navbar/navbar_container';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
+import videoBanner from './video_banner/video_banner';
+
 import { AuthRoute } from '../util/route_util';
 
 
@@ -28,6 +30,7 @@ const app = () => (
             </div>
         </header>
         <Switch>
+            <Route exact path="/" component={videoBanner}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
         </Switch>
