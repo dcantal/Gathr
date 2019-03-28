@@ -61,17 +61,43 @@
 
 
 .banner-content{
-    /* display: flex; */
+    display: flex;
     z-index: 1;
-    /* width: 100%; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.banner-content-item{
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
 
 .banner-text{
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
+    font-size: 42px;
     color:white;
 }
 
+.banner-text-caption{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color:white;
+}
+
+.join-button {
+    height: 50px;
+    width: 500px;
+    background: #f13a59;
+    color: white;
+    border-radius: 4px;
+    border: 0px;
+    font-weight: 500;
+    font-size: 14px;
+}
 
 .modal {
   display: none;
@@ -122,7 +148,6 @@
   line-height: 1;
   font-weight: 300;
 }
-
-.modal-form > p {
+ p {
   margin: 0 0 20px 0;
 }
