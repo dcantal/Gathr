@@ -5,8 +5,8 @@ const NavBar = ({ currentUser, logout }) => {
     const sessionLinks = () => (
         <nav className="login-signup">
             <Link to="/login">Login</Link>
-            &nbsp;or&nbsp;
-      <Link to="/signup">Sign up!</Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+      <Link to="/signup">Sign up</Link>
         </nav>
     );
     const personalGreeting = () => (
