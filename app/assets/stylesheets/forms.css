@@ -89,7 +89,7 @@
 }
 
 .session-submit-demo {
-    height: 35px;
+    height: 40px;
     width: 100%;
     background: #3b5998;
     color: white;
@@ -131,4 +131,39 @@
     padding: 10px;
     padding-bottom: 0px;
     padding-top: 0px;
+}
+
+.signup-alt-page > a:visited {
+    color: blue;
+}
+.signup-alt-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding-bottom: 20px;
+}
+
+.line-with-link > a:visited {
+    color: blue;
+}
+
+.line-with-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    font-weight: 100;
+    font-size: 13px;
+}
+
+.signup-alt-page-wrapper {
+    width: 22%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

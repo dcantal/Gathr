@@ -14,6 +14,8 @@ import SignupFormContainer from './session_form/signup_form_container';
 import videoBanner from './video_banner/video_banner';
 import CreateGroupFormContainer from '../components/groups/create_group_form_container';
 import FindPage from './find/find_page';
+import GroupShowContainer from './groups/group_show_container';
+import SignupAltContainer from './session_form/signup_alt_container';
 
 import { AuthRoute } from '../util/route_util';
 
@@ -32,11 +34,13 @@ const app = () => (
             </nav>
         </header>
         <Switch>
+            <AuthRoute exact path="/register" component={SignupAltContainer} />
             <Route exact path="/groups/new" component={CreateGroupFormContainer} />
             <Route exact path="/" component={videoBanner}/>
             <Route exact path="/find" component={FindPage}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+            <Route path="/groups/:groupId" component={GroupShowContainer} />
         </Switch>
     </div>
 );

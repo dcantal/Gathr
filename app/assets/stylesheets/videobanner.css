@@ -16,18 +16,17 @@
     overflow: hidden;
     bottom: 0;
     min-height: 100%;
-    min-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     display: inline-block;
     object-fit: contain;
-
+    
 }
 
 .video-banner {
     height: 460px;
-    max-height: 100%;
-    min-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     position: relative;

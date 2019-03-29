@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -45,7 +46,8 @@ class SessionForm extends React.Component {
                 <div className="error-stripe">
                     <div className="error-box">
                         <h1 className="error-text">Your email or password was entered incorrectly.</h1>
-                        <p className="error-caption"> Please try again or {this.props.navLink}</p>
+                        <p className="error-caption"> Please try again or <Link to="/register">Sign up</Link></p>
+                        {/* <p className="error-caption"> Please try again or {this.props.navLink} </p> */}
                         {/* <ul>
                             {this.props.errors.map((error, i) => (
                                 <li key={`error-${i}`}>
@@ -72,7 +74,7 @@ class SessionForm extends React.Component {
                                     <img src="https://secure.meetupstatic.com/s/img/09300654065624139187/icon/icon_padlock.gif"></img>
                                 </div>
                                 <br />
-                                Not registered with us yet? {this.props.navLink}
+                                Not registered with us yet? <Link to="/register">Sign up</Link>
                             </div>
                             <div className="login-form">
                                 <br />

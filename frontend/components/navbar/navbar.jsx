@@ -44,9 +44,6 @@ class NavBar extends React.Component {
         return this.props.currentUser ? personalGreeting() : sessionLinks();
     }
 
-
-
-
 }
 
 // const NavBar = ({ currentUser, logout }) => {

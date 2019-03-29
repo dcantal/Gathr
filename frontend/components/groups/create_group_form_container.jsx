@@ -10,7 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return ({
-        action: (post) => dispatch(createGroup(post))
+        action: (group) => dispatch(createGroup(group))
     });
 };
 

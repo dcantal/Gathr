@@ -1,4 +1,5 @@
 class Group < ApplicationRecord
-    validates :name, :hometown, :description, :private, presence: true
+    validates :name, :hometown, :description, presence: true
+    validates :private, inclusion: {in: [true, false]}
 
 end
