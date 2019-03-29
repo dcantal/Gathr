@@ -23,7 +23,8 @@ const NavBar = ({ currentUser, logout }) => {
     const personalGreeting = () => (
         <hgroup className="header-group">
             <Link className="new-group-link" to="/groups/new">Start a new group</Link>
-            <h2 className="header-name">Hi, {currentUser.username}!</h2>
+            {/* <h2 className="header-name">Hi, {currentUser.username}!</h2> */}
+            <img className="profile-pic" src="https://secure.gravatar.com/avatar/b91e3eff4d79f02620073df23d39a8da?secure=true&size=300"></img>
             <button className="header-button" onClick={logout}>Log Out</button>
         </hgroup>
     );
