@@ -532,9 +532,8 @@ function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      debugger;
       this.props.action(this.state).then(function () {
-        return _this3.props.history.push("/groups/".concat(_this3.state.group.id));
+        return _this3.props.history.push("/groups/".concat(_this3.state.entities.id));
       });
     }
   }, {
