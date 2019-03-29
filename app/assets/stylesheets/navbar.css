@@ -60,3 +60,10 @@
     display:flex;
     align-items: center;
 }
+
+.profile-pic {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    margin: 0px 10px 0px 10px;
+}
