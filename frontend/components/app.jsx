@@ -12,6 +12,7 @@ import NavBarContainer from './navbar/navbar_container';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import videoBanner from './video_banner/video_banner';
+import CreateGroupFormContainer from '../components/groups/create_group_form_container';
 
 import { AuthRoute } from '../util/route_util';
 
@@ -20,7 +21,7 @@ const app = () => (
     <div>
         <header>
             <div className="Navbar">
-                <Link to="/">
+                <Link className="logo" to="/">
                     <img id="logo" src="https://www.meetup.com/mu_static/en-US/logo--script.004ada05.svg" />
                 </Link>
                 <div id="nav-links">
@@ -30,6 +31,7 @@ const app = () => (
             </div>
         </header>
         <Switch>
+            <Route exact path="/groups/new" component={CreateGroupFormContainer} />
             <Route exact path="/" component={videoBanner}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />

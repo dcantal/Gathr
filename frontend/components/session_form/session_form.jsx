@@ -9,6 +9,7 @@ class SessionForm extends React.Component {
             password: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
     }
 
     update(field) {
@@ -21,6 +22,11 @@ class SessionForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
+    }
+
+    demoLogin(e) {
+        e.preventDefault();
+        this.props.processForm({email: "testing105@gmail.com", password: "testtest"});
     }
 
     renderErrors() {
@@ -50,9 +56,14 @@ class SessionForm extends React.Component {
                 <div className="login-form-stripe">
                     <div className="login-form-container">
                         <form onSubmit={this.handleSubmit} className="login-form-box">
-                            <h1>Log in</h1>
-                            <br />
-                            Not registered with us yet? {this.props.navLink}
+                            <div className="login-form-top">
+                                <div className="form-title">
+                                    <h1>Log in</h1>
+                                    <img src="https://secure.meetupstatic.com/s/img/09300654065624139187/icon/icon_padlock.gif"></img>
+                                </div>
+                                <br />
+                                Not registered with us yet? {this.props.navLink}
+                            </div>
                             <div className="login-form">
                                 <br />
                                 <label>Email address:
@@ -77,6 +88,15 @@ class SessionForm extends React.Component {
                                 <br />
                                 <br />
                                 <input className="session-submit" type="submit" value={this.props.formType} />
+                                {/* <input className="demo-session-submit" type="submit" value={this.props.formType} /> */}
+                            </div>
+                            <div className="form-footer">
+                                <div className="orbox">
+                                    <div className="orword">
+                                        OR
+                                    </div>
+                                </div>
+                                <button onClick={this.demoLogin} className="session-submit-demo">Login as Demo User</button>
                             </div>
                         </form>
                     </div>
