@@ -67,3 +67,14 @@
     border-radius: 100%;
     margin: 0px 10px 0px 10px;
 }
+
+.profile-pic:hover {
+    cursor: pointer;
+}
+
+.navbar-dropdown {
+    z-index: 10;
+    width: 400px;
+    height: 3000px;
+    border: 2px solid red;
+}
