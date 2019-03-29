@@ -35,6 +35,10 @@ class SessionForm extends React.Component {
         this.props.processForm({email: "testing105@gmail.com", password: "testtest"});
     }
 
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
+
     renderErrors() {
         if (this.props.errors.length > 0) { 
             return (
