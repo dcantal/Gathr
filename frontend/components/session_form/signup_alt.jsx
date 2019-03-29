@@ -21,7 +21,7 @@ class SignupAlt extends React.Component {
                     <h1>Sign up</h1>
                     <button onClick={this.demoLogin} className="session-submit-demo">Login as Demo User</button>
                     <br />
-                    <Link to="/login">Or sign up with email</Link>
+                    <Link to="/signup">Or sign up with email</Link>
                 </div>
                 <div className="line-with-link">
                     <p>Already a member? </p>

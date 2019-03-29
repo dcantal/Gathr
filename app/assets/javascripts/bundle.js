@@ -1224,7 +1224,7 @@ function (_React$Component) {
         onClick: this.demoLogin,
         className: "session-submit-demo"
       }, "Login as Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/login"
+        to: "/signup"
       }, "Or sign up with email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "line-with-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Already a member? "), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
