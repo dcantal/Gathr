@@ -10,6 +10,11 @@ class SessionForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.demoLogin = this.demoLogin.bind(this);
+        this.navigateToFind = this.navigateToFind.bind(this);
+    }
+
+    navigateToFind() {
+        this.props.history.push('/find');
     }
 
     update(field) {
@@ -22,6 +27,7 @@ class SessionForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
+        this.props.navigateToFind();
     }
 
     demoLogin(e) {

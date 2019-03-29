@@ -17,22 +17,22 @@ export const fetchGroup = (id) => {
     );
 };
 
-export const createGroup = (groupForm) => {
+export const createGroup = (group) => {
     return (
         $.ajax({
             method: 'POST',
             url: 'api/groups',
-            data: {groupForm}
+            data: {group}
         })
     );
 };
 
-export const updateGroup = (groupForm) => {
+export const updateGroup = (group) => {
     return (
         $.ajax({
             method: 'PATCH',
-            url: `api/groups/${groupForm.id}`,
-            data: {groupForm}
+            url: `api/groups/${group.id}`,
+            data: {group}
         })
     );
 };

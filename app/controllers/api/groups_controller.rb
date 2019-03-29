@@ -12,12 +12,12 @@ class Api::GroupsController < ApplicationController
     end
 
     def create
+        debugger
         @group = Group.new(group_params)
-
         if @group.save
             render :show
         else
-            render json: @post.errors.full_messages, status: 422
+            render json: @group.errors.full_messages, status: 422
         end
     end
 

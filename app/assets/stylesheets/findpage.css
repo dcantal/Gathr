@@ -1,0 +1,45 @@
+.member-home-banner {
+    display: block;
+}
+
+.find-banner {
+    height: 169px;
+    max-height: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: #00455d;
+}
+
+.find-navbar-wrap {
+    height: 69px;
+    width: 100%;
+    display: block;
+    z-index: 2;
+    bottom: -42px;
+}
+
+#findNavBar {
+    background-color: #0f1721;
+    margin: 0 auto;
+    height: 100%;
+    width: 50%;
+    color: white;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.find-banner-text-caption {
+    color: grey;
+}
+
+.banner-content-item-details {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
