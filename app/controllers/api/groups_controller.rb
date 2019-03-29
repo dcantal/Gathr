@@ -12,7 +12,6 @@ class Api::GroupsController < ApplicationController
     end
 
     def create
-        debugger
         @group = Group.new(group_params)
         if @group.save
             render :show
