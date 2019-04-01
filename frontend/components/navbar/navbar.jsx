@@ -12,7 +12,13 @@ import NavbarDropdown from './navbar_dropdown';
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showMenu: false,
+        };
+        
         this.renderDropdown = this.renderDropdown.bind(this);
+        this.showMenu = this.showMenu.bind(this);
+        this.closeMenu = this.closeMenu.bind(this);
     }
 
     renderDropdown(){
@@ -21,6 +27,23 @@ class NavBar extends React.Component {
         );
     }
 
+    showMenu(event) {
+        event.preventDefault();
+
+        this.setState({
+            showMenu: true,
+        }, () => {
+            document.addEventListener('click', this.closeMenu);
+        });
+    }
+
+    closeMenu() {
+        this.setState({ showMenu: false }, () => {
+            document.removeEventListener('click', this.closeMenu);
+        });
+
+    }
+    
     render() {
         const sessionLinks = () => (
             <nav className="new-group-login-signup">
@@ -36,8 +59,36 @@ class NavBar extends React.Component {
             <hgroup className="header-group">
                 <Link className="new-group-link" to="/groups/new">Start a new group</Link>
                 {/* <h2 className="header-name">Hi, {currentUser.username}!</h2> */}
-                <img className="profile-pic" src="https://secure.gravatar.com/avatar/b91e3eff4d79f02620073df23d39a8da?secure=true&size=300" onClick={this.renderDropdown}></img>
-                <button className="header-button" onClick={this.props.logout}>Log Out</button>
+                <div className="profile-pic-menu">
+                    <img className="button-to-menu profile-pic" 
+                        src="https://secure.gravatar.com/avatar/b91e3eff4d79f02620073df23d39a8da?secure=true&size=300" 
+                        onClick={this.showMenu}>
+                    </img>
+                    {
+                    this.state.showMenu
+                        ? (
+                        <div className="navbar-dropdown">
+                            <div className="dropdown-left">
+                                <ul className="nav-account-groups">
+                                    <li>Test Group 1</li>
+                                    <li>Test Group 2</li>
+                                    <li>Test Group 3</li>
+                                </ul>
+                            </div>
+                            <div className="dropdown-right">
+                                <ul className="nav-account-links">
+                                    <button className="header-button first-button" onClick={this.props.logout}>Profile</button>
+                                    <button className="header-button" onClick={this.props.logout}>Settings</button>
+                                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
+                                </ul>
+                            </div>
+                        </div>
+                        )
+                        : (
+                            null
+                        )
+                    }
+                </div>
             </hgroup>
         );
 

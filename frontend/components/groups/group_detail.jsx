@@ -8,7 +8,7 @@ const GroupDetail = ({ group }) => {
             <h1>Description: {group.description}</h1>
             <h1>Hometown: {group.hometown}</h1>
         </div>
-    )
-}
+    );
+};
 
 export default GroupDetail;

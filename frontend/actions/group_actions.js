@@ -33,24 +33,24 @@ export const fetchGroups = () => dispatch => {
 
 export const fetchGroup = (id) => dispatch => {
     return (
-        APIUtil.fetchGroup(id).then((group) => dispatch(receiveGroup(group)))
+        APIUtil.fetchGroup(id).then((group) => dispatch(receiveGroup(group.group)))
     );
 };
 
 export const createGroup = (group) => dispatch => {
     return (
-        APIUtil.createGroup(group).then((group) => dispatch(receiveGroup(group)))
+        APIUtil.createGroup(group).then((group) => dispatch(receiveGroup(group.group)))
     );
 };
 
 export const updateGroup = (group) => dispatch => {
     return (
-        APIUtil.updateGroup(group).then((group) => dispatch(receiveGroup(group)))
+        APIUtil.updateGroup(group).then((group) => dispatch(receiveGroup(group.group)))
     );
 };
 
 export const deleteGroup = groupId => dispatch => {
     return (
-        APIUtil.deleteGroup(groupId).then((group) => dispatch(removeGroup(groupId)))
+        APIUtil.deleteGroup(groupId).then(() => dispatch(removeGroup(groupId)))
     );
 };
