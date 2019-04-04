@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/group_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP, receiveGroups, receiveGroup, removeGroup, fetchGroups, fetchGroup, createGroup, updateGroup, deleteGroup */
+/*! exports provided: RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP, RECEIVE_MEMBERSHIP, RECEIVE_MEMBERS, receiveGroups, receiveGroup, removeGroup, receiveMembers, fetchGroups, fetchGroup, fetchMembers, createGroup, updateGroup, deleteGroup, createMembership, deleteMembership */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,26 +98,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_GROUPS", function() { return RECEIVE_GROUPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_GROUP", function() { return RECEIVE_GROUP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_GROUP", function() { return REMOVE_GROUP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIP", function() { return RECEIVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERS", function() { return RECEIVE_MEMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveGroups", function() { return receiveGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveGroup", function() { return receiveGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeGroup", function() { return removeGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMembers", function() { return receiveMembers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroups", function() { return fetchGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroup", function() { return fetchGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMembers", function() { return fetchMembers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGroup", function() { return createGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateGroup", function() { return updateGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteGroup", function() { return deleteGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
 /* harmony import */ var _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/group_api_util */ "./frontend/util/group_api_util.js");
+/* harmony import */ var _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/membership_api_util */ "./frontend/util/membership_api_util.js");
+
 
 var RECEIVE_GROUPS = "RECEIVE_GROUPS";
 var RECEIVE_GROUP = "RECEIVE_GROUP";
 var REMOVE_GROUP = "REMOVE_GROUP";
+var RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
+var RECEIVE_MEMBERS = "RECEIVE_MEMBERS";
 var receiveGroups = function receiveGroups(groups) {
   return {
     type: RECEIVE_GROUPS,
     groups: groups
   };
 };
-var receiveGroup = function receiveGroup(group) {
+var receiveGroup = function receiveGroup(_ref) {
+  var group = _ref.group;
+  debugger;
   return {
     type: RECEIVE_GROUP,
     group: group
@@ -129,6 +141,13 @@ var removeGroup = function removeGroup(groupId) {
     groupId: groupId
   };
 };
+var receiveMembers = function receiveMembers(members) {
+  return {
+    type: RECEIVE_MEMBERS,
+    members: members
+  };
+}; // export const receiveMembership = ()
+
 var fetchGroups = function fetchGroups() {
   return function (dispatch) {
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchGroups"]().then(function (groups) {
@@ -138,22 +157,32 @@ var fetchGroups = function fetchGroups() {
 };
 var fetchGroup = function fetchGroup(id) {
   return function (dispatch) {
+    debugger;
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchGroup"](id).then(function (group) {
-      return dispatch(receiveGroup(group.group));
+      return dispatch(receiveGroup(group));
+    });
+  };
+};
+var fetchMembers = function fetchMembers(groupId) {
+  return function (dispatch) {
+    debugger;
+    return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMembers"](groupId).then(function (members) {
+      return dispatch(receiveMembers(members));
     });
   };
 };
 var createGroup = function createGroup(group) {
   return function (dispatch) {
+    debugger;
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["createGroup"](group).then(function (group) {
-      return dispatch(receiveGroup(group.group));
+      return dispatch(receiveGroup(group));
     });
   };
 };
 var updateGroup = function updateGroup(group) {
   return function (dispatch) {
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["updateGroup"](group).then(function (group) {
-      return dispatch(receiveGroup(group.group));
+      return dispatch(receiveGroup(group));
     });
   };
 };
@@ -161,6 +190,74 @@ var deleteGroup = function deleteGroup(groupId) {
   return function (dispatch) {
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteGroup"](groupId).then(function () {
       return dispatch(removeGroup(groupId));
+    });
+  };
+};
+var createMembership = function createMembership(membership) {
+  return function (dispatch) {
+    debugger;
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["createMembership"](membership).then(function (group) {
+      return dispatch(receiveGroup(group));
+    });
+  };
+};
+var deleteMembership = function deleteMembership(membership) {
+  return function (dispatch) {
+    debugger;
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteMembership"](membership).then(function (group) {
+      return dispatch(receiveGroup(group));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/membership_actions.js":
+/*!************************************************!*\
+  !*** ./frontend/actions/membership_actions.js ***!
+  \************************************************/
+/*! exports provided: RECEIVE_MEMBERSHIP, REMOVE_MEMBERSHIP, createMembership, deleteMembership */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIP", function() { return RECEIVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_MEMBERSHIP", function() { return REMOVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
+/* harmony import */ var _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/membership_api_util */ "./frontend/util/membership_api_util.js");
+/* harmony import */ var _group_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./group_actions */ "./frontend/actions/group_actions.js");
+
+
+var RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
+var REMOVE_MEMBERSHIP = "REMOVE_MEMBERSHIP";
+
+var receiveMembership = function receiveMembership(group) {
+  debugger;
+  return {
+    type: RECEIVE_MEMBERSHIP,
+    group: group
+  };
+};
+
+var removeMembership = function removeMembership(membershipId) {
+  return {
+    type: REMOVE_MEMBERSHIP,
+    membershipId: membershipId
+  };
+};
+
+var createMembership = function createMembership(membership) {
+  return function (dispatch) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["createMembership"](membership).then(function (group) {
+      return dispatch(Object(_group_actions__WEBPACK_IMPORTED_MODULE_1__["receiveGroup"])(group));
+    });
+  };
+};
+var deleteMembership = function deleteMembership(membershipId) {
+  return function (dispatch) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteMembership"](membershipId).then(function (membershipId) {
+      return dispatch(removeMembership(membershipId));
     });
   };
 };
@@ -189,7 +286,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
-var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER"; // export const RECEIVE_USER = "RECEIVE_USER";
+
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
@@ -198,7 +296,15 @@ var receiveCurrentUser = function receiveCurrentUser(currentUser) {
     type: RECEIVE_CURRENT_USER,
     currentUser: currentUser
   };
-};
+}; // export const receiveUser = ({user, groups}) => {
+//     debugger
+//     return ({
+//         type: RECEIVE_CURRENT_USER,
+//         user,
+//         groups
+//     });
+// };
+
 var logoutCurrentUser = function logoutCurrentUser() {
   return {
     type: LOGOUT_CURRENT_USER
@@ -223,7 +329,14 @@ var signup = function signup(user) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
-};
+}; // export const fetchUser = (id) => dispatch => {
+//     debugger
+//     return (
+//         APIUtil.fetchUser(id).then((user) => dispatch(receiveCurrentUser(user)),
+//         err => dispatch(receiveErrors(err.responseJSON)))
+//     );
+// }
+
 var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
@@ -263,7 +376,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _find_find_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./find/find_page */ "./frontend/components/find/find_page.jsx");
 /* harmony import */ var _groups_group_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./groups/group_show_container */ "./frontend/components/groups/group_show_container.js");
 /* harmony import */ var _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./session_form/signup_alt_container */ "./frontend/components/session_form/signup_alt_container.jsx");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 
 
 
@@ -273,6 +387,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ // import GroupMembers from './groups/GroupMembers/group_members';
 
 
 
@@ -289,7 +405,7 @@ var app = function app() {
     id: "nav-links"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "nav-links"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     exact: true,
     path: "/register",
     component: _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -305,18 +421,18 @@ var app = function app() {
     exact: true,
     path: "/find",
     component: _find_find_page__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     exact: true,
     path: "/login",
     component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     exact: true,
     path: "/signup",
     component: _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/groups/:groupId",
     component: _groups_group_show_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  })));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (app);
@@ -334,7 +450,8 @@ var app = function app() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../groups/group_index_container */ "./frontend/components/groups/group_index_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -352,6 +469,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -392,7 +510,7 @@ function (_React$Component) {
         className: "find-navbar-wrap"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "findNavBar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SEARCH BAR GOES HERE"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SEARCH BAR GOES HERE"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -400,6 +518,211 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (FindPage);
+
+/***/ }),
+
+/***/ "./frontend/components/footer/footer.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/footer/footer.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Footer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Footer, _React$Component);
+
+  function Footer(props) {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Footer).call(this, props));
+  }
+
+  _createClass(Footer, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-stripe"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-stripe-top"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-content-new-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "footer-create",
+        to: "/groups/new"
+      }, "Start a new group")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-content-links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-links-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Your Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Log in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-links-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Groups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Calendar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Topics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Cities")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-links-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Meetup"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Meetup Pro"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Apps"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "API")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-links-column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Your Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Log in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Help"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-stripe-bottom"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-content"
+      })));
+    }
+  }]);
+
+  return Footer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
+/***/ "./frontend/components/groups/GroupMembers/group_members.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/groups/GroupMembers/group_members.jsx ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// const GroupMembers = (props) => {
+//     debugger
+//     const renderMember = (id) => {
+//         debugger
+//         return (
+//             <li key={id}>{props.users[id].username}</li>
+//         );
+//     };
+//     // const members = props.group.member_ids.map((id) => {
+//     //     return (
+//     //         renderMember(id)
+//     //     );
+//     // });
+//     return (
+//         <ul className="group-members-container ">
+//             test
+//             {/* {members} */}
+//         </ul>
+//     );
+// }
+// export default GroupMembers;
+
+
+
+var GroupMembers =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(GroupMembers, _React$Component);
+
+  function GroupMembers(props) {
+    _classCallCheck(this, GroupMembers);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(GroupMembers).call(this, props));
+  }
+
+  _createClass(GroupMembers, [{
+    key: "render",
+    value: function render() {
+      if (this.props.members) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "members-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "members-ul"
+        }, this.props.members.map(function (member) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: member.id,
+            className: "member-wrapper"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, member.username));
+        })));
+      } else {
+        return null;
+      }
+    }
+  }]);
+
+  return GroupMembers;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (GroupMembers);
+
+/***/ }),
+
+/***/ "./frontend/components/groups/GroupMembers/group_members_container.jsx":
+/*!*****************************************************************************!*\
+  !*** ./frontend/components/groups/GroupMembers/group_members_container.jsx ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _group_members__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./group_members */ "./frontend/components/groups/GroupMembers/group_members.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    members: Object.values(state.members) || []
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_group_members__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -415,17 +738,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _group_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./group_form */ "./frontend/components/groups/group_form.jsx");
 /* harmony import */ var _actions_group_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/group_actions */ "./frontend/actions/group_actions.js");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var currentUser = state.entities.users;
+  debugger;
   return {
-    group: {
-      name: '',
-      hometown: '',
-      description: '',
-      private: false
+    name: '',
+    hometown: '',
+    description: '',
+    private: false,
+    membership: {
+      group_id: null,
+      user_id: currentUser.id,
+      organizer: true
     }
   };
 };
@@ -434,6 +764,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     action: function action(group) {
       return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["createGroup"])(group));
+    },
+    createMembership: function createMembership(membership) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["createMembership"])(membership));
     }
   };
 };
@@ -489,7 +822,12 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GroupForm).call(this, props));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.state = _this.props.group;
+    var group = _this.props.group;
+    var membership = _this.props.membership;
+    _this.state = {
+      group: group,
+      membership: membership
+    };
     return _this;
   }
 
@@ -498,24 +836,44 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
+      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
-    }
+    } // handleSubmit(e) {
+    //     debugger
+    //     e.preventDefault();
+    //     this.props.action({"name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": false})
+    //         .then((payload)=> this.props.createMembership({member_id: this.state.membership.member_id, group_id: payload.group.id })
+    //             .then((payload) => this.props.history.push(`/groups/${payload.group_id}`)));
+    // }
+
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault();
-      this.props.action(this.state).then(function (payload) {
-        return _this3.props.history.push("/groups/".concat(payload.group.id));
+      var that = this;
+      this.props.action({
+        "name": this.state.name,
+        "hometown": this.state.hometown,
+        "description": this.state.description,
+        "private": false
+      }).then(function (payload) {
+        debugger;
+        that.props.createMembership({
+          user_id: that.state.membership.user_id,
+          group_id: payload.group.id,
+          organizer: true
+        }).then(function (payload) {
+          debugger;
+          that.props.history.push("/groups/".concat(payload.group.id));
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-form-banner"
@@ -546,8 +904,8 @@ function (_React$Component) {
       }, "STEP 1 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "group-form-properties"
       }, "What's your new Meetup Group's hometown?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.hometown,
+        type: "text" // value={this.state.hometown}
+        ,
         onChange: this.update('hometown'),
         className: "group-form-input",
         placeholder: "Search for a city (Search not implemented yet. Just a string)"
@@ -558,8 +916,8 @@ function (_React$Component) {
       }, "STEP 2 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "group-form-properties"
       }, "What will your Meetup's name be?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.name,
+        type: "text" // value={this.state.name}
+        ,
         onChange: this.update('name'),
         className: "group-form-input",
         placeholder: "example: New York Hiking Meetup"
@@ -571,7 +929,7 @@ function (_React$Component) {
       }, "STEP 3 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "group-form-properties"
       }, "Describe who should join, and what your Meetup will do."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        value: this.state.description,
+        // value={this.state.description}
         onChange: this.update('description'),
         className: "group-form-input-description"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -580,7 +938,7 @@ function (_React$Component) {
         className: "group-form-submit",
         type: "submit",
         value: "Next"
-      })))));
+      }))))));
     }
   }]);
 
@@ -591,10 +949,10 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/groups/group_show.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/groups/group_show.jsx ***!
-  \***************************************************/
+/***/ "./frontend/components/groups/group_index.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/groups/group_index.jsx ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -602,7 +960,7 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _group_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./group_index_item */ "./frontend/components/groups/group_index_item.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -624,21 +982,201 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var GroupIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(GroupIndex, _React$Component);
+
+  function GroupIndex() {
+    _classCallCheck(this, GroupIndex);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(GroupIndex).apply(this, arguments));
+  }
+
+  _createClass(GroupIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchGroups();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var groups = this.props.groups.map(function (group) {
+        debugger;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: group.id,
+          group: group
+        });
+      });
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SUGGESTED GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-grid"
+      }, groups)) // <div>
+      //     <h1>Testing</h1>
+      // </div>
+      ;
+    }
+  }]);
+
+  return GroupIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (GroupIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/groups/group_index_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/groups/group_index_container.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _group_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./group_index */ "./frontend/components/groups/group_index.jsx");
+/* harmony import */ var _actions_group_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/group_actions */ "./frontend/actions/group_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  var groups = Object.values(state.entities.groups);
+  return {
+    groups: groups // groups: []
+
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchGroups: function fetchGroups() {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchGroups"])());
+    },
+    deleteGroup: function (_deleteGroup) {
+      function deleteGroup(_x) {
+        return _deleteGroup.apply(this, arguments);
+      }
+
+      deleteGroup.toString = function () {
+        return _deleteGroup.toString();
+      };
+
+      return deleteGroup;
+    }(function (groupId) {
+      return dispatch(deleteGroup(groupId));
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_group_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/groups/group_index_item.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/groups/group_index_item.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var GroupIndexItem = function GroupIndexItem(props) {
+  debugger;
+  return (// <div className="group-index-item">
+    //     <Link to={`/groups/${props.group.id}`}>{props.group.name}</Link>
+    //     <p>{props.group.member_count}</p>
+    //     {/* <h1>TestIndexItem</h1> */}
+    // </div>
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/groups/".concat(props.group.id),
+      className: "group-index-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "group-index-item-content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "group-index-item-text"
+    }, props.group.member_count === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.group.member_count, " member") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.group.member_count, " members"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.group.name))))
+  );
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (GroupIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/groups/group_show.jsx":
+/*!***************************************************!*\
+  !*** ./frontend/components/groups/group_show.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _GroupMembers_group_members_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GroupMembers/group_members_container */ "./frontend/components/groups/GroupMembers/group_members_container.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
 var GroupShow =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(GroupShow, _React$Component);
 
-  function GroupShow() {
+  function GroupShow(props) {
+    var _this;
+
     _classCallCheck(this, GroupShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(GroupShow).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GroupShow).call(this, props));
+    _this.joinGroup = _this.joinGroup.bind(_assertThisInitialized(_this));
+    _this.leaveGroup = _this.leaveGroup.bind(_assertThisInitialized(_this)); // this.state = {
+    //     showMenu: false,
+    // };
+
+    return _this;
   }
 
   _createClass(GroupShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchGroup(this.props.match.params.groupId);
+      debugger;
+      this.props.fetchGroup(this.props.match.params.groupId); // this.props.fetchMembers(this.props.match.params.groupId);
+
+      debugger;
     } // componentDidUpdate(prevProps) {
     //     debugger
     //     if (prevProps.group.id != this.props.match.params.groupId) {
@@ -647,14 +1185,63 @@ function (_React$Component) {
     // }
 
   }, {
+    key: "joinGroup",
+    value: function joinGroup() {
+      var group = this.props.group;
+      var currentGroupId = group.id;
+      var userId = this.props.currentUser;
+      this.props.createMembership({
+        user_id: userId,
+        group_id: currentGroupId,
+        organizer: false
+      });
+    }
+  }, {
+    key: "leaveGroup",
+    value: function leaveGroup() {
+      debugger;
+      this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]); // location.reload();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var group = this.props.group;
+      var _this2 = this;
 
-      if (!group) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
+      debugger;
+      var allProps = {
+        group: this.props.group,
+        users: this.props.members
+      };
+
+      if (!this.props.group) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loading-icon"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
+        })); // return <div className="loading-icon">Loading...</div>;
       }
 
+      var joinButton = function joinButton() {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this2.joinGroup,
+          className: "group-button join-group-button"
+        }, "Join this group");
+      };
+
+      var manageButton = function manageButton() {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "group-button manage-button"
+        }, "Manage group");
+      };
+
+      var alreadyMemberButton = function alreadyMemberButton() {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this2.leaveGroup,
+          className: "group-button manage-button"
+        }, "You're a member");
+      };
+
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -667,7 +1254,25 @@ function (_React$Component) {
         src: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-header group-details group-side-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, group.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, group.hometown)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "group-name"
+      }, this.props.group.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-header-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-map-marker-alt"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.group.hometown)), this.props.group.member_count === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-header-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-user-friends"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.group.member_count, " member")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-header-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-user-friends"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.group.member_count, " members")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-header-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-user"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-content group-content"
@@ -675,7 +1280,9 @@ function (_React$Component) {
         className: "group-actions-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Members"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Photos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Discussions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "More")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-right"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.group.members.includes(this.props.currentUser) ? alreadyMemberButton() // <h1>You are in this group</h1>
+      : joinButton() // <h1>You are not in this group</h1>
+      ))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-content group-content"
@@ -685,7 +1292,7 @@ function (_React$Component) {
         className: "group-description"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
-      }, "What we're about"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, group.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "What we're about"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.group.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-upcoming-events"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
@@ -699,11 +1306,15 @@ function (_React$Component) {
         className: "group-organizers"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
-      }, "Organizers")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Organizers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "avatar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-user"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-members"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
-      }, "Members"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Members\xA0(", this.props.group.member_count, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/"
       }, "Back to Index"));
     }
@@ -747,8 +1358,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
-    group: state.entities.groups[ownProps.match.params.groupId]
+    currentUser: state.session.id,
+    group: state.entities.groups[ownProps.match.params.groupId],
+    // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
+    // members: state.entities.groups[ownProps.match.params.groupId].members,
+    // members: state.entities.groups[ownProps.match.params.groupId].member_info
+    members: []
   };
 };
 
@@ -756,6 +1373,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchGroup: function fetchGroup(id) {
       return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchGroup"])(id));
+    },
+    fetchMembers: function fetchMembers(id) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMembers"])(id));
+    },
+    createMembership: function createMembership(membership) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["createMembership"])(membership));
+    },
+    deleteMembership: function deleteMembership(membership) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["deleteMembership"])(membership));
     }
   };
 };
@@ -918,6 +1544,7 @@ function (_React$Component) {
         }, "Log Out")))) : null));
       };
 
+      debugger;
       return this.props.currentUser ? personalGreeting() : sessionLinks();
     }
   }]);
@@ -967,6 +1594,7 @@ __webpack_require__.r(__webpack_exports__);
  // const mapStateToProps = ({ session, entities: { users } }) => {
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
     currentUser: state.entities.users[state.session.id]
   };
@@ -1567,20 +2195,19 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form-stripe"
+        className: "signup-form-stripe"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "signup-form-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.demoLogin,
+        className: "session-submit-demo"
+      }, "Login as Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
-        className: "login-form-box"
+        className: "signup-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sign up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://secure.meetupstatic.com/s/img/09300654065624139187/icon/icon_padlock.gif"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Already a member? ", this.props.navLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form"
+        className: "signup-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Your name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.username,
@@ -1596,20 +2223,17 @@ function (_React$Component) {
         value: this.state.password,
         onChange: this.update('password'),
         className: "login-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-submit",
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "disclaimer"
+      }, "Your name is public. We'll use your email address to send you updates, and your location to find Meetups near you."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-submit-signup",
         type: "submit",
         value: this.props.formType
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "orbox"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "orword"
-      }, "OR")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.demoLogin,
-        className: "session-submit-demo"
-      }, "Login as Demo User"))))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "disclaimer-tos"
+      }, "When you \"Continue\", you agree to Gathr's Terms of Service. We will manage information about you as described in our Privacy Policy, and Cookie Policy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-form-footer"
+      }, "Already a member? ", this.props.navLink))));
     } //WAS USED WHEN A MODAL SIGNUP FORM WAS MADE//
     // renderErrors() {
     //     let errors = Object.values(this.props.errors);
@@ -1825,13 +2449,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_group_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/group_actions */ "./frontend/actions/group_actions.js");
+/* harmony import */ var _util_group_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/group_api_util */ "./frontend/util/group_api_util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
 
+ // import * as GroupActions from './actions/group_actions';
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1858,8 +2483,9 @@ document.addEventListener('DOMContentLoaded', function () {
   window.dispatch = store.dispatch;
   window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"];
-  window.createGroup = _actions_group_actions__WEBPACK_IMPORTED_MODULE_5__["createGroup"]; //testing end//
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"]; // window.createGroup = GroupActions.createGroup;
+
+  window.createGroup = _util_group_api_util__WEBPACK_IMPORTED_MODULE_5__["createGroup"]; //testing end//
 
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
@@ -1921,9 +2547,11 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_group_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/group_actions */ "./frontend/actions/group_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1933,14 +2561,25 @@ var groupsReducer = function groupsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
+  debugger;
 
   switch (action.type) {
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_GROUPS"]:
       return action.groups;
 
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_GROUP"]:
-      newState = lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.group.id, action.group));
+      debugger;
+      newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.group.id, action.group));
       return newState;
+    // case RECEIVE_MEMBERSHIP:
+    //     newState = merge({}, state);
+    //     debugger    
+    //     newState[action.membership.membership.group_id].members.push(action.membership.membership.user_id);
+    //     return merge(newState, action.groups);
+
+    case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_MEMBERSHIP"]:
+      debugger;
+      return state;
 
     default:
       return state;
@@ -2060,9 +2699,13 @@ var sessionReducer = function sessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_group_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/group_actions */ "./frontend/actions/group_actions.js");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_3__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -2071,10 +2714,29 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var newState;
+  debugger;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_3___default()({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+    // case RECEIVE_GROUP:
+    //     debugger
+    //     newState = merge({}, state);
+    //     return merge(newState, action.members);
+    // case RECEIVE_GROUP:
+    //     debugger
+    //     newState = action.users || action.group.members || state;
+    //     return newState;
+    // case RECEIVE_GROUP:
+    //     debugger
+    //     newState = merge({}, state);
+    //     return merge(newState[], state, action.group.members);
+    // case RECEIVE_MEMBERSHIP:
+    //     debugger
+    //     newState = merge({}, state);
+    //     newState = merge(newState[action.membership.membership.user_id], {memberships: {[action.membership.membership.id]: action.membership.membership}});
+    //     return newState;
 
     default:
       return state;
@@ -2117,7 +2779,7 @@ var configureStore = function configureStore() {
 /*!*****************************************!*\
   !*** ./frontend/util/group_api_util.js ***!
   \*****************************************/
-/*! exports provided: fetchGroups, fetchGroup, createGroup, updateGroup, deleteGroup */
+/*! exports provided: fetchGroups, fetchGroup, createGroup, updateGroup, deleteGroup, fetchMembers */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2127,20 +2789,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGroup", function() { return createGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateGroup", function() { return updateGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteGroup", function() { return deleteGroup; });
-var fetchGroups = function fetchGroups(data) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMembers", function() { return fetchMembers; });
+// export const fetchGroups = (data) => {
+//     return (
+//         $.ajax({
+//             method: 'GET',
+//             url: 'api/groups',
+//             data
+//         })
+//     );
+// };
+var fetchGroups = function fetchGroups() {
   return $.ajax({
     method: 'GET',
-    url: 'api/groups',
-    data: data
+    url: 'api/groups'
   });
 };
 var fetchGroup = function fetchGroup(id) {
+  debugger;
   return $.ajax({
     method: 'GET',
     url: "api/groups/".concat(id)
   });
 };
 var createGroup = function createGroup(group) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: 'api/groups',
@@ -2162,6 +2835,55 @@ var deleteGroup = function deleteGroup(id) {
   return $.ajax({
     method: 'DELETE',
     url: "api/groups/".concat(id)
+  });
+}; // export const createMembership = membership => {
+//     return (
+//         $.ajax({
+//             method: 'POST',
+//             url: 'api/memberships',
+//             data: { membership }
+//         })
+//     );
+// };
+
+var fetchMembers = function fetchMembers(groupId) {
+  debugger;
+  return $.ajax({
+    method: 'GET',
+    url: "api/".concat(groupId, "/members"),
+    data: {
+      groupId: groupId
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/membership_api_util.js":
+/*!**********************************************!*\
+  !*** ./frontend/util/membership_api_util.js ***!
+  \**********************************************/
+/*! exports provided: createMembership, deleteMembership */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
+var createMembership = function createMembership(membership) {
+  debugger;
+  return $.ajax({
+    method: 'POST',
+    url: "api/groups/".concat(membership.group_id, "/memberships"),
+    data: {
+      membership: membership
+    }
+  });
+};
+var deleteMembership = function deleteMembership(membership) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/groups/".concat(membership.group_id, "/memberships/").concat(membership.id)
   });
 };
 
@@ -2215,7 +2937,7 @@ var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter
 /*!*******************************************!*\
   !*** ./frontend/util/session_api_util.js ***!
   \*******************************************/
-/*! exports provided: signup, login, logout */
+/*! exports provided: signup, login, logout, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2223,6 +2945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 var signup = function signup(user) {
   return $.ajax({
     method: 'POST',
@@ -2245,6 +2968,12 @@ var logout = function logout() {
   return $.ajax({
     method: 'DELETE',
     url: 'api/session'
+  });
+};
+var fetchUser = function fetchUser(id) {
+  return $.ajax({
+    method: 'GET',
+    url: "api/users/".concat(id)
   });
 };
 

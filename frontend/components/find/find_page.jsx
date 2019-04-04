@@ -1,4 +1,5 @@
 import React from 'react';
+import GroupIndexContainer from '../groups/group_index_container';
 import { Link } from 'react-router-dom';
 
 class FindPage extends React.Component {
@@ -26,6 +27,7 @@ class FindPage extends React.Component {
                         <h1>SEARCH BAR GOES HERE</h1>
                     </div>
                 </div>
+                <GroupIndexContainer />
             </div>
         )
     }

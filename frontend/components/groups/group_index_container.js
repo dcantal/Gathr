@@ -3,10 +3,11 @@ import GroupIndex from './group_index';
 import { fetchGroups, fetchGroup } from '../../actions/group_actions';
 
 const mapStateToProps = state => {
-    let groups = Object.values(state.groups);
-    return ({
+    let groups = Object.values(state.entities.groups);
+    return {
         groups: groups
-    });
+        // groups: []
+    };
 };
 
 const mapDispatchToProps = dispatch => {

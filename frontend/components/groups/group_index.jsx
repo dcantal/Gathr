@@ -9,17 +9,24 @@ class GroupIndex extends React.Component {
     }
 
     render() {
+        debugger
         let groups = this.props.groups.map((group) => {
+            debugger
             return (
-                <GroupIndexItem key = {group.name} group = {group} />
+                <GroupIndexItem key = {group.id} group = {group} />
             );
         });
+        debugger
         return (
             <div className="group-list">
-                <ul className="group-unordered-list">
+                <h1>SUGGESTED GROUPS</h1>
+                <div className="group-grid">
                     {groups}
-                </ul>
+                </div>
             </div>
+            // <div>
+            //     <h1>Testing</h1>
+            // </div>
         );
     }
 }

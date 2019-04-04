@@ -1,14 +1,24 @@
-export const fetchGroups = (data) => {
+// export const fetchGroups = (data) => {
+//     return (
+//         $.ajax({
+//             method: 'GET',
+//             url: 'api/groups',
+//             data
+//         })
+//     );
+// };
+
+export const fetchGroups = () => {
     return (
         $.ajax({
             method: 'GET',
             url: 'api/groups',
-            data
         })
     );
 };
 
 export const fetchGroup = (id) => {
+    debugger
     return (
         $.ajax({
             method: 'GET',
@@ -18,6 +28,7 @@ export const fetchGroup = (id) => {
 };
 
 export const createGroup = (group) => {
+    debugger
     return (
         $.ajax({
             method: 'POST',
@@ -46,3 +57,23 @@ export const deleteGroup = id => {
     );
 };
 
+// export const createMembership = membership => {
+//     return (
+//         $.ajax({
+//             method: 'POST',
+//             url: 'api/memberships',
+//             data: { membership }
+//         })
+//     );
+// };
+
+export const fetchMembers = (groupId) => {
+    debugger
+    return (
+        $.ajax({
+            method: 'GET',
+            url: `api/${groupId}/members`,
+            data: { groupId }
+        })
+    );
+};

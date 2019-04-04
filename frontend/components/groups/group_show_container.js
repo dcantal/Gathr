@@ -1,16 +1,26 @@
 import { connect } from 'react-redux';
 import GroupShow from './group_show';
-import { fetchGroup } from '../../actions/group_actions';
+import { fetchGroup, fetchMembers, createMembership, deleteMembership  } from '../../actions/group_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     return {
-        group: state.entities.groups[ownProps.match.params.groupId]
+        currentUser: state.session.id,
+        group: state.entities.groups[ownProps.match.params.groupId],
+        // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
+        // members: state.entities.groups[ownProps.match.params.groupId].members,
+        // members: state.entities.groups[ownProps.match.params.groupId].member_info
+        members: []
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchGroup: id => dispatch(fetchGroup(id))
+        fetchGroup: id => dispatch(fetchGroup(id)),
+        fetchMembers: id => dispatch(fetchMembers(id)),
+        createMembership: membership => dispatch(createMembership(membership)),
+        deleteMembership: membership => dispatch(deleteMembership(membership))
     };
 };
 

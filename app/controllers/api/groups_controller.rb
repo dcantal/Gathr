@@ -1,18 +1,21 @@
 class Api::GroupsController < ApplicationController
-    before_action :require_logged_in, only: [:create]
+    before_action :require_logged_in, only: [:create, :update]
 
     def index
-        groups = Group.all
+        @groups = Group.all
 
         render :index
     end
 
     def show
         @group = Group.find(params[:id])
+        render :show
     end
 
     def create
+
         @group = Group.new(group_params)
+
         if @group.save
             render :show
         else
@@ -43,6 +46,6 @@ class Api::GroupsController < ApplicationController
     private
 
     def group_params
-        params.require(:group).permit(:name, :description, :hometown, :private)
+        params.require(:group).permit(:name, :description, :hometown, :private, members: [])
     end
 end

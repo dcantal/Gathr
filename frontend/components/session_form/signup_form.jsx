@@ -57,18 +57,14 @@ class SignupForm extends React.Component {
         return (
             <>
                 {this.renderErrors()}
-                <div className="login-form-stripe">
-                    <div className="login-form-container">
-                        <form onSubmit={this.handleSubmit} className="login-form-box">
-                            <div className="login-form-top">
-                                <div className="form-title">
-                                    <h1>Sign up</h1>
-                                    <img src="https://secure.meetupstatic.com/s/img/09300654065624139187/icon/icon_padlock.gif"></img>
-                                </div>
-                                <br />
-                                Already a member? {this.props.navLink}
-                            </div>
-                            <div className="login-form">
+                <div className="signup-form-stripe">
+                    <div className="signup-form-title">
+                        <h1>Sign up</h1>
+                    </div>
+                    <div className="signup-form-container">
+                        <button onClick={this.demoLogin} className="session-submit-demo">Login as Demo User</button>
+                        <form onSubmit={this.handleSubmit} className="signup-form-box">
+                            <div className="signup-form">
                                 <br />
                                 <label>Your name
                                 <br />
@@ -101,17 +97,21 @@ class SignupForm extends React.Component {
                                 <br />
                                 <br />
                                 <br />
-                                <input className="session-submit" type="submit" value={this.props.formType} />
-                            </div>
-                            <div className="form-footer">
-                                <div className="orbox">
-                                    <div className="orword">
-                                        OR
-                                    </div>
-                                </div>
-                                <button onClick={this.demoLogin} className="session-submit-demo">Login as Demo User</button>
+                                <p className="disclaimer">
+                                    Your name is public. We'll use your email address to send you updates, 
+                                    and your location to find Meetups near you.
+                                </p>
+                                <input className="session-submit-signup" type="submit" value={this.props.formType} />
+                                <p className="disclaimer-tos">
+                                    When you "Continue", you agree to Gathr's Terms of Service.
+                                     We will manage information about you as described in our 
+                                     Privacy Policy, and Cookie Policy.
+                                </p>
                             </div>
                         </form>
+                        <div className="signup-form-footer">
+                            Already a member? {this.props.navLink}
+                        </div>
                     </div>
                 </div>
             </>

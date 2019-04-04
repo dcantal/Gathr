@@ -2,6 +2,7 @@ import * as APIUtil from '../util/session_api_util';
 
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+// export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
@@ -12,6 +13,15 @@ export const receiveCurrentUser = (currentUser) => {
         currentUser
     });
 };
+
+// export const receiveUser = ({user, groups}) => {
+//     debugger
+//     return ({
+//         type: RECEIVE_CURRENT_USER,
+//         user,
+//         groups
+//     });
+// };
 
 export const logoutCurrentUser = () => {
     return ({
@@ -39,6 +49,14 @@ export const signup = (user) => dispatch => {
         err => dispatch(receiveErrors(err.responseJSON)))
     );
 };
+
+// export const fetchUser = (id) => dispatch => {
+//     debugger
+//     return (
+//         APIUtil.fetchUser(id).then((user) => dispatch(receiveCurrentUser(user)),
+//         err => dispatch(receiveErrors(err.responseJSON)))
+//     );
+// }
 
 
 

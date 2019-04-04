@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionActions from './actions/session_actions';
-import * as GroupActions from './actions/group_actions';
+// import * as GroupActions from './actions/group_actions';
+import * as GroupAjax from './util/group_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store;
@@ -27,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.signup = SessionActions.signup;
     window.login = SessionActions.login;
     window.logout = SessionActions.logout;
-    window.createGroup = GroupActions.createGroup;
+    // window.createGroup = GroupActions.createGroup;
+    window.createGroup = GroupAjax.createGroup;
     //testing end//
 
 
