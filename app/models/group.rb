@@ -11,12 +11,33 @@ class Group < ApplicationRecord
         through: :memberships,
         source: :member
 
+    has_one_attached :photo
+
     def member_count
         self.members.count
     end
 
-    # def organizers
-    #     self.membersships.select{|membership| membership.organizer }
+    def organizer_memberships
+        self.memberships.select{|membership| membership.organizer }
+    end
+
+    # has_many :organizers,
+    #     through: :organizer_memberships
+    #     source: :members
+
+    def organizers
+        org = []
+        self.memberships.each do |membership|
+            if membership.organizer
+                org << membership.user_id
+            end
+        end
+        return org
+    end
+
+    # def organizer_info
+    #     org_info = []
+    #     self.organizers
     # end
 
 end

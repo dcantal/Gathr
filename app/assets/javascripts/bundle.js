@@ -413,7 +413,7 @@ var app = function app() {
     exact: true,
     path: "/groups/new",
     component: _components_groups_create_group_form_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     exact: true,
     path: "/",
     component: _video_banner_video_banner__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -996,7 +996,7 @@ function (_React$Component) {
   _createClass(GroupIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchGroups();
+      this.props.fetchGroups(); // window.scrollTo(0, 0);
     }
   }, {
     key: "render",
@@ -1101,7 +1101,10 @@ var GroupIndexItem = function GroupIndexItem(props) {
     // </div>
     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/groups/".concat(props.group.id),
-      className: "group-index-item"
+      className: "group-index-item",
+      style: {
+        backgroundImage: "url(".concat(props.group.photoUrl, ")")
+      }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "group-index-item-content"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1163,18 +1166,39 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GroupShow).call(this, props));
     _this.joinGroup = _this.joinGroup.bind(_assertThisInitialized(_this));
-    _this.leaveGroup = _this.leaveGroup.bind(_assertThisInitialized(_this)); // this.state = {
-    //     showMenu: false,
-    // };
-
+    _this.leaveGroup = _this.leaveGroup.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.state = {
+      organizer: false,
+      member: false,
+      button: "join",
+      organizer_name: "",
+      photoFile: null
+    };
     return _this;
   }
 
   _createClass(GroupShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       debugger;
-      this.props.fetchGroup(this.props.match.params.groupId); // this.props.fetchMembers(this.props.match.params.groupId);
+      window.scrollTo(0, 0);
+      this.props.fetchGroup(this.props.match.params.groupId).then(function () {
+        return _this2.props.group.members.includes(_this2.props.currentUser) ? _this2.setState({
+          member: true
+        }) : _this2.setState({
+          member: false
+        });
+      }).then(function () {
+        return _this2.props.group.organizers.includes(_this2.props.currentUser) ? _this2.setState({
+          organizer: true
+        }) : _this2.setState({
+          organizer: false
+        });
+      }); // this.setState({ organizer_name: this.props.group.organizer_info[this.props.group.organizers[0]].username });
+      // this.props.fetchMembers(this.props.match.params.groupId);
 
       debugger;
     } // componentDidUpdate(prevProps) {
@@ -1185,28 +1209,76 @@ function (_React$Component) {
     // }
 
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.state.member ? this.leaveGroup() : this.joinGroup();
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('group[id]', this.props.group.id);
+      debugger;
+      formData.append('group[name]', this.props.group.name);
+      debugger;
+      formData.append('group[hometown]', this.props.group.hometown);
+      formData.append('group[description]', this.props.group.description);
+      formData.append('group[photo]', this.state.photoFile);
+      debugger;
+      $.ajax({
+        method: 'PATCH',
+        url: "api/groups/".concat(formData.get('group[id]')),
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then(this.setState({
+        photoFile: this.props.group.photo
+      })).then(location.reload());
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      this.setState({
+        photoFile: e.currentTarget.files[0]
+      });
+    }
+  }, {
     key: "joinGroup",
     value: function joinGroup() {
+      var _this3 = this;
+
       var group = this.props.group;
       var currentGroupId = group.id;
       var userId = this.props.currentUser;
-      this.props.createMembership({
+      return this.props.createMembership({
         user_id: userId,
         group_id: currentGroupId,
         organizer: false
+      }).then(function () {
+        _this3.setState({
+          member: true,
+          button: "leave"
+        });
       });
     }
   }, {
     key: "leaveGroup",
     value: function leaveGroup() {
+      var _this4 = this;
+
       debugger;
-      this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]); // location.reload();
+      return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(function () {
+        _this4.setState({
+          member: false,
+          button: "join"
+        });
+      }); // location.reload();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       debugger;
       var allProps = {
         group: this.props.group,
@@ -1219,28 +1291,19 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
         })); // return <div className="loading-icon">Loading...</div>;
-      }
+      } // const joinButton = () => (
+      //     <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
+      // );
+      // const manageButton = () => (
+      //     <button className="group-button manage-button">Manage group</button>
+      // );
+      // this.alreadyMemberButton = () => (
+      //     <button onClick={this.leaveGroup} className="group-button manage-button">You're a member</button>
+      // );
 
-      var joinButton = function joinButton() {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this2.joinGroup,
-          className: "group-button join-group-button"
-        }, "Join this group");
-      };
 
-      var manageButton = function manageButton() {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "group-button manage-button"
-        }, "Manage group");
-      };
-
-      var alreadyMemberButton = function alreadyMemberButton() {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this2.leaveGroup,
-          className: "group-button manage-button"
-        }, "You're a member");
-      };
-
+      var buttonMessage;
+      this.state.button === "join" ? buttonMessage = "Join this group" : buttonMessage = "You're a member";
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-show-wrapper"
@@ -1249,10 +1312,27 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-header-content group-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "group-header group-picture group-side-left"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-header group-picture group-side-left",
+        style: {
+          backgroundImage: "url(".concat(this.props.group.photoUrl, ")")
+        }
+      }, this.state.organizer ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "upload-group-photo-form",
+        onSubmit: this.handleSubmit.bind(this)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "file",
+        className: "upload-group-photo"
+      }, "Upload a photo", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "inputfile",
+        onChange: this.handleFile.bind(this)
+      })), this.state.photoFile ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "group-form-submit",
+        type: "submit",
+        value: "Next"
+      })) : null)) // <button className="upload-group-photo">
+      // Upload a photo</button> 
+      : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-header group-details group-side-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "group-name"
@@ -1272,7 +1352,7 @@ function (_React$Component) {
         className: "group-header-line"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-user"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.organizer_name))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-content group-content"
@@ -1280,9 +1360,11 @@ function (_React$Component) {
         className: "group-actions-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Members"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Photos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Discussions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "More")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-right"
-      }, this.props.group.members.includes(this.props.currentUser) ? alreadyMemberButton() // <h1>You are in this group</h1>
-      : joinButton() // <h1>You are not in this group</h1>
-      ))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick,
+        className: "group-button",
+        id: this.state.button
+      }, buttonMessage)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-content group-content"
@@ -1315,7 +1397,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
       }, "Members\xA0(", this.props.group.member_count, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/"
+        to: "/find"
       }, "Back to Index"));
     }
   }]);
@@ -1361,11 +1443,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   debugger;
   return {
     currentUser: state.session.id,
-    group: state.entities.groups[ownProps.match.params.groupId],
-    // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
+    group: state.entities.groups[ownProps.match.params.groupId] // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
     // members: state.entities.groups[ownProps.match.params.groupId].members,
     // members: state.entities.groups[ownProps.match.params.groupId].member_info
-    members: []
+    // members: []
+
   };
 };
 
@@ -1382,6 +1464,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     deleteMembership: function deleteMembership(membership) {
       return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["deleteMembership"])(membership));
+    },
+    updateGroup: function updateGroup(group) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["updateGroup"])(group));
     }
   };
 };
@@ -1419,7 +1504,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navbar_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar_dropdown */ "./frontend/components/navbar/navbar_dropdown.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1441,7 +1525,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var NavBar =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1456,18 +1539,12 @@ function (_React$Component) {
     _this.state = {
       showMenu: false
     };
-    _this.renderDropdown = _this.renderDropdown.bind(_assertThisInitialized(_this));
     _this.showMenu = _this.showMenu.bind(_assertThisInitialized(_this));
     _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(NavBar, [{
-    key: "renderDropdown",
-    value: function renderDropdown() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-    }
-  }, {
     key: "showMenu",
     value: function showMenu(event) {
       var _this2 = this;
@@ -1609,110 +1686,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/navbar/navbar_dropdown.jsx":
-/*!********************************************************!*\
-  !*** ./frontend/components/navbar/navbar_dropdown.jsx ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
- // import meetupvideo from '../../../app/assets/videos/meetupbanner.mp4';
-
-var NavbarDropdown =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(NavbarDropdown, _React$Component);
-
-  function NavbarDropdown(props) {
-    var _this;
-
-    _classCallCheck(this, NavbarDropdown);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavbarDropdown).call(this, props));
-    _this.state = {
-      showMenu: false
-    };
-    _this.showMenu = _this.showMenu.bind(_assertThisInitialized(_this));
-    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(NavbarDropdown, [{
-    key: "showMenu",
-    value: function showMenu(event) {
-      var _this2 = this;
-
-      event.preventDefault();
-      this.setState({
-        showMenu: true
-      }, function () {
-        document.addEventListener('click', _this2.closeMenu);
-      });
-    }
-  }, {
-    key: "closeMenu",
-    value: function closeMenu() {
-      var _this3 = this;
-
-      this.setState({
-        showMenu: false
-      }, function () {
-        document.removeEventListener('click', _this3.closeMenu);
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-pic-menu"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button-to-menu",
-        onClick: this.showMenu
-      }, "Show Menu"), "this.state.showMenu ? (", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "navbar-dropdown"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dropdown-left"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "nav-account-groups"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Test Group 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Test Group 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Test Group 3"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dropdown-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "nav-account-links"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Settings"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Log Out")))), ") : ( null )");
-    }
-  }]);
-
-  return NavbarDropdown;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (NavbarDropdown);
 
 /***/ }),
 
@@ -2819,7 +2792,9 @@ var createGroup = function createGroup(group) {
     url: 'api/groups',
     data: {
       group: group
-    }
+    },
+    contentType: false,
+    processData: false
   });
 };
 var updateGroup = function updateGroup(group) {
@@ -2828,7 +2803,9 @@ var updateGroup = function updateGroup(group) {
     url: "api/groups/".concat(group.id),
     data: {
       group: group
-    }
+    },
+    contentType: false,
+    processData: false
   });
 };
 var deleteGroup = function deleteGroup(id) {

@@ -13,7 +13,8 @@
 
 .group-content {
     display:flex;
-    width: 58%;
+    width: 70vw;
+    /* width: 75%; */
 }
 
 .group-name {
@@ -46,8 +47,68 @@
 }
 
 .group-picture {
-    overflow: hidden;
+    /* overflow: hidden; */
+    background-size: cover;
+    border-radius: 10px;
+    margin: 20px;
 }
+
+/* label {
+    width: 30%;
+    height: 15%;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: none;
+    background-color: white;
+    
+}
+
+label:hover {
+    cursor: pointer;
+} */
+
+.upload-group-photo {
+    overflow: hidden;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-group-photo-form {
+    width: 30%;
+    height: 15%;
+}
+
+.upload-group-photo:hover {
+    cursor: pointer;
+}
+
+.upload-group-photo [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+/* .inputfile {
+    display: none;
+    /* z-index: -1; */
+} */
 
 .group-picture > img {
     max-width: 100%;
@@ -66,7 +127,7 @@
 }
 
 .group-actions-left > li {
-    margin: 20px;
+    margin: 3%;
 }
 
 .group-side-left {
@@ -98,6 +159,16 @@ i {
     margin: 5px;
 }
 
+.group-header-line > h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.fa-user-friends {
+    margin-left: -.5%;
+}
+
 .avatar {
     height: 24px;
     width: 24px;
@@ -126,7 +197,7 @@ i {
     cursor: pointer;
 }
 
-.manage-button {
+/* .manage-button {
     background: rgba(41,77,107,.12);
     color: #2e3e48;
 }
@@ -141,6 +212,24 @@ i {
 }
 
 .join-group-button:hover {
+    background: #e81035;
+} */
+
+#leave {
+    background: rgba(41,77,107,.12);
+    color: #2e3e48;
+}
+
+#leave:hover {
+    background: rgba(41,77,107,.145);
+}
+
+#join {
+    background: #f13a59;
+    color: white;
+}
+
+#join:hover {
     background: #e81035;
 }
 

@@ -9,14 +9,27 @@ class GroupShow extends React.Component {
         super(props);
         this.joinGroup = this.joinGroup.bind(this);
         this.leaveGroup = this.leaveGroup.bind(this);
-        // this.state = {
-        //     showMenu: false,
-        // };
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            organizer: false,
+            member: false,
+            button: "join",
+            organizer_name: "",
+            photoFile: null,
+        };
         
     }
     componentDidMount() {
         debugger
-        this.props.fetchGroup(this.props.match.params.groupId);
+        window.scrollTo(0, 0);
+        this.props.fetchGroup(this.props.match.params.groupId).then(() => {
+            return this.props.group.members.includes(this.props.currentUser) ? 
+            this.setState({member: true}) : this.setState({member: false});
+        }).then(() => {
+            return this.props.group.organizers.includes(this.props.currentUser) ?
+            this.setState({ organizer: true }) : this.setState({ organizer: false });
+        });
+        // this.setState({ organizer_name: this.props.group.organizer_info[this.props.group.organizers[0]].username });
         // this.props.fetchMembers(this.props.match.params.groupId);
         debugger
     }
@@ -28,16 +41,50 @@ class GroupShow extends React.Component {
     //     }
     // }
 
+    handleClick(e) {
+        e.preventDefault();
+        (this.state.member) ? (this.leaveGroup()) : (this.joinGroup())
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('group[id]', this.props.group.id);
+        debugger
+        formData.append('group[name]', this.props.group.name);
+        debugger
+        formData.append('group[hometown]', this.props.group.hometown);
+        formData.append('group[description]', this.props.group.description);
+        formData.append('group[photo]', this.state.photoFile);
+        debugger
+        $.ajax({
+            method: 'PATCH',
+            url: `api/groups/${formData.get('group[id]')}`,
+            data: formData,
+            contentType: false,
+            processData: false
+        }).then(this.setState({photoFile: this.props.group.photo})).then(location.reload());
+
+    }
+
+    handleFile(e) {
+        this.setState({photoFile: e.currentTarget.files[0]});
+    }
+
     joinGroup() {
         const group = this.props.group;
         const currentGroupId = group.id;
         const userId = this.props.currentUser;
-        this.props.createMembership({user_id: userId, group_id: currentGroupId, organizer: false});
+        return this.props.createMembership({user_id: userId, group_id: currentGroupId, organizer: false}).then(() => {
+            this.setState({ member: true, button: "leave" });
+        });
     }
 
     leaveGroup() {
         debugger
-        this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]);
+        return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(() => {
+            this.setState({ member: false, button: "join" });
+        });
         // location.reload();
     }
 
@@ -49,24 +96,46 @@ class GroupShow extends React.Component {
             // return <div className="loading-icon">Loading...</div>;
         }
 
-        const joinButton = () => (
-            <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
-        );
+        // const joinButton = () => (
+        //     <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
+        // );
 
-        const manageButton = () => (
-            <button className="group-button manage-button">Manage group</button>
-        );
+        // const manageButton = () => (
+        //     <button className="group-button manage-button">Manage group</button>
+        // );
 
-        const alreadyMemberButton = () => (
-            <button onClick={this.leaveGroup} className="group-button manage-button">You're a member</button>
-        );
+        // this.alreadyMemberButton = () => (
+        //     <button onClick={this.leaveGroup} className="group-button manage-button">You're a member</button>
+        // );
+        let buttonMessage;
+        (this.state.button === "join") ? buttonMessage="Join this group" : buttonMessage="You're a member"
         debugger
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
                     <div className="group-header-content group-content">
-                        <div className="group-header group-picture group-side-left">
-                            <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"></img>
+                        <div className="group-header group-picture group-side-left" style={{ backgroundImage: `url(${this.props.group.photoUrl})`}}>
+                            { this.state.organizer ? 
+                                <>
+                                    <form className="upload-group-photo-form" onSubmit={this.handleSubmit.bind(this)}>
+                                        <label htmlFor="file" className="upload-group-photo">Upload a photo
+                                            <input type="file" className="inputfile"
+                                            onChange={this.handleFile.bind(this)}/>
+                                        </label>
+                                        {
+                                            this.state.photoFile ?
+                                                <>
+                                                    <input className="group-form-submit" type="submit" value="Next" />
+                                                </>
+                                                : null
+                                        }
+                                    </form>
+                                </>
+                            // <button className="upload-group-photo">
+                            // Upload a photo</button> 
+                            : null
+                            }
+
                         </div>
                         <div className="group-header group-details group-side-right">
                             <h1 className="group-name">{this.props.group.name}</h1>
@@ -94,6 +163,7 @@ class GroupShow extends React.Component {
                                 <i className="fas fa-user"></i>
                                 {/* <h3>Organized by {this.props.group.member_info[10].username}</h3> */}
                                 <h3>Organized by </h3>
+                                <h2>{this.organizer_name}</h2>
                             </div>
 
                         </div>
@@ -110,7 +180,8 @@ class GroupShow extends React.Component {
                             <li>More</li>
                         </div>
                         <div className="group-actions-right">
-                            {
+                            <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button>
+                            {/* {
                             (this.props.group.members.includes(this.props.currentUser))
                             ? (
                                 alreadyMemberButton()
@@ -120,7 +191,7 @@ class GroupShow extends React.Component {
                                 joinButton()
                                 // <h1>You are not in this group</h1>
                             )
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>
@@ -155,7 +226,7 @@ class GroupShow extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Link to="/">Back to Index</Link>
+                <Link to="/find">Back to Index</Link>
             </div>
         );
     }

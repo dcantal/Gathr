@@ -1,5 +1,3 @@
-organizers = []
-
 json.group do
     json.extract! @group, :id, :name, :hometown, :description, :member_count
     json.member_count @group.member_count
@@ -18,6 +16,15 @@ json.group do
             end
         end
     end
+    json.organizers @group.organizers
+    json.organizer_info do
+        @group.organizer_memberships.each do |membership|
+            json.set! membership.user_id do
+                json.extract! membership.member, :id, :username, :email
+            end
+        end
+    end
+    json.photoUrl url_for(@group.photo)
     # json.organizers @group.organizers
 end
 

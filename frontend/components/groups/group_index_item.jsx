@@ -9,7 +9,7 @@ const GroupIndexItem = props => {
         //     <p>{props.group.member_count}</p>
         //     {/* <h1>TestIndexItem</h1> */}
         // </div>
-        <Link to={`/groups/${props.group.id}`} className="group-index-item">
+        <Link to={`/groups/${props.group.id}`} className="group-index-item" style={{backgroundImage: `url(${props.group.photoUrl})`}}>
             <div className="group-index-item-content">
                 <div className="group-index-item-text">
                     {

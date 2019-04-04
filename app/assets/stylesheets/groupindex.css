@@ -2,10 +2,12 @@
     height: 180px;
     /* width: 309px; */
     width: 32%;
-    border: 1px solid black;
+    border-radius: 3px;
     display: flex;
     margin: 1% .5%;
     background-color: grey;
+    background-size: cover;
+    box-shadow:inset 0 0 0 2000px rgba(8, 2, 65, 0.37);
 }
 
 .group-grid {

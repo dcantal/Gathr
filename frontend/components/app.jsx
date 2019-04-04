@@ -38,7 +38,7 @@ const app = () => (
         <Switch>
             <AuthRoute exact path="/register" component={SignupAltContainer} />
             <Route exact path="/groups/new" component={CreateGroupFormContainer} />
-            <Route exact path="/" component={videoBanner}/>
+            <AuthRoute exact path="/" component={videoBanner}/>
             <Route exact path="/find" component={FindPage}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />

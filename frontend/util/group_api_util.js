@@ -33,7 +33,9 @@ export const createGroup = (group) => {
         $.ajax({
             method: 'POST',
             url: 'api/groups',
-            data: {group}
+            data: {group},
+            contentType: false,
+            processData: false,
         })
     );
 };
@@ -43,7 +45,9 @@ export const updateGroup = (group) => {
         $.ajax({
             method: 'PATCH',
             url: `api/groups/${group.id}`,
-            data: {group}
+            data: {group},
+            contentType: false,
+            processData: false
         })
     );
 };

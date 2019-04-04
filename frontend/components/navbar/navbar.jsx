@@ -7,7 +7,6 @@ import {
     HashRouter
 } from 'react-router-dom';
  
-import NavbarDropdown from './navbar_dropdown';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -16,16 +15,10 @@ class NavBar extends React.Component {
             showMenu: false,
         };
         
-        this.renderDropdown = this.renderDropdown.bind(this);
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
     }
 
-    renderDropdown(){
-        return (
-            <NavbarDropdown />
-        );
-    }
 
     showMenu(event) {
         event.preventDefault();
