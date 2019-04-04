@@ -84,7 +84,6 @@ class NavBar extends React.Component {
                 </div>
             </hgroup>
         );
-        debugger
         return this.props.currentUser ? personalGreeting() : sessionLinks();
     }
 

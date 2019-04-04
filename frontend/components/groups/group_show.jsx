@@ -20,7 +20,6 @@ class GroupShow extends React.Component {
         
     }
     componentDidMount() {
-        debugger
         window.scrollTo(0, 0);
         this.props.fetchGroup(this.props.match.params.groupId).then(() => {
             return this.props.group.members.includes(this.props.currentUser) ? 
@@ -29,17 +28,7 @@ class GroupShow extends React.Component {
             return this.props.group.organizers.includes(this.props.currentUser) ?
             this.setState({ organizer: true }) : this.setState({ organizer: false });
         });
-        // this.setState({ organizer_name: this.props.group.organizer_info[this.props.group.organizers[0]].username });
-        // this.props.fetchMembers(this.props.match.params.groupId);
-        debugger
     }
-
-    // componentDidUpdate(prevProps) {
-    //     debugger
-    //     if (prevProps.group.id != this.props.match.params.groupId) {
-    //         this.props.fetchGroup(this.props.match.params.groupId);
-    //     }
-    // }
 
     handleClick(e) {
         e.preventDefault();
@@ -50,13 +39,10 @@ class GroupShow extends React.Component {
         e.preventDefault();
         const formData = new FormData();
         formData.append('group[id]', this.props.group.id);
-        debugger
         formData.append('group[name]', this.props.group.name);
-        debugger
         formData.append('group[hometown]', this.props.group.hometown);
         formData.append('group[description]', this.props.group.description);
         formData.append('group[photo]', this.state.photoFile);
-        debugger
         $.ajax({
             method: 'PATCH',
             url: `api/groups/${formData.get('group[id]')}`,
@@ -81,7 +67,6 @@ class GroupShow extends React.Component {
     }
 
     leaveGroup() {
-        debugger
         return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(() => {
             this.setState({ member: false, button: "join" });
         });
@@ -89,7 +74,6 @@ class GroupShow extends React.Component {
     }
 
     render() {
-        debugger
         const allProps = {group: this.props.group, users: this.props.members};
         if (!this.props.group) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
@@ -109,7 +93,6 @@ class GroupShow extends React.Component {
         // );
         let buttonMessage;
         (this.state.button === "join") ? buttonMessage="Join this group" : buttonMessage="You're a member"
-        debugger
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -234,22 +217,3 @@ class GroupShow extends React.Component {
 
 export default GroupShow;
 
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// import GroupDetail from './group_detail';
-
-
-// const GroupShow = ({ group, groupId }) => {
-//     const groups = {
-//         [groupId]: group
-//     };
-//     debugger
-//     return (
-//         <div className="single-group-show">
-//             <GroupDetail group={group} />
-//         </div>
-//     );
-// };
-
-// export default GroupShow;

@@ -129,7 +129,6 @@ var receiveGroups = function receiveGroups(groups) {
 };
 var receiveGroup = function receiveGroup(_ref) {
   var group = _ref.group;
-  debugger;
   return {
     type: RECEIVE_GROUP,
     group: group
@@ -157,7 +156,6 @@ var fetchGroups = function fetchGroups() {
 };
 var fetchGroup = function fetchGroup(id) {
   return function (dispatch) {
-    debugger;
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchGroup"](id).then(function (group) {
       return dispatch(receiveGroup(group));
     });
@@ -165,7 +163,6 @@ var fetchGroup = function fetchGroup(id) {
 };
 var fetchMembers = function fetchMembers(groupId) {
   return function (dispatch) {
-    debugger;
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMembers"](groupId).then(function (members) {
       return dispatch(receiveMembers(members));
     });
@@ -173,7 +170,6 @@ var fetchMembers = function fetchMembers(groupId) {
 };
 var createGroup = function createGroup(group) {
   return function (dispatch) {
-    debugger;
     return _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__["createGroup"](group).then(function (group) {
       return dispatch(receiveGroup(group));
     });
@@ -195,7 +191,6 @@ var deleteGroup = function deleteGroup(groupId) {
 };
 var createMembership = function createMembership(membership) {
   return function (dispatch) {
-    debugger;
     return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["createMembership"](membership).then(function (group) {
       return dispatch(receiveGroup(group));
     });
@@ -203,7 +198,6 @@ var createMembership = function createMembership(membership) {
 };
 var deleteMembership = function deleteMembership(membership) {
   return function (dispatch) {
-    debugger;
     return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteMembership"](membership).then(function (group) {
       return dispatch(receiveGroup(group));
     });
@@ -233,7 +227,6 @@ var RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
 var REMOVE_MEMBERSHIP = "REMOVE_MEMBERSHIP";
 
 var receiveMembership = function receiveMembership(group) {
-  debugger;
   return {
     type: RECEIVE_MEMBERSHIP,
     group: group
@@ -296,15 +289,7 @@ var receiveCurrentUser = function receiveCurrentUser(currentUser) {
     type: RECEIVE_CURRENT_USER,
     currentUser: currentUser
   };
-}; // export const receiveUser = ({user, groups}) => {
-//     debugger
-//     return ({
-//         type: RECEIVE_CURRENT_USER,
-//         user,
-//         groups
-//     });
-// };
-
+};
 var logoutCurrentUser = function logoutCurrentUser() {
   return {
     type: LOGOUT_CURRENT_USER
@@ -329,14 +314,7 @@ var signup = function signup(user) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
-}; // export const fetchUser = (id) => dispatch => {
-//     debugger
-//     return (
-//         APIUtil.fetchUser(id).then((user) => dispatch(receiveCurrentUser(user)),
-//         err => dispatch(receiveErrors(err.responseJSON)))
-//     );
-// }
-
+};
 var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
@@ -634,29 +612,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// const GroupMembers = (props) => {
-//     debugger
-//     const renderMember = (id) => {
-//         debugger
-//         return (
-//             <li key={id}>{props.users[id].username}</li>
-//         );
-//     };
-//     // const members = props.group.member_ids.map((id) => {
-//     //     return (
-//     //         renderMember(id)
-//     //     );
-//     // });
-//     return (
-//         <ul className="group-members-container ">
-//             test
-//             {/* {members} */}
-//         </ul>
-//     );
-// }
-// export default GroupMembers;
 
 
 
@@ -746,7 +701,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   var currentUser = state.entities.users;
-  debugger;
   return {
     name: '',
     hometown: '',
@@ -836,18 +790,10 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
-    } // handleSubmit(e) {
-    //     debugger
-    //     e.preventDefault();
-    //     this.props.action({"name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": false})
-    //         .then((payload)=> this.props.createMembership({member_id: this.state.membership.member_id, group_id: payload.group.id })
-    //             .then((payload) => this.props.history.push(`/groups/${payload.group_id}`)));
-    // }
-
+    }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -859,13 +805,11 @@ function (_React$Component) {
         "description": this.state.description,
         "private": false
       }).then(function (payload) {
-        debugger;
         that.props.createMembership({
           user_id: that.state.membership.user_id,
           group_id: payload.group.id,
           organizer: true
         }).then(function (payload) {
-          debugger;
           that.props.history.push("/groups/".concat(payload.group.id));
         });
       });
@@ -1001,15 +945,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var groups = this.props.groups.map(function (group) {
-        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: group.id,
           group: group
         });
       });
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SUGGESTED GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1093,7 +1034,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var GroupIndexItem = function GroupIndexItem(props) {
-  debugger;
   return (// <div className="group-index-item">
     //     <Link to={`/groups/${props.group.id}`}>{props.group.name}</Link>
     //     <p>{props.group.member_count}</p>
@@ -1183,7 +1123,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
       window.scrollTo(0, 0);
       this.props.fetchGroup(this.props.match.params.groupId).then(function () {
         return _this2.props.group.members.includes(_this2.props.currentUser) ? _this2.setState({
@@ -1197,17 +1136,8 @@ function (_React$Component) {
         }) : _this2.setState({
           organizer: false
         });
-      }); // this.setState({ organizer_name: this.props.group.organizer_info[this.props.group.organizers[0]].username });
-      // this.props.fetchMembers(this.props.match.params.groupId);
-
-      debugger;
-    } // componentDidUpdate(prevProps) {
-    //     debugger
-    //     if (prevProps.group.id != this.props.match.params.groupId) {
-    //         this.props.fetchGroup(this.props.match.params.groupId);
-    //     }
-    // }
-
+      });
+    }
   }, {
     key: "handleClick",
     value: function handleClick(e) {
@@ -1220,13 +1150,10 @@ function (_React$Component) {
       e.preventDefault();
       var formData = new FormData();
       formData.append('group[id]', this.props.group.id);
-      debugger;
       formData.append('group[name]', this.props.group.name);
-      debugger;
       formData.append('group[hometown]', this.props.group.hometown);
       formData.append('group[description]', this.props.group.description);
       formData.append('group[photo]', this.state.photoFile);
-      debugger;
       $.ajax({
         method: 'PATCH',
         url: "api/groups/".concat(formData.get('group[id]')),
@@ -1268,7 +1195,6 @@ function (_React$Component) {
     value: function leaveGroup() {
       var _this4 = this;
 
-      debugger;
       return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(function () {
         _this4.setState({
           member: false,
@@ -1279,7 +1205,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var allProps = {
         group: this.props.group,
         users: this.props.members
@@ -1304,7 +1229,6 @@ function (_React$Component) {
 
       var buttonMessage;
       this.state.button === "join" ? buttonMessage = "Join this group" : buttonMessage = "You're a member";
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1405,21 +1329,7 @@ function (_React$Component) {
   return GroupShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (GroupShow); // import React from 'react';
-// import { Link } from 'react-router-dom';
-// import GroupDetail from './group_detail';
-// const GroupShow = ({ group, groupId }) => {
-//     const groups = {
-//         [groupId]: group
-//     };
-//     debugger
-//     return (
-//         <div className="single-group-show">
-//             <GroupDetail group={group} />
-//         </div>
-//     );
-// };
-// export default GroupShow;
+/* harmony default export */ __webpack_exports__["default"] = (GroupShow);
 
 /***/ }),
 
@@ -1440,7 +1350,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentUser: state.session.id,
     group: state.entities.groups[ownProps.match.params.groupId] // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
@@ -1621,7 +1530,6 @@ function (_React$Component) {
         }, "Log Out")))) : null));
       };
 
-      debugger;
       return this.props.currentUser ? personalGreeting() : sessionLinks();
     }
   }]);
@@ -1671,7 +1579,6 @@ __webpack_require__.r(__webpack_exports__);
  // const mapStateToProps = ({ session, entities: { users } }) => {
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id]
   };
@@ -2534,24 +2441,16 @@ var groupsReducer = function groupsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
-  debugger;
 
   switch (action.type) {
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_GROUPS"]:
       return action.groups;
 
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_GROUP"]:
-      debugger;
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.group.id, action.group));
       return newState;
-    // case RECEIVE_MEMBERSHIP:
-    //     newState = merge({}, state);
-    //     debugger    
-    //     newState[action.membership.membership.group_id].members.push(action.membership.membership.user_id);
-    //     return merge(newState, action.groups);
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_MEMBERSHIP"]:
-      debugger;
       return state;
 
     default:
@@ -2688,28 +2587,10 @@ var usersReducer = function usersReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
-  debugger;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_3___default()({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
-    // case RECEIVE_GROUP:
-    //     debugger
-    //     newState = merge({}, state);
-    //     return merge(newState, action.members);
-    // case RECEIVE_GROUP:
-    //     debugger
-    //     newState = action.users || action.group.members || state;
-    //     return newState;
-    // case RECEIVE_GROUP:
-    //     debugger
-    //     newState = merge({}, state);
-    //     return merge(newState[], state, action.group.members);
-    // case RECEIVE_MEMBERSHIP:
-    //     debugger
-    //     newState = merge({}, state);
-    //     newState = merge(newState[action.membership.membership.user_id], {memberships: {[action.membership.membership.id]: action.membership.membership}});
-    //     return newState;
 
     default:
       return state;
@@ -2779,14 +2660,12 @@ var fetchGroups = function fetchGroups() {
   });
 };
 var fetchGroup = function fetchGroup(id) {
-  debugger;
   return $.ajax({
     method: 'GET',
     url: "api/groups/".concat(id)
   });
 };
 var createGroup = function createGroup(group) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: 'api/groups',
@@ -2824,7 +2703,6 @@ var deleteGroup = function deleteGroup(id) {
 // };
 
 var fetchMembers = function fetchMembers(groupId) {
-  debugger;
   return $.ajax({
     method: 'GET',
     url: "api/".concat(groupId, "/members"),
@@ -2848,7 +2726,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
 var createMembership = function createMembership(membership) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: "api/groups/".concat(membership.group_id, "/memberships"),
@@ -31843,7 +31720,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

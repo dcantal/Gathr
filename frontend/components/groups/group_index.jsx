@@ -10,14 +10,11 @@ class GroupIndex extends React.Component {
     }
 
     render() {
-        debugger
         let groups = this.props.groups.map((group) => {
-            debugger
             return (
                 <GroupIndexItem key = {group.id} group = {group} />
             );
         });
-        debugger
         return (
             <div className="group-list">
                 <h1>SUGGESTED GROUPS</h1>

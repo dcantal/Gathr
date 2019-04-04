@@ -5,7 +5,6 @@ export const RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
 export const REMOVE_MEMBERSHIP = "REMOVE_MEMBERSHIP";
 
 const receiveMembership = (group) => {
-    debugger
     return ({
         type: RECEIVE_MEMBERSHIP,
         group

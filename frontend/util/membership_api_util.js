@@ -1,5 +1,4 @@
 export const createMembership = (membership) => {
-    debugger
     return (
         $.ajax({
             method: 'POST',

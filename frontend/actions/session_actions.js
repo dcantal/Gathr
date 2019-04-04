@@ -14,14 +14,6 @@ export const receiveCurrentUser = (currentUser) => {
     });
 };
 
-// export const receiveUser = ({user, groups}) => {
-//     debugger
-//     return ({
-//         type: RECEIVE_CURRENT_USER,
-//         user,
-//         groups
-//     });
-// };
 
 export const logoutCurrentUser = () => {
     return ({
@@ -49,14 +41,6 @@ export const signup = (user) => dispatch => {
         err => dispatch(receiveErrors(err.responseJSON)))
     );
 };
-
-// export const fetchUser = (id) => dispatch => {
-//     debugger
-//     return (
-//         APIUtil.fetchUser(id).then((user) => dispatch(receiveCurrentUser(user)),
-//         err => dispatch(receiveErrors(err.responseJSON)))
-//     );
-// }
 
 
 

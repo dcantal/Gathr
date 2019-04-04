@@ -15,7 +15,6 @@ export const receiveGroups = (groups) => {
 };
 
 export const receiveGroup = ({group}) => {
-    debugger
     return ({
         type: RECEIVE_GROUP,
         group
@@ -45,21 +44,18 @@ export const fetchGroups = () => dispatch => {
 };
 
 export const fetchGroup = (id) => dispatch => {
-    debugger
     return (
         APIUtil.fetchGroup(id).then((group) => dispatch(receiveGroup(group)))
     );
 };
 
 export const fetchMembers = (groupId) => dispatch => {
-    debugger
     return (
         APIUtil.fetchMembers(groupId).then((members) => dispatch(receiveMembers(members)))
     );
 };
 
 export const createGroup = (group) => dispatch => {
-    debugger
     return (
         APIUtil.createGroup(group).then((group) => dispatch(receiveGroup(group)))
     );
@@ -78,14 +74,12 @@ export const deleteGroup = groupId => dispatch => {
 };
 
 export const createMembership = (membership) => dispatch => {
-    debugger
     return (
         MemberAPIUtil.createMembership(membership).then((group) => dispatch(receiveGroup(group)))
     );
 };
 
 export const deleteMembership = (membership) => dispatch => {
-    debugger
     return (
         MemberAPIUtil.deleteMembership(membership).then((group) => dispatch(receiveGroup(group)))
     );

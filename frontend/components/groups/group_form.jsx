@@ -13,29 +13,18 @@ class GroupForm extends React.Component {
     }
 
     update(field) {
-        debugger
         return (e) => {
             this.setState({[field]: e.target.value });
         };
     }
-
-    // handleSubmit(e) {
-    //     debugger
-    //     e.preventDefault();
-    //     this.props.action({"name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": false})
-    //         .then((payload)=> this.props.createMembership({member_id: this.state.membership.member_id, group_id: payload.group.id })
-    //             .then((payload) => this.props.history.push(`/groups/${payload.group_id}`)));
-    // }
 
     handleSubmit(e) {
         e.preventDefault();
         let that = this;
         this.props.action({"name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": false})
             .then((payload)=> {
-                debugger
                 that.props.createMembership({user_id: that.state.membership.user_id, group_id: payload.group.id, organizer: true })
                 .then((payload) => {
-                    debugger
                     that.props.history.push(`/groups/${payload.group.id}`);
                 });
             });

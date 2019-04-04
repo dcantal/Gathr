@@ -5,7 +5,6 @@ import { createMembership } from '../../actions/membership_actions';
 
 const mapStateToProps = state => {
     const currentUser = state.entities.users;
-    debugger
     return ({
         name: '', hometown: '', description:'', private: false,
         membership: { group_id: null, user_id: currentUser.id, organizer: true}
