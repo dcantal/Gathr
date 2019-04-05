@@ -3,7 +3,7 @@
 Gathr is a single page web-app clone of the popular groups and events listing site, Meetup. It uses a Ruby on Rails backend with a PostgreSQL database. The front end was developed using React / Redux.
 
 
-![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.25.36+AM.png "Gathr Splash Page")
+![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.39.33+AM.png "Gathr Splash Page")
 
 ## Features
 
