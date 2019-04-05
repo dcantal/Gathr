@@ -84,9 +84,9 @@ class GroupShow extends React.Component {
     }
 
     render() {
-        if (!this.props.group) {
-            return null;
-            // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
+        if (this.props.group == null) {
+            // return null;
+            return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
 
         // const joinButton = () => (
@@ -166,7 +166,10 @@ class GroupShow extends React.Component {
                             <div className="group-header-line">
                                 <i className="fas fa-user"></i>
                                 <h3>Organized by </h3>
-                                <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
+                                    {(this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
+                                    : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
+                                     }
+                                {/* <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2> */}
                             </div>
 
                         </div>
@@ -218,18 +221,15 @@ class GroupShow extends React.Component {
                                 <div className="organizer-info">
                                     <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
                                     {/* <h2>{this.organizer_name}</h2> */}
-                                    <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
+                                    {(this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
+                                        : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
+                                    }
                                 </div>
                             </div>
                             
                             <div className="group-members">
                                 <h3 className="group-section-label">Members&nbsp;({this.props.group.member_count})</h3>
                                  <GroupMembersContainer memberIDs={this.state.memberIDs} member_info={this.state.member_info}/>
-                                <ul>
-                                    {/* <li>{this.props.group.member_info[this.props.group.members[0]].username}</li>
-                                    <li>{this.props.group.member_info[this.props.group.members[1]].username}</li> */}
-                                </ul>
-                                {/* <GroupMembers {...allProps}/> */}
                             </div>
                         </div>
                     </div>

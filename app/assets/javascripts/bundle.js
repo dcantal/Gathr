@@ -1298,8 +1298,13 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.group) {
-        return null; // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
+      if (this.props.group == null) {
+        // return null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loading-icon"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
+        }));
       } // const joinButton = () => (
       //     <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
       // );
@@ -1372,7 +1377,7 @@ function (_React$Component) {
         className: "group-header-line"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-user"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "), this.props.group.organizers.length < 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No one right now! Apply to be an organizer!") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-content group-content"
@@ -1413,14 +1418,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "avatar",
         src: "https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.props.group.organizers.length < 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No one right now! Apply to be an organizer!") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-members"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
       }, "Members\xA0(", this.props.group.member_count, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GroupMembers_group_members_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         memberIDs: this.state.memberIDs,
         member_info: this.state.member_info
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null))))));
+      }))))));
     }
   }]);
 
@@ -1448,11 +1453,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     currentUser: state.session.id,
     group: state.entities.groups[ownProps.match.params.groupId],
     memberIds: [],
-    member_info: {} // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
+    member_info: {} // group.member
+    // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
     // member_info: state.entities.groups[ownProps.match.params.groupId].member_info
     // members: state.entities.groups[ownProps.match.params.groupId].members,
     // members: state.entities.groups[ownProps.match.params.groupId].member_info
