@@ -627,7 +627,10 @@ var GroupMemberItem = function GroupMemberItem(props) {
     //         {/* <h1>TestIndexItem</h1> */}
     //     </div>
     // </Link>
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.member.username)
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "avatar",
+      src: "https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"
+    }))
   );
 };
 
@@ -685,10 +688,8 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var that = this;
-      debugger;
 
       if (!this.props.memberIDs) {
-        debugger;
         return null;
       }
 
@@ -1372,7 +1373,7 @@ function (_React$Component) {
         className: "group-header-line"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-user"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.organizer_name))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Organized by "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-content group-content"
@@ -1413,7 +1414,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "avatar",
         src: "https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Test"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.group.organizer_info[this.props.group.organizers[0]].username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-members"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
@@ -1448,7 +1449,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentUser: state.session.id,
     group: state.entities.groups[ownProps.match.params.groupId],

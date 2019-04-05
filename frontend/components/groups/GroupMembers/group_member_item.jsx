@@ -20,7 +20,10 @@ const GroupMemberItem = props => {
         //         {/* <h1>TestIndexItem</h1> */}
         //     </div>
         // </Link>
-        <h1>{props.member.username}</h1>
+        <>
+            <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png" />
+            {/* <h1>{props.member.username}</h1> */}
+        </>
     )
 }
 

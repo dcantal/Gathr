@@ -184,8 +184,8 @@ i {
     height: 50x;
     width: 50px;
     /* background-color: #D3DAE0; */
-    margin: 20px;
-    margin-left: 0px;
+    /* margin: 20px; */
+    margin-right: 20px;
     display: flex;
     justify-content: center;
     align-content: center;

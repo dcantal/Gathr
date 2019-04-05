@@ -85,6 +85,7 @@ class GroupShow extends React.Component {
 
     render() {
         if (!this.props.group) {
+            debugger
             return null;
             // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
@@ -165,9 +166,8 @@ class GroupShow extends React.Component {
 
                             <div className="group-header-line">
                                 <i className="fas fa-user"></i>
-                                {/* <h3>Organized by {this.props.group.member_info[10].username}</h3> */}
                                 <h3>Organized by </h3>
-                                <h2>{this.organizer_name}</h2>
+                                <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                             </div>
 
                         </div>
@@ -219,7 +219,7 @@ class GroupShow extends React.Component {
                                 <div className="organizer-info">
                                     <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
                                     {/* <h2>{this.organizer_name}</h2> */}
-                                    <h2>Test</h2>
+                                    <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                                 </div>
                             </div>
                             
