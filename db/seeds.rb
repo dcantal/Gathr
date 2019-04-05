@@ -11,7 +11,7 @@ a = Group.create(name: "New York Games Gathring", hometown: "New York, NY", desc
 
 filea = open('https://s3.amazonaws.com/gathr-dc-seeds/gaming.jpg')
 
-g.photo.attach(io: filea, filename: 'gaming.jpg')
+a.photo.attach(io: filea, filename: 'gaming.jpg')
 
 b = Group.create(name: "Fans of sitting around a bonfire drinking from red cups", hometown: "New York, NY", description: "Fans of sitting around a bonfire drinking from red cups")
 
