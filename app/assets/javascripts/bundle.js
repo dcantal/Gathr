@@ -1299,7 +1299,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (!this.props.group) {
-        debugger;
         return null; // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
       } // const joinButton = () => (
       //     <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
