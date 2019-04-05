@@ -23,19 +23,16 @@ Gathr is a single page web-app clone of the popular groups and events listing si
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.36.53+AM.png "Groups Create")
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.34.51+AM.png "Groups Change Photo")
 
-## Technical details
+## Technical Challenges
 
 ### Backend
 On the backend, groups are joined to the users through a joins table that stores memberships. These memberships specify the user, the group, and the users status in the group (can be a member or an organizer). Groups can have multiple organizers. 
 
-For me, implementing the joins table has been the most difficult part of the this project so far. Ensuring that components have access to the desired data requires many changes, with most occuring in the backend. 
-To get a better handle on the state, I took advantage of rails associations and ActiveRecord, in combination with jbuilder. 
+For me, implementing the joins table has been the most difficult part of the this project so far. Ensuring that components have access to the desired data requires many changes to the files, with most occuring in the backend. 
+I took advantage of rails associations and ActiveRecord, in combination with jbuilder, to organize the state. 
 
 
-### Frontend
-
-
-## Features to be Implemented
+## Work to be done
 
 ## Groups
 * Autocomplete for setting a group's hometown powered by Google Maps API
