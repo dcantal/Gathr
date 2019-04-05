@@ -906,6 +906,12 @@ function (_React$Component) {
         className: "group-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "group-step-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://s3.amazonaws.com/gathr-dc-seeds/globe.svg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "step-label"
       }, "STEP 1 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -916,8 +922,14 @@ function (_React$Component) {
         onChange: this.update('hometown'),
         className: "group-form-input",
         placeholder: "Search for a city (Search not implemented yet. Just a string)"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "group-step-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://s3.amazonaws.com/gathr-dc-seeds/tag.svg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "step-label"
       }, "STEP 2 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -928,9 +940,15 @@ function (_React$Component) {
         onChange: this.update('name'),
         className: "group-form-input",
         placeholder: "example: New York Hiking Meetup"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "group-step-container",
         id: "last-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://s3.amazonaws.com/gathr-dc-seeds/textBubbles.svg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "group-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "step-label"
       }, "STEP 3 OF 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -939,7 +957,7 @@ function (_React$Component) {
         // value={this.state.description}
         onChange: this.update('description'),
         className: "group-form-input-description"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "submit-stripe"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "group-form-submit",
@@ -1607,10 +1625,10 @@ function (_React$Component) {
         }, "Super Smash Bros Bros"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "header-button",
           onClick: _this4.props.logout
-        }, "Log Out"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "Brooklyn Hackathons"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "header-button",
           onClick: _this4.props.logout
-        }, "Log Out"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "See all your groups"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dropdown-right"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "nav-account-links"

@@ -104,12 +104,12 @@
 .navbar-dropdown {
     display: flex;
     /* border: 1px solid grey; */
-    margin-bottom: -341px;
+    margin-bottom: -191px;
     margin-left: -350px;
     /* z-index: 50; */
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding-bottom: 150px;
+    /* padding-bottom: 150px; */
 }
 
 .dropdown-left {

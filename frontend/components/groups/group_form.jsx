@@ -50,37 +50,52 @@ class GroupForm extends React.Component {
                     <div className="form-wrapper">
                         <form onSubmit={this.handleSubmit} className="group-form">
                             <label className="group-step-container">
-                                <p className="step-label">STEP 1 OF 4</p>
-                                <h1 className="group-form-properties">What's your new Gathr Group's hometown?</h1>
-                                <input
-                                    type="text"
-                                    // value={this.state.hometown}
-                                    onChange={this.update('hometown')}
-                                    className="group-form-input"
-                                    placeholder="Search for a city (Search not implemented yet. Just a string)"
-                                />
+                                <div className="group-icon">
+                                    <img src="https://s3.amazonaws.com/gathr-dc-seeds/globe.svg"/>
+                                </div>
+                                <div className="group-step-details">
+                                    <p className="step-label">STEP 1 OF 4</p>
+                                    <h1 className="group-form-properties">What's your new Gathr Group's hometown?</h1>
+                                    <input
+                                        type="text"
+                                        // value={this.state.hometown}
+                                        onChange={this.update('hometown')}
+                                        className="group-form-input"
+                                        placeholder="Search for a city (Search not implemented yet. Just a string)"
+                                    />
+                                </div>
                             </label>
 
                             <label className="group-step-container">
-                                <p className="step-label">STEP 2 OF 4</p>
-                                <h1 className="group-form-properties">What will your Gathr's name be?</h1>
-                                <input
-                                    type="text"
-                                    // value={this.state.name}
-                                    onChange={this.update('name')}
-                                    className="group-form-input"
-                                    placeholder="example: New York Hiking Meetup"
-                                />
+                                <div className="group-icon">
+                                    <img src="https://s3.amazonaws.com/gathr-dc-seeds/tag.svg" />
+                                </div>
+                                <div className="group-step-details">
+                                    <p className="step-label">STEP 2 OF 4</p>
+                                    <h1 className="group-form-properties">What will your Gathr's name be?</h1>
+                                    <input
+                                        type="text"
+                                        // value={this.state.name}
+                                        onChange={this.update('name')}
+                                        className="group-form-input"
+                                        placeholder="example: New York Hiking Meetup"
+                                    />
+                                </div>
                             </label>
 
                             <label className="group-step-container" id="last-item">
-                                <p className="step-label">STEP 3 OF 4</p>
-                                <h1 className="group-form-properties">Describe who should join, and what your Gathr will do.</h1>
-                                <textarea
-                                    // value={this.state.description}
-                                    onChange={this.update('description')}
-                                    className="group-form-input-description"
-                                />
+                                <div className="group-icon">
+                                    <img src="https://s3.amazonaws.com/gathr-dc-seeds/textBubbles.svg" />
+                                </div>
+                                <div className="group-step-details">
+                                    <p className="step-label">STEP 3 OF 4</p>
+                                    <h1 className="group-form-properties">Describe who should join, and what your Gathr will do.</h1>
+                                    <textarea
+                                        // value={this.state.description}
+                                        onChange={this.update('description')}
+                                        className="group-form-input-description"
+                                    />
+                                </div>
                             </label>
                             <div className="submit-stripe">
                                 <input className="group-form-submit" type="submit" value="Next" />

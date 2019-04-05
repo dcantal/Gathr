@@ -1,6 +1,6 @@
 .footer-stripe {
     width: 100%;
-    height: 650px;
+    /* height: 650px; */
     color: white;
 }
 
@@ -42,7 +42,7 @@
 .footer-content-links {
     display: flex;
     justify-content: space-evenly;
-    height: 450px;
+    height: 350px;
 }
 
 .footer-links-column-middle {

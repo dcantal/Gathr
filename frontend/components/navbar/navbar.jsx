@@ -65,8 +65,8 @@ class NavBar extends React.Component {
                                 <ul className="nav-account-groups">
                                     <button className="header-button first-button" onClick={this.props.logout}>App Academy Alumni</button>
                                     <button className="header-button" onClick={this.props.logout}>Super Smash Bros Bros</button>
-                                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
-                                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
+                                    <button className="header-button" onClick={this.props.logout}>Brooklyn Hackathons</button>
+                                    <button className="header-button" onClick={this.props.logout}>See all your groups</button>
                                 </ul>
                             </div>
                             <div className="dropdown-right">
