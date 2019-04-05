@@ -17,9 +17,11 @@ Gathr is a single page web-app clone of the popular groups and events listing si
 * All visitors can view an index of groups and a spefic group's details
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.31.57+AM.png "Groups Index")
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.33.31+AM.png "Group Show")
-
+#
+#
 * Members can start, join, and leave groups
-
+#
+#
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.36.53+AM.png "Groups Create")
 ![alt text](https://s3.amazonaws.com/gathr-dc-seeds/Screen+Shot+2019-04-05+at+11.34.51+AM.png "Groups Change Photo")
 
