@@ -21,10 +21,6 @@ class Group < ApplicationRecord
         self.memberships.select{|membership| membership.organizer }
     end
 
-    # has_many :organizers,
-    #     through: :organizer_memberships
-    #     source: :members
-
     def organizers
         org = []
         self.memberships.each do |membership|
@@ -34,10 +30,5 @@ class Group < ApplicationRecord
         end
         return org
     end
-
-    # def organizer_info
-    #     org_info = []
-    #     self.organizers
-    # end
 
 end

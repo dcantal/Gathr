@@ -32,8 +32,6 @@ export const createGroup = (group) => {
             method: 'POST',
             url: 'api/groups',
             data: {group},
-            contentType: false,
-            processData: false,
         })
     );
 };

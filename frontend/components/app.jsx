@@ -27,7 +27,7 @@ const app = () => (
         <header>
             <nav className="Navbar">
                 <Link className="logo" to="/">
-                    <img id="logo" src="https://www.meetup.com/mu_static/en-US/logo--script.004ada05.svg" />
+                    <img id="logo" src="https://s3.amazonaws.com/gathr-dc-seeds/gathr_logo_name.svg" />
                 </Link>
                 <div id="nav-links">
                     <NavBarContainer id="nav-links"/>

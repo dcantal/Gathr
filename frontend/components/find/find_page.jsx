@@ -13,19 +13,27 @@ class FindPage extends React.Component {
                 <div className="find-banner">
                     <div className="overlay"></div>
                     <div className="banner-content">
-                        <div className="banner-content-item">
-                            <h1 className="banner-text">Find your next event</h1>
+                        <div className="banner-content-item gathring-content-item">
+                            <h1 className="banner-text">Find your next Gathring</h1>
                         </div>
                         <div className="banner-content-item-details">
-                            <p className="find-banner-text-caption">98 events in your groups</p>
-                            <p className="find-banner-text-caption">5,261 events near you</p>
+                            <p className="find-banner-text-caption">98 gathrings in your groups</p>
+                            <p className="find-banner-text-caption">5,261 gathrings near you</p>
                         </div>
                     </div>
                 </div>
                 <div className="find-navbar-wrap">
-                    <div id="findNavBar">   
-                        <h1>SEARCH BAR GOES HERE</h1>
+                    <div id="findNavBar">
+                        <input type="text" className="find-search" placeholder="Search"/> 
+                        <div className="filter-text-div">
+                            <h3 className="filter-text">within 10 miles of New York, NY</h3>
+                        </div>  
+                        <div className="find-button-div">
+                            <button className="find-button find-groups">Groups</button>
+                            <button className="find-button find-calendar">Calendar</button>
+                        </div>
                     </div>
+
                 </div>
                 <GroupIndexContainer />
             </div>

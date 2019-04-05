@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import GroupMembers from './group_members';
+import { fetchGroup } from '../../../actions/group_actions';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        members: Object.values(state.members) || []
+        memberIDs: state.entities.groups[Object.keys(state.entities.groups)[0]].members,
+        member_info: state.entities.groups[Object.keys(state.entities.groups)[0]].member_info
     };
 };
 

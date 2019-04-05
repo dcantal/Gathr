@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Api::GroupsController < ApplicationController
     before_action :require_logged_in, only: [:create, :update]
 
@@ -13,9 +15,9 @@ class Api::GroupsController < ApplicationController
     end
 
     def create
-
         @group = Group.new(group_params)
-
+        file = open('https://s3.amazonaws.com/gathr-dc-seeds/default-group.png')
+        @group.photo.attach(io: file, filename: 'default-group.png')
         if @group.save
             render :show
         else

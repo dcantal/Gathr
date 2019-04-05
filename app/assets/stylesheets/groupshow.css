@@ -162,17 +162,30 @@ i {
     margin: 0px;
 }
 
+.organizer-info {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.organizer-info > h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0px;
+}
+
+
+
 .fa-user-friends {
     margin-left: -.5%;
 }
 
 .avatar {
-    height: 24px;
-    width: 24px;
-    background-color: #D3DAE0;
-    border-radius: 50%;
-    padding: 20px;
+    height: 50x;
+    width: 50px;
+    /* background-color: #D3DAE0; */
     margin: 20px;
+    margin-left: 0px;
     display: flex;
     justify-content: center;
     align-content: center;

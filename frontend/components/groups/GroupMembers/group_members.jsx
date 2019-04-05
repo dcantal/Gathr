@@ -1,4 +1,5 @@
 import React from "react";
+import GroupMemberItem from './group_member_item';
 import { Link } from "react-router-dom";
 
 class GroupMembers extends React.Component {
@@ -7,21 +8,24 @@ class GroupMembers extends React.Component {
     }
 
     render() {
-        if (this.props.members) {
-            return (
-                <div className="members-container">
-                    <ul className="members-ul">
-                        {this.props.members.map(member => (
-                            <li key={member.id} className="member-wrapper">
-                                <h1>{member.username}</h1>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            );
-        } else {
+        let that = this;
+        debugger
+        if (!this.props.memberIDs) {
+            debugger
             return null;
         }
+        let members = this.props.memberIDs.map((member) => {
+            return (
+                <GroupMemberItem key={member} member={that.props.member_info[member]} />
+            );
+        });
+        return (
+            <div className="member-list">
+                <div className="member-grid">
+                    {members}
+                </div>
+            </div>
+        )
     }
 }
 

@@ -54,7 +54,7 @@ class NavBar extends React.Component {
                 {/* <h2 className="header-name">Hi, {currentUser.username}!</h2> */}
                 <div className="profile-pic-menu">
                     <img className="button-to-menu profile-pic" 
-                        src="https://secure.gravatar.com/avatar/b91e3eff4d79f02620073df23d39a8da?secure=true&size=300" 
+                        src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png" 
                         onClick={this.showMenu}>
                     </img>
                     {
@@ -63,9 +63,10 @@ class NavBar extends React.Component {
                         <div className="navbar-dropdown">
                             <div className="dropdown-left">
                                 <ul className="nav-account-groups">
-                                    <li>Test Group 1</li>
-                                    <li>Test Group 2</li>
-                                    <li>Test Group 3</li>
+                                    <button className="header-button first-button" onClick={this.props.logout}>App Academy Alumni</button>
+                                    <button className="header-button" onClick={this.props.logout}>Super Smash Bros Bros</button>
+                                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
+                                    <button className="header-button" onClick={this.props.logout}>Log Out</button>
                                 </ul>
                             </div>
                             <div className="dropdown-right">

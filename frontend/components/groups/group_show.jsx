@@ -16,17 +16,21 @@ class GroupShow extends React.Component {
             button: "join",
             organizer_name: "",
             photoFile: null,
+            memberIds: [],
+            member_info: {}
+
         };
         
     }
     componentDidMount() {
         window.scrollTo(0, 0);
+        let that = this;
         this.props.fetchGroup(this.props.match.params.groupId).then(() => {
-            return this.props.group.members.includes(this.props.currentUser) ? 
-            this.setState({member: true}) : this.setState({member: false});
+            return that.props.group.members.includes(that.props.currentUser) ? 
+            that.setState({member: true, button: "leave"}) : that.setState({member: false, button: "join"});
         }).then(() => {
-            return this.props.group.organizers.includes(this.props.currentUser) ?
-            this.setState({ organizer: true }) : this.setState({ organizer: false });
+            return that.props.group.organizers.includes(that.props.currentUser) ?
+            that.setState({ organizer: true }) : that.setState({ organizer: false });
         });
     }
 
@@ -43,13 +47,16 @@ class GroupShow extends React.Component {
         formData.append('group[hometown]', this.props.group.hometown);
         formData.append('group[description]', this.props.group.description);
         formData.append('group[photo]', this.state.photoFile);
-        $.ajax({
+        
+        return $.ajax({
             method: 'PATCH',
             url: `api/groups/${formData.get('group[id]')}`,
             data: formData,
             contentType: false,
             processData: false
-        }).then(this.setState({photoFile: this.props.group.photo})).then(location.reload());
+            }).then(() => 
+            this.setState({ photoFile: this.props.group.photo })
+            ).then(location.reload());
 
     }
 
@@ -58,6 +65,9 @@ class GroupShow extends React.Component {
     }
 
     joinGroup() {
+        if (!this.props.currentUser) {
+            this.props.history.push('/login');
+        }
         const group = this.props.group;
         const currentGroupId = group.id;
         const userId = this.props.currentUser;
@@ -74,10 +84,10 @@ class GroupShow extends React.Component {
     }
 
     render() {
-        const allProps = {group: this.props.group, users: this.props.members};
         if (!this.props.group) {
-            return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
-            // return <div className="loading-icon">Loading...</div>;
+            debugger
+            return null;
+            // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
 
         // const joinButton = () => (
@@ -92,7 +102,19 @@ class GroupShow extends React.Component {
         //     <button onClick={this.leaveGroup} className="group-button manage-button">You're a member</button>
         // );
         let buttonMessage;
-        (this.state.button === "join") ? buttonMessage="Join this group" : buttonMessage="You're a member"
+        if ((this.state.button) === "leave" && this.state.organizer){
+            buttonMessage="You're an organizer"
+        }
+        else if ((this.state.button) === "leave") {
+            buttonMessage="You're a member"
+        }
+        else {
+            buttonMessage="Join this group"
+        }
+        // if (this.state.button === "join") {
+        //     buttonMessage="Join this group"
+        // }
+        // (this.state.button === "join") ? buttonMessage="Join this group" : buttonMessage="You're a member"
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -101,7 +123,7 @@ class GroupShow extends React.Component {
                             { this.state.organizer ? 
                                 <>
                                     <form className="upload-group-photo-form" onSubmit={this.handleSubmit.bind(this)}>
-                                        <label htmlFor="file" className="upload-group-photo">Upload a photo
+                                        <label htmlFor="file" className="upload-group-photo">Change photo
                                             <input type="file" className="inputfile"
                                             onChange={this.handleFile.bind(this)}/>
                                         </label>
@@ -195,11 +217,16 @@ class GroupShow extends React.Component {
                         <div className="group-details-right group-side-right">
                             <div className="group-organizers">
                                 <h3 className="group-section-label">Organizers</h3>
-                                {/* <span className="avatar">adsfadgasd</span> */}
-                                <span className="avatar"><i className="far fa-user"></i></span>
+                                <div className="organizer-info">
+                                    <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
+                                    {/* <h2>{this.organizer_name}</h2> */}
+                                    <h2>Test</h2>
+                                </div>
                             </div>
+                            
                             <div className="group-members">
                                 <h3 className="group-section-label">Members&nbsp;({this.props.group.member_count})</h3>
+                                 <GroupMembersContainer memberIDs={this.state.memberIDs} member_info={this.state.member_info}/>
                                 <ul>
                                     {/* <li>{this.props.group.member_info[this.props.group.members[0]].username}</li>
                                     <li>{this.props.group.member_info[this.props.group.members[1]].username}</li> */}
@@ -209,7 +236,6 @@ class GroupShow extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Link to="/find">Back to Index</Link>
             </div>
         );
     }
