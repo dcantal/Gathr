@@ -9,9 +9,7 @@ class GroupMembers extends React.Component {
 
     render() {
         let that = this;
-        debugger
         if (!this.props.memberIDs) {
-            debugger
             return null;
         }
         let members = this.props.memberIDs.map((member) => {

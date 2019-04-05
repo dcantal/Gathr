@@ -85,7 +85,6 @@ class GroupShow extends React.Component {
 
     render() {
         if (!this.props.group) {
-            debugger
             return null;
             // return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
