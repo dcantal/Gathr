@@ -1,0 +1,93 @@
+.manage-group-page {
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.manage-group-header-stripe {
+    width: 100%;
+    height: 148px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.manage-group-header-content {
+    width: 70%;
+    background-color: #DC3A55;
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.manage-group-header-content > h1 {
+    font-size: 42px;
+    text-align: center;
+}
+
+.manage-group-settings-stripe {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.manage-group-settings-content {
+    width: 70%;
+    background-color: white;
+    border: 1px solid #E0E0E0;
+    padding: 20px;
+}
+
+.manage-group-settings-back {
+    width: 70%;
+    color: blue;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.manage-group-settings-buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+.manage-group-section-header {
+    width: 100%;
+    color: black;
+}
+
+.manage-group-settings-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.manage-group-settings-button {
+    height: 162px;
+    width: 233.72px;
+    border: 1px solid #E0E0E0;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.manage-group-settings-button > h3 {
+    color: #323BD1;
+}
+
+.manage-group-settings-button:hover {
+    background-color: rgba(31, 36, 204, 0.2);
+}
+
+.settings-button-icon {
+    height: 60px;
+    width: 60px;
+}

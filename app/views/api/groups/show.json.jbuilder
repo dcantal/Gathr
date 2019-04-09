@@ -1,5 +1,5 @@
 json.group do
-    json.extract! @group, :id, :name, :hometown, :description, :member_count
+    json.extract! @group, :id, :name, :hometown, :description, :member_count, :private
     json.member_count @group.member_count
     json.members @group.member_ids
     json.member_info do
@@ -24,8 +24,7 @@ json.group do
             end
         end
     end
-    json.photoUrl url_for(@group.photo)
-    # json.organizers @group.organizers
+    json.photoUrl url_for(@group.photo)\
 end
 
 json.members do

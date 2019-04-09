@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GroupMembersContainer from './GroupMembers/group_members_container';
 import { Route, Switch } from 'react-router';
+import ManageButton from '../button_menus/manage_button';
+import MemberButton from '../button_menus/member_button';
 
 class GroupShow extends React.Component {
 
@@ -77,29 +79,21 @@ class GroupShow extends React.Component {
     }
 
     leaveGroup() {
-        return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(() => {
+        const userId = this.props.currentUser;
+        return this.props.deleteMembership(this.props.group.memberships[userId]).then(() => {
             this.setState({ member: false, button: "join" });
         });
         // location.reload();
     }
 
     render() {
-        if (this.props.group == null) {
+        debugger
+        if (!this.props.group) {
+            debugger
             // return null;
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
 
-        // const joinButton = () => (
-        //     <button onClick={this.joinGroup} className="group-button join-group-button">Join this group</button>
-        // );
-
-        // const manageButton = () => (
-        //     <button className="group-button manage-button">Manage group</button>
-        // );
-
-        // this.alreadyMemberButton = () => (
-        //     <button onClick={this.leaveGroup} className="group-button manage-button">You're a member</button>
-        // );
         let buttonMessage;
         if ((this.state.button) === "leave" && this.state.organizer){
             buttonMessage="You're an organizer"
@@ -110,10 +104,7 @@ class GroupShow extends React.Component {
         else {
             buttonMessage="Join this group"
         }
-        // if (this.state.button === "join") {
-        //     buttonMessage="Join this group"
-        // }
-        // (this.state.button === "join") ? buttonMessage="Join this group" : buttonMessage="You're a member"
+
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -135,8 +126,6 @@ class GroupShow extends React.Component {
                                         }
                                     </form>
                                 </>
-                            // <button className="upload-group-photo">
-                            // Upload a photo</button> 
                             : null
                             }
 
@@ -166,7 +155,7 @@ class GroupShow extends React.Component {
                             <div className="group-header-line">
                                 <i className="fas fa-user"></i>
                                 <h3>Organized by </h3>
-                                    {(this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
+                                    {(this.props.group.organizers && this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
                                     : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                                      }
                                 {/* <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2> */}
@@ -186,18 +175,36 @@ class GroupShow extends React.Component {
                             <li>More</li>
                         </div>
                         <div className="group-actions-right">
-                            <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button>
-                            {/* {
-                            (this.props.group.members.includes(this.props.currentUser))
-                            ? (
-                                alreadyMemberButton()
-                                // <h1>You are in this group</h1>
-                            )
-                            : (
-                                joinButton()
-                                // <h1>You are not in this group</h1>
-                            )
-                            } */}
+                        {/* {
+                            if (this.state.button === "leave" && this.state.organizer){
+                                <ManageButton group={this.props.group} />
+                            }
+                            else if (this.state.button === "leave") {
+                                <MemberButton deleteMembership={this.props.deleteMembership} />
+                            }
+                        } */}
+
+
+
+                        {
+                            this.state.button === "leave" && this.state.organizer &&
+                                <ManageButton group={this.props.group} />
+                        }
+
+                        {
+                            this.state.button === "leave" && !this.state.organizer &&
+                                <MemberButton deleteMembership={this.props.deleteMembership} group={this.props.group} currentUser={this.props.currentUser} />
+                        }
+
+                        {
+                            this.state.button !== "leave" && 
+                                <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button>
+                        }
+
+
+                            {/* <ManageButton group = {this.props.group}/>
+                            <MemberButton deleteMembership = {this.props.deleteMembership}/> */}
+                            {/* <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button> */}
                         </div>
                     </div>
                 </div>
@@ -220,8 +227,7 @@ class GroupShow extends React.Component {
                                 <h3 className="group-section-label">Organizers</h3>
                                 <div className="organizer-info">
                                     <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
-                                    {/* <h2>{this.organizer_name}</h2> */}
-                                    {(this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
+                                    {(this.props.group.organizers && this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
                                         : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                                     }
                                 </div>

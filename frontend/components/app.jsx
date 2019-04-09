@@ -16,6 +16,8 @@ import CreateGroupFormContainer from '../components/groups/create_group_form_con
 import FindPage from './find/find_page';
 import GroupShowContainer from './groups/group_show_container';
 import SignupAltContainer from './session_form/signup_alt_container';
+import GroupSettingsContainer from './groups/group_settings/group_settings_container';
+import GroupEditContainer from './groups/group_edit/group_edit_container';
 import Footer from './footer/footer';
 // import GroupMembers from './groups/GroupMembers/group_members';
 
@@ -42,8 +44,9 @@ const app = () => (
             <Route exact path="/find" component={FindPage}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
-            <Route path="/groups/:groupId" component={GroupShowContainer} />
-            {/* <Route path="/groups/:groupId/members" component={GroupMembers} /> */}
+            <Route exact path="/groups/:groupId" component={GroupShowContainer} />
+            <Route exact path="/groups/:groupId/manage" component={GroupSettingsContainer} />
+            <Route exact path="/groups/:groupId/edit" component={GroupEditContainer} />
         </Switch>
         <Footer />
     </div>

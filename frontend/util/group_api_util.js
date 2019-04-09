@@ -42,8 +42,6 @@ export const updateGroup = (group) => {
             method: 'PATCH',
             url: `api/groups/${group.id}`,
             data: {group},
-            contentType: false,
-            processData: false
         })
     );
 };

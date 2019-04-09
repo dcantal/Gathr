@@ -10,13 +10,6 @@ const mapStateToProps = (state, ownProps) => {
         group: state.entities.groups[ownProps.match.params.groupId],
         memberIds: [],
         member_info: {},
-        
-        // group.member
-        // memberIDs: state.entities.groups[ownProps.match.params.groupId].members,
-        // member_info: state.entities.groups[ownProps.match.params.groupId].member_info
-        // members: state.entities.groups[ownProps.match.params.groupId].members,
-        // members: state.entities.groups[ownProps.match.params.groupId].member_info
-        // members: []
     };
 };
 
@@ -31,28 +24,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupShow);
-
-
-// import { connect } from 'react-redux';
-
-// import { fetchGroup } from '../../actions/group_actions';
-// import { selectGroup } from '../../reducers/selectors';
-// import GroupShow from './group_show';
-
-// const mapStateToProps = (state, { match }) => {
-//     const groupId = parseInt(match.params.groupId);
-//     const group = selectGroup(state.entities, groupId);
-//     return {
-//         groupId,
-//         group
-//     };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         fetchGroup: id => dispatch(fetchGroup(id))
-//     };
-// };
-
-
-// export default connect( mapStateToProps, mapDispatchToProps)(GroupShow);

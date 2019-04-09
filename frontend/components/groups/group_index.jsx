@@ -22,9 +22,6 @@ class GroupIndex extends React.Component {
                     {groups}
                 </div>
             </div>
-            // <div>
-            //     <h1>Testing</h1>
-            // </div>
         );
     }
 }

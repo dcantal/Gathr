@@ -113,6 +113,12 @@ label:hover {
     border-radius: 10px;
 }
 
+.group-actions-wrapper {
+    z-index: 10;
+    position: relative;
+    height: 43px;
+}
+
 .group-actions-left {
     width: 58%;
     list-style: none;
@@ -201,6 +207,12 @@ i {
     box-sizing: border-box;
     line-height: 1.6;
     border: none;
+    position: relative;
+    /* top: 38px; */
+}
+
+.group-button-dropdown-complete {
+    position: relative;
 }
 
 .group-button:hover {
@@ -246,4 +258,43 @@ i {
 .group-actions-content {
     display: flex;
     align-items: center;
+}
+
+.group-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-button-dropdown {
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    /* margin-bottom: -78px; */
+    width: 200px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    top: 43px;
+}
+
+.group-button-dropdown-item {
+    background-color: white;
+    height: 38px;
+    color: rgb(46, 62, 72);
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-button-dropdown-item:hover {
+    background-color: grey;
+    cursor: pointer;
+    background: rgba(41,77,107,.12);
 }
