@@ -4,7 +4,6 @@ import { fetchGroup, fetchMembers, createMembership, deleteMembership, updateGro
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
     return {
         currentUser: state.session.id,
         group: state.entities.groups[ownProps.match.params.groupId],
