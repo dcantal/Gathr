@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/group_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP, RECEIVE_MEMBERSHIP, RECEIVE_MEMBERS, receiveGroups, receiveGroup, removeGroup, receiveMembers, fetchGroups, fetchGroup, fetchMembers, createGroup, updateGroup, deleteGroup, createMembership, deleteMembership */
+/*! exports provided: RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP, RECEIVE_MEMBERSHIP, REMOVE_MEMBERSHIP, RECEIVE_MEMBERS, receiveGroups, receiveGroup, removeGroup, receiveMembers, removeMembership, fetchGroups, fetchGroup, fetchMembers, createGroup, updateGroup, deleteGroup, createMembership, deleteMembership */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,11 +99,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_GROUP", function() { return RECEIVE_GROUP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_GROUP", function() { return REMOVE_GROUP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIP", function() { return RECEIVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_MEMBERSHIP", function() { return REMOVE_MEMBERSHIP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERS", function() { return RECEIVE_MEMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveGroups", function() { return receiveGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveGroup", function() { return receiveGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeGroup", function() { return removeGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMembers", function() { return receiveMembers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeMembership", function() { return removeMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroups", function() { return fetchGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroup", function() { return fetchGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMembers", function() { return fetchMembers; });
@@ -115,11 +117,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_group_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/group_api_util */ "./frontend/util/group_api_util.js");
 /* harmony import */ var _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/membership_api_util */ "./frontend/util/membership_api_util.js");
 
+ // import { REMOVE_MEMBERSHIP } from './membership_actions';
 
 var RECEIVE_GROUPS = "RECEIVE_GROUPS";
 var RECEIVE_GROUP = "RECEIVE_GROUP";
 var REMOVE_GROUP = "REMOVE_GROUP";
 var RECEIVE_MEMBERSHIP = "RECEIVE_MEMBERSHIP";
+var REMOVE_MEMBERSHIP = "REMOVE_MEMBERSHIP";
 var RECEIVE_MEMBERS = "RECEIVE_MEMBERS";
 var receiveGroups = function receiveGroups(groups) {
   return {
@@ -144,6 +148,12 @@ var receiveMembers = function receiveMembers(members) {
   return {
     type: RECEIVE_MEMBERS,
     members: members
+  };
+};
+var removeMembership = function removeMembership(membershipId) {
+  return {
+    type: REMOVE_MEMBERSHIP,
+    membershipId: membershipId
   };
 }; // export const receiveMembership = ()
 
@@ -198,8 +208,8 @@ var createMembership = function createMembership(membership) {
 };
 var deleteMembership = function deleteMembership(membership) {
   return function (dispatch) {
-    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteMembership"](membership).then(function (group) {
-      return dispatch(receiveGroup(group));
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteMembership"](membership).then(function (membershipId) {
+      return dispatch(removeMembership(membershipId));
     });
   };
 };
@@ -640,7 +650,10 @@ function (_React$Component) {
       //     //would like this to not reload but instead show the new button
       //     location.reload();
       // });
-      var that = this;
+      this.setState({
+        showMenu: false
+      });
+      document.removeEventListener('click', this.closeMenu);
       return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]);
     }
   }, {
@@ -949,7 +962,7 @@ function (_React$Component) {
   _createClass(GroupMembers, [{
     key: "render",
     value: function render() {
-      var that = this;
+      var _this = this;
 
       if (!this.props.memberIDs) {
         return null;
@@ -958,7 +971,7 @@ function (_React$Component) {
       var members = this.props.memberIDs.map(function (member) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_member_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: member,
-          member: that.props.member_info[member]
+          member: _this.props.member_info[member]
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -993,14 +1006,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    memberIDs: state.entities.groups[Object.keys(state.entities.groups)[0]].members,
-    member_info: state.entities.groups[Object.keys(state.entities.groups)[0]].member_info
-  };
+  return {};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchGroup: function fetchGroup(id) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchGroup"])(id));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_group_members__WEBPACK_IMPORTED_MODULE_1__["default"]));
@@ -1826,16 +1840,13 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GroupShow).call(this, props));
     _this.joinGroup = _this.joinGroup.bind(_assertThisInitialized(_this));
-    _this.leaveGroup = _this.leaveGroup.bind(_assertThisInitialized(_this));
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.state = {
       organizer: false,
       member: false,
       button: "join",
       organizer_name: "",
-      photoFile: null,
-      memberIds: [],
-      member_info: {}
+      photoFile: null
     };
     return _this;
   }
@@ -1843,21 +1854,13 @@ function (_React$Component) {
   _createClass(GroupShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       window.scrollTo(0, 0);
       var that = this;
       this.props.fetchGroup(this.props.match.params.groupId).then(function () {
-        return that.props.group.members.includes(that.props.currentUser) ? that.setState({
-          member: true,
-          button: "leave"
-        }) : that.setState({
-          member: false,
-          button: "join"
-        });
-      }).then(function () {
-        return that.props.group.organizers.includes(that.props.currentUser) ? that.setState({
-          organizer: true
-        }) : that.setState({
-          organizer: false
+        return that.setState({
+          memberships: _this2.props.group.memberships
         });
       });
     }
@@ -1865,12 +1868,12 @@ function (_React$Component) {
     key: "handleClick",
     value: function handleClick(e) {
       e.preventDefault();
-      this.state.member ? this.leaveGroup() : this.joinGroup();
+      this.joinGroup();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
       var formData = new FormData();
@@ -1886,8 +1889,8 @@ function (_React$Component) {
         contentType: false,
         processData: false
       }).then(function () {
-        return _this2.setState({
-          photoFile: _this2.props.group.photo
+        return _this3.setState({
+          photoFile: _this3.props.group.photo
         });
       }).then(location.reload());
     }
@@ -1901,7 +1904,7 @@ function (_React$Component) {
   }, {
     key: "joinGroup",
     value: function joinGroup() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.props.currentUser) {
         this.props.history.push('/login');
@@ -1915,33 +1918,16 @@ function (_React$Component) {
         group_id: currentGroupId,
         organizer: false
       }).then(function () {
-        _this3.setState({
+        _this4.setState({
           member: true,
           button: "leave"
         });
       });
     }
   }, {
-    key: "leaveGroup",
-    value: function leaveGroup() {
-      var _this4 = this;
-
-      var userId = this.props.currentUser;
-      return this.props.deleteMembership(this.props.group.memberships[userId]).then(function () {
-        _this4.setState({
-          member: false,
-          button: "join"
-        });
-      }); // location.reload();
-    }
-  }, {
     key: "render",
     value: function render() {
-      debugger;
-
-      if (!this.props.group) {
-        debugger; // return null;
-
+      if (!this.props.group || !this.props.group.organizers) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "loading-icon"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1959,6 +1945,8 @@ function (_React$Component) {
         buttonMessage = "Join this group";
       }
 
+      var members = this.props.group.members;
+      var member_info = this.props.group.member_info;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2012,17 +2000,17 @@ function (_React$Component) {
         className: "group-actions-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Members"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Photos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Discussions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "More")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-actions-right"
-      }, this.state.button === "leave" && this.state.organizer && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_button_menus_manage_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, this.props.group.members.includes(this.props.currentUser) && this.state.organizer && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_button_menus_manage_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
         group: this.props.group
-      }), this.state.button === "leave" && !this.state.organizer && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_button_menus_member_button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }), this.props.group.members.includes(this.props.currentUser) && !this.state.organizer && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_button_menus_member_button__WEBPACK_IMPORTED_MODULE_5__["default"], {
         deleteMembership: this.props.deleteMembership,
         group: this.props.group,
         currentUser: this.props.currentUser
-      }), this.state.button !== "leave" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), !this.props.group.members.includes(this.props.currentUser) && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick,
         className: "group-button",
-        id: this.state.button
-      }, buttonMessage)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "join"
+      }, "Join Group")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-wrapper group-section-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-details-content group-content"
@@ -2056,8 +2044,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
       }, "Members\xA0(", this.props.group.member_count, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GroupMembers_group_members_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        memberIDs: this.state.memberIDs,
-        member_info: this.state.member_info
+        memberIDs: members,
+        member_info: member_info
       }))))));
     }
   }]);
@@ -2086,12 +2074,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentUser: state.session.id,
-    group: state.entities.groups[ownProps.match.params.groupId],
-    memberIds: [],
-    member_info: {}
+    group: state.entities.groups[ownProps.match.params.groupId]
   };
 };
 
@@ -3162,7 +3147,8 @@ var groupsReducer = function groupsReducer() {
       return newState;
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_MEMBERSHIP"]:
-      return state;
+      newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, _defineProperty({}, action.membershipId.group.id, action.membershipId.group));
+      return newState;
 
     default:
       return state;

@@ -10,7 +10,6 @@ class GroupShow extends React.Component {
     constructor(props) {
         super(props);
         this.joinGroup = this.joinGroup.bind(this);
-        this.leaveGroup = this.leaveGroup.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.state = {
             organizer: false,
@@ -18,8 +17,6 @@ class GroupShow extends React.Component {
             button: "join",
             organizer_name: "",
             photoFile: null,
-            memberIds: [],
-            member_info: {}
 
         };
         
@@ -27,18 +24,15 @@ class GroupShow extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         let that = this;
+
         this.props.fetchGroup(this.props.match.params.groupId).then(() => {
-            return that.props.group.members.includes(that.props.currentUser) ? 
-            that.setState({member: true, button: "leave"}) : that.setState({member: false, button: "join"});
-        }).then(() => {
-            return that.props.group.organizers.includes(that.props.currentUser) ?
-            that.setState({ organizer: true }) : that.setState({ organizer: false });
+            return that.setState({memberships: this.props.group.memberships});
         });
     }
 
     handleClick(e) {
         e.preventDefault();
-        (this.state.member) ? (this.leaveGroup()) : (this.joinGroup())
+        (this.joinGroup());
     }
 
     handleSubmit(e) {
@@ -78,20 +72,11 @@ class GroupShow extends React.Component {
         });
     }
 
-    leaveGroup() {
-        const userId = this.props.currentUser;
-        return this.props.deleteMembership(this.props.group.memberships[userId]).then(() => {
-            this.setState({ member: false, button: "join" });
-        });
-        // location.reload();
-    }
-
     render() {
-        if (!this.props.group) {
-            // return null;
+        if (!this.props.group || !this.props.group.organizers) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
-
+        
         let buttonMessage;
         if ((this.state.button) === "leave" && this.state.organizer){
             buttonMessage="You're an organizer"
@@ -103,6 +88,8 @@ class GroupShow extends React.Component {
             buttonMessage="Join this group"
         }
 
+        let members = this.props.group.members;
+        let member_info = this.props.group.member_info;
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -156,7 +143,6 @@ class GroupShow extends React.Component {
                                     {(this.props.group.organizers && this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
                                     : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                                      }
-                                {/* <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2> */}
                             </div>
 
                         </div>
@@ -173,36 +159,22 @@ class GroupShow extends React.Component {
                             <li>More</li>
                         </div>
                         <div className="group-actions-right">
-                        {/* {
-                            if (this.state.button === "leave" && this.state.organizer){
-                                <ManageButton group={this.props.group} />
-                            }
-                            else if (this.state.button === "leave") {
-                                <MemberButton deleteMembership={this.props.deleteMembership} />
-                            }
-                        } */}
-
-
 
                         {
-                            this.state.button === "leave" && this.state.organizer &&
+                            this.props.group.members.includes(this.props.currentUser) && this.state.organizer &&
                                 <ManageButton group={this.props.group} />
                         }
 
                         {
-                            this.state.button === "leave" && !this.state.organizer &&
+                            this.props.group.members.includes(this.props.currentUser) && !this.state.organizer &&
                                 <MemberButton deleteMembership={this.props.deleteMembership} group={this.props.group} currentUser={this.props.currentUser} />
                         }
 
                         {
-                            this.state.button !== "leave" && 
-                                <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button>
+                            !this.props.group.members.includes(this.props.currentUser) &&
+                                <button onClick={this.handleClick} className='group-button' id="join">Join Group</button>
                         }
 
-
-                            {/* <ManageButton group = {this.props.group}/>
-                            <MemberButton deleteMembership = {this.props.deleteMembership}/> */}
-                            {/* <button onClick={this.handleClick} className='group-button' id={this.state.button}>{buttonMessage}</button> */}
                         </div>
                     </div>
                 </div>
@@ -233,7 +205,7 @@ class GroupShow extends React.Component {
                             
                             <div className="group-members">
                                 <h3 className="group-section-label">Members&nbsp;({this.props.group.member_count})</h3>
-                                 <GroupMembersContainer memberIDs={this.state.memberIDs} member_info={this.state.member_info}/>
+                                 <GroupMembersContainer memberIDs={members} member_info={member_info}/>
                             </div>
                         </div>
                     </div>
