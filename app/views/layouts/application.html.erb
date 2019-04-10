@@ -9,21 +9,16 @@
     <link rel="shortcut icon" type='image/png' href="/gathr_logo_2.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script>
-      $(function(){
 
-        $("body").on("click", ".js-modal-open", function(event){
-          event.preventDefault();
-          $(".modal").addClass("is-open");
-        });
-
-        $("body").on("click", ".js-modal-close", function(event){
-          event.preventDefault();
-          $(".modal").removeClass("is-open");
-        });
-
-      });
+    <%# <script>
+      function activatePlacesSearch(){
+        let input = document.getElementById('create-hometown-search');
+        let autocomplete = new google.maps.places.Autocomplete(input);
+      }
     </script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places&callback=activatePlacesSearch"></script> %>
+
   </head>
 
   <body>

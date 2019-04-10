@@ -22,6 +22,7 @@ import Footer from './footer/footer';
 // import GroupMembers from './groups/GroupMembers/group_members';
 
 import { AuthRoute } from '../util/route_util';
+import { ProtectedRoute } from '../util/route_util';
 
 
 const app = () => (
@@ -39,14 +40,14 @@ const app = () => (
         </header>
         <Switch>
             <AuthRoute exact path="/register" component={SignupAltContainer} />
-            <Route exact path="/groups/new" component={CreateGroupFormContainer} />
+            <ProtectedRoute exact path="/groups/new" component={CreateGroupFormContainer} />
             <AuthRoute exact path="/" component={videoBanner}/>
             <Route exact path="/find" component={FindPage}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <Route exact path="/groups/:groupId" component={GroupShowContainer} />
-            <Route exact path="/groups/:groupId/manage" component={GroupSettingsContainer} />
-            <Route exact path="/groups/:groupId/edit" component={GroupEditContainer} />
+            <ProtectedRoute exact path="/groups/:groupId/manage" component={GroupSettingsContainer} />
+            <ProtectedRoute exact path="/groups/:groupId/edit" component={GroupEditContainer} />
         </Switch>
         <Footer />
     </div>

@@ -3,6 +3,7 @@ class Group < ApplicationRecord
     validates :private, inclusion: {in: [true, false]}
 
     has_many :memberships,
+        dependent: :destroy,
         class_name: :Membership,
         primary_key: :id,
         foreign_key: :group_id

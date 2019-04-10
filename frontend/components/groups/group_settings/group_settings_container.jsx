@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GroupSettings from './group_settings';
-import { fetchGroup } from '../../../actions/group_actions';
+import { fetchGroup, deleteGroup } from '../../../actions/group_actions';
 
 const mapStateToProps = (state,ownProps) => {
     const currentUser = state.entities.users;
@@ -13,6 +13,7 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchGroup: id => dispatch(fetchGroup(id)),
+        deleteGroup: id => dispatch(deleteGroup(id)),
     };
     
 

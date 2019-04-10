@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Script from 'react-load-script';
 
 class GroupForm extends React.Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class GroupForm extends React.Component {
         let membership = this.props.membership;
 
         this.state = {group, membership};
+        this.handleScriptLoad = this.handleScriptLoad.bind(this);
+        this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     }
 
     update(field) {
@@ -21,7 +24,7 @@ class GroupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let that = this;
-        this.props.action({"name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": false})
+        this.props.action({"name": this.state.name, "hometown": this.state.query, "description": this.state.description, "private": false})
             .then((payload)=> {
                 that.props.createMembership({user_id: that.state.membership.user_id, group_id: payload.group.id, organizer: true })
                 .then((payload) => {
@@ -29,11 +32,29 @@ class GroupForm extends React.Component {
                 });
             });
         }
+
+    handleScriptLoad() {
+        const options = { types: ['(cities)']};
+        this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
+        this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    }
+
+    handlePlaceSelect() {
+        let addressObject = this.autocomplete.getPlace();
+        let address = addressObject.address_components;
+        if (address) {
+            this.setState({
+                city: address[0].long_name,
+                query: addressObject.formatted_address,
+            });
+        }
+    }
     
 
     render() {
         return (
             <>
+                <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places" onLoad={this.handleScriptLoad}/>
                 <div className="form-page">
                     <div className="group-form-banner">
                         <div className="overlay"></div>
@@ -59,9 +80,10 @@ class GroupForm extends React.Component {
                                     <input
                                         type="text"
                                         // value={this.state.hometown}
+                                        id="autocomplete"
                                         onChange={this.update('hometown')}
                                         className="group-form-input"
-                                        placeholder="Search for a city (Search not implemented yet. Just a string)"
+                                        placeholder="Search for a city"
                                     />
                                 </div>
                             </label>

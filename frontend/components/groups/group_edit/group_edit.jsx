@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Script from 'react-load-script';
 
 class GroupEdit extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.group;
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleScriptLoad = this.handleScriptLoad.bind(this);
+        this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +52,21 @@ class GroupEdit extends React.Component {
             });
     }
 
+    handleScriptLoad() {
+        const options = { types: ['(cities)'] };
+        this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
+        this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    }
+
+    handlePlaceSelect() {
+        let addressObject = this.autocomplete.getPlace();
+        if (addressObject) {
+            this.setState({
+                hometown: addressObject.formatted_address,
+            });
+        }
+    }
+
     render() {
         if (!this.props.group) {
             // return null;
@@ -55,6 +74,7 @@ class GroupEdit extends React.Component {
         }
         return (
             <div className="manage-group-page">
+                <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places" onLoad={this.handleScriptLoad} />
                 <div className="manage-group-header-stripe">
                     <div className="manage-group-header-content">
                         <h1>{this.state.name}</h1>
@@ -70,7 +90,7 @@ class GroupEdit extends React.Component {
                         <div className="group-edit-section-stripe">
                             <h2>About this Gathr Group</h2>
                         </div>
-                        <form onSubmit={this.handleSubmit} className="edit-group-form" action="javascript:;" enctype="multipart/form-data">
+                        <form onSubmit={this.handleSubmit} className="edit-group-form" action="javascript:;" encType="multipart/form-data">
                             <label className="group-step-container">
                                 <div className="group-step-details">
                                     <p className="group-form-properties">Gathr Group name</p>
@@ -100,6 +120,7 @@ class GroupEdit extends React.Component {
                                     <p className="group-form-properties">City, State</p>
                                     <input
                                         type="text"
+                                        id="autocomplete"
                                         value={this.state.hometown}
                                         onChange={this.update('hometown')}
                                         className="group-form-input"

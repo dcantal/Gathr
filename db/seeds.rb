@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
 
+Membership.destroy_all
+Group.destroy_all
+
 a = Group.create(name: "New York Games Gathring", hometown: "New York, NY", description: "If you like playing games and live in New York, then come play games and live in New York with us!")
 
 filea = open('https://s3.amazonaws.com/gathr-dc-seeds/gaming.jpg')
@@ -19,7 +22,7 @@ fileb = open('https://s3.amazonaws.com/gathr-dc-seeds/bonfire.jpg')
 
 b.photo.attach(io: fileb, filename: 'bonfire.jpg')
 
-c = Group.create(name: "Camelriders of Brooklyn", hometown: "Brooklyn, NY", description: "Anyone who loves camelriding in Brooklyn should join. We haven't done it or seen anyone do it but we're determined to be the first")
+c = Group.create(name: "Camelriders of Brooklyn", hometown: "New York City, NY, USA", description: "Anyone who loves camelriding in Brooklyn should join. We haven't done it or seen anyone do it but we're determined to be the first")
 
 filec = open('https://s3.amazonaws.com/gathr-dc-seeds/camelriding.jpg')
 
