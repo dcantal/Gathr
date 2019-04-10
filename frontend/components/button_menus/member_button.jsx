@@ -51,9 +51,10 @@ class MemberButton extends React.Component {
         //     //would like this to not reload but instead show the new button
         //     location.reload();
         // });
-
-        let that = this;
+        this.setState({showMenu: false});
+        document.removeEventListener('click', this.closeMenu);
         return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]);
+
     }
 
     render() {

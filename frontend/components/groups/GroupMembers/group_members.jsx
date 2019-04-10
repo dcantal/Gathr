@@ -8,13 +8,13 @@ class GroupMembers extends React.Component {
     }
 
     render() {
-        let that = this;
+
         if (!this.props.memberIDs) {
             return null;
         }
         let members = this.props.memberIDs.map((member) => {
             return (
-                <GroupMemberItem key={member} member={that.props.member_info[member]} />
+                <GroupMemberItem key={member} member={this.props.member_info[member]} />
             );
         });
         return (
