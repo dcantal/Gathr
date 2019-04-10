@@ -1937,11 +1937,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
-
       if (!this.props.group) {
-        debugger; // return null;
-
+        // return null;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "loading-icon"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2086,7 +2083,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentUser: state.session.id,
     group: state.entities.groups[ownProps.match.params.groupId],
