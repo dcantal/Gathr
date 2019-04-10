@@ -1854,13 +1854,12 @@ function (_React$Component) {
   _createClass(GroupShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
       window.scrollTo(0, 0);
       var that = this;
       this.props.fetchGroup(this.props.match.params.groupId).then(function () {
         return that.setState({
-          memberships: _this2.props.group.memberships
+          memberships: that.props.group.memberships,
+          organizer: that.props.group.organizers.includes(that.props.currentUser)
         });
       });
     }
@@ -1873,7 +1872,7 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this2 = this;
 
       e.preventDefault();
       var formData = new FormData();
@@ -1889,8 +1888,8 @@ function (_React$Component) {
         contentType: false,
         processData: false
       }).then(function () {
-        return _this3.setState({
-          photoFile: _this3.props.group.photo
+        return _this2.setState({
+          photoFile: _this2.props.group.photo
         });
       }).then(location.reload());
     }
@@ -1904,7 +1903,7 @@ function (_React$Component) {
   }, {
     key: "joinGroup",
     value: function joinGroup() {
-      var _this4 = this;
+      var _this3 = this;
 
       if (!this.props.currentUser) {
         this.props.history.push('/login');
@@ -1918,7 +1917,7 @@ function (_React$Component) {
         group_id: currentGroupId,
         organizer: false
       }).then(function () {
-        _this4.setState({
+        _this3.setState({
           member: true,
           button: "leave"
         });
@@ -1933,16 +1932,6 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
         }));
-      }
-
-      var buttonMessage;
-
-      if (this.state.button === "leave" && this.state.organizer) {
-        buttonMessage = "You're an organizer";
-      } else if (this.state.button === "leave") {
-        buttonMessage = "You're a member";
-      } else {
-        buttonMessage = "Join this group";
       }
 
       var members = this.props.group.members;
@@ -32413,7 +32402,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

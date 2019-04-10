@@ -24,9 +24,8 @@ class GroupShow extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         let that = this;
-
         this.props.fetchGroup(this.props.match.params.groupId).then(() => {
-            return that.setState({memberships: this.props.group.memberships});
+            return that.setState({ memberships: that.props.group.memberships, organizer: that.props.group.organizers.includes(that.props.currentUser)});
         });
     }
 
@@ -77,16 +76,6 @@ class GroupShow extends React.Component {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
         
-        let buttonMessage;
-        if ((this.state.button) === "leave" && this.state.organizer){
-            buttonMessage="You're an organizer"
-        }
-        else if ((this.state.button) === "leave") {
-            buttonMessage="You're a member"
-        }
-        else {
-            buttonMessage="Join this group"
-        }
 
         let members = this.props.group.members;
         let member_info = this.props.group.member_info;
