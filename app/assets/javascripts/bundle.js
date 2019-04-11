@@ -706,7 +706,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../groups/group_index_container */ "./frontend/components/groups/group_index_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_load_script__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-load-script */ "./node_modules/react-load-script/lib/index.js");
+/* harmony import */ var react_load_script__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_load_script__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -716,13 +720,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -734,17 +739,57 @@ function (_React$Component) {
   _inherits(FindPage, _React$Component);
 
   function FindPage(props) {
+    var _this;
+
     _classCallCheck(this, FindPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(FindPage).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FindPage).call(this, props));
+    _this.state = {
+      query: "New York, NY, USA"
+    };
+    _this.handleScriptLoad = _this.handleScriptLoad.bind(_assertThisInitialized(_this));
+    _this.handlePlaceSelect = _this.handlePlaceSelect.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(FindPage, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleScriptLoad",
+    value: function handleScriptLoad() {
+      var options = {
+        types: ['(cities)']
+      };
+      this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete-find'), options);
+      this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    }
+  }, {
+    key: "handlePlaceSelect",
+    value: function handlePlaceSelect() {
+      var addressObject = this.autocomplete.getPlace();
+
+      if (addressObject) {
+        this.setState({
+          query: addressObject.formatted_address
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "member-home-banner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_load_script__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        url: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places",
+        onLoad: this.handleScriptLoad
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-banner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "overlay"
@@ -772,7 +817,13 @@ function (_React$Component) {
         className: "filter-text-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "filter-text"
-      }, "within 10 miles of New York, NY")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "within 10 miles of "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.query,
+        onChange: this.update('query'),
+        id: "autocomplete-find",
+        className: "group-form-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-button-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "find-button find-groups"
