@@ -12,6 +12,12 @@ class Group < ApplicationRecord
         through: :memberships,
         source: :member
 
+    has_many :events,
+        dependent: :destroy,
+        class_name: :Event,
+        primary_key: :id,
+        foreign_key: :group_id
+
     has_one_attached :photo
 
     def member_count
