@@ -18,7 +18,8 @@ import GroupShowContainer from './groups/group_show_container';
 import SignupAltContainer from './session_form/signup_alt_container';
 import GroupSettingsContainer from './groups/group_settings/group_settings_container';
 import GroupEditContainer from './groups/group_edit/group_edit_container';
-import Footer from './footer/footer';
+// import Footer from './footer/footer';
+import CreateEventFormContainer from './events/create_events/create_event_form_container';
 // import GroupMembers from './groups/GroupMembers/group_members';
 
 import { AuthRoute } from '../util/route_util';
@@ -48,8 +49,9 @@ const app = () => (
             <Route exact path="/groups/:groupId" component={GroupShowContainer} />
             <ProtectedRoute exact path="/groups/:groupId/manage" component={GroupSettingsContainer} />
             <ProtectedRoute exact path="/groups/:groupId/edit" component={GroupEditContainer} />
+            <ProtectedRoute exact path="/groups/:groupId/events/schedule" component={CreateEventFormContainer} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
     </div>
 );
 

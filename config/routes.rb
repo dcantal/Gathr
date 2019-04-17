@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     resource :user, only: [:create]
     resource :session, only: [:create, :show, :destroy]
     resources :groups, except: [:new] do
-      resources :events, only: [:create, :index, :destroy]
+      resources :events, only: [:create, :destroy]
       resources :users, only: [:index]
       resources :memberships, only: [:create, :index, :destroy]
     end
+    resources :events, only: [:index, :show, :update]
   end
 end
