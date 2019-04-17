@@ -819,15 +819,20 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateEventForm).call(this, props));
     var event = _this.props.event;
-    _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
-    _this.showDate = _this.showDate.bind(_assertThisInitialized(_this));
-    _this.closeDate = _this.closeDate.bind(_assertThisInitialized(_this));
-    _this.showTime = _this.showTime.bind(_assertThisInitialized(_this));
-    _this.closeTime = _this.closeTime.bind(_assertThisInitialized(_this));
+    _this.handleStartDayClick = _this.handleStartDayClick.bind(_assertThisInitialized(_this));
+    _this.handleEndDayClick = _this.handleEndDayClick.bind(_assertThisInitialized(_this));
+    _this.showStartDate = _this.showStartDate.bind(_assertThisInitialized(_this));
+    _this.closeStartDate = _this.closeStartDate.bind(_assertThisInitialized(_this));
+    _this.showEndDate = _this.showEndDate.bind(_assertThisInitialized(_this));
+    _this.closeEndDate = _this.closeEndDate.bind(_assertThisInitialized(_this));
     _this.state = {
-      selectedDay: _this.props.selectedDay,
-      showDate: false,
-      showTime: false
+      selectedStartDay: _this.props.selectedStartDay,
+      selectedStartTime: _this.props.selectedStartTime,
+      selectedEndDay: _this.props.selectedEndDay,
+      selectedEndTime: _this.props.selectedEndTime,
+      showStartDate: false,
+      showEndDate: false,
+      photoFile: null
     };
     return _this;
   }
@@ -836,6 +841,13 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchGroup(this.props.match.params.groupId);
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      this.setState({
+        photoFile: e.currentTarget.files[0]
+      });
     }
   }, {
     key: "update",
@@ -847,52 +859,54 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "showDate",
-    value: function showDate(event) {
+    key: "showStartDate",
+    value: function showStartDate(event) {
       var _this3 = this;
 
       event.preventDefault();
       this.setState({
-        showDate: true
+        showStartDate: true
       }, function () {
-        document.addEventListener('click', _this3.closeDate);
+        document.addEventListener('click', _this3.closeStartDate);
       });
     }
   }, {
-    key: "closeDate",
-    value: function closeDate() {
+    key: "closeStartDate",
+    value: function closeStartDate() {
       var _this4 = this;
 
-      if (!this.dateMenu.contains(event.target)) {
+      if (!this.startDateMenu.contains(event.target)) {
         this.setState({
-          showDate: false
+          showStartDate: false
         }, function () {
-          document.removeEventListener('click', _this4.closeDate);
+          document.removeEventListener('click', _this4.closeStartDate);
         });
       }
     }
   }, {
-    key: "showTime",
-    value: function showTime(event) {
+    key: "showEndDate",
+    value: function showEndDate(event) {
       var _this5 = this;
 
       event.preventDefault();
       this.setState({
-        showTime: true
+        showEndDate: true
       }, function () {
-        document.addEventListener('click', _this5.closeTime);
+        document.addEventListener('click', _this5.closeEndDate);
       });
     }
   }, {
-    key: "closeTime",
-    value: function closeTime() {
+    key: "closeEndDate",
+    value: function closeEndDate() {
       var _this6 = this;
 
-      th9is.setState({
-        showTime: false
-      }, function () {
-        document.removeEventListener('click', _this6.closeTime);
-      });
+      if (!this.endDateMenu.contains(event.target)) {
+        this.setState({
+          showEndDate: false
+        }, function () {
+          document.removeEventListener('click', _this6.closeEndDate);
+        });
+      }
     }
   }, {
     key: "handleSubmit",
@@ -915,10 +929,17 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleDayClick",
-    value: function handleDayClick(day) {
+    key: "handleStartDayClick",
+    value: function handleStartDayClick(day) {
       this.setState({
-        selectedDay: day
+        selectedStartDay: day
+      });
+    }
+  }, {
+    key: "handleEndDayClick",
+    value: function handleEndDayClick(day) {
+      this.setState({
+        selectedEndDay: day
       });
     }
   }, {
@@ -964,64 +985,92 @@ function (_React$Component) {
         className: "event-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "event-step-label"
-      }, "Date and Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Start"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-date-time"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.selectedDay ? this.state.selectedDay.toLocaleDateString() : "Select a date" // onChange={this.update('start_time')}
+        value: this.state.selectedStartDay ? this.state.selectedStartDay.toLocaleDateString() : "Select a start date" // onChange={this.update('start_time')}
         ,
-        className: "event-form-input",
-        onClick: this.showDate
-      }))), this.state.showDate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-form-input event-form-date",
+        onClick: this.showStartDate
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "time",
+        value: this.state.selectedStartTime ? this.state.selectedStartTime : "19:00:00" // onChange={this.update('start_time')}
+        ,
+        className: "event-form-input event-form-time"
+      })))), this.state.showStartDate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "day-picker-popup",
         ref: function ref(element) {
-          _this7.dateMenu = element;
+          _this7.startDateMenu = element;
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        onDayClick: this.handleDayClick,
-        selectedDays: this.state.selectedDay
+        onDayClick: this.handleStartDayClick,
+        selectedDays: this.state.selectedStartDay
       })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "event-step-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "event-step-label"
-      }, "Date and Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "datetime-local" // value={this.state.start_time}
+      }, "End"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-date-time"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.selectedEndDay ? this.state.selectedEndDay.toLocaleDateString() : "Select an end date" // onChange={this.update('start_time')}
         ,
-        onChange: this.update('start_time'),
-        className: "event-form-input"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "event-form-input event-form-date",
+        onClick: this.showEndDate
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "time",
+        value: this.state.selectedEndTime ? this.state.selectedEndTime : "19:00:00" // onChange={this.update('end_time')}
+        ,
+        className: "event-form-input event-form-time"
+      })))), this.state.showEndDate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "day-picker-popup",
+        ref: function ref(element) {
+          _this7.endDateMenu = element;
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        onDayClick: this.handleEndDayClick,
+        selectedDays: this.state.selectedEndDay
+      })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "event-step-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "event-step-label"
-      }, "Duration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        // value={this.state.description}
-        onChange: this.update('description'),
-        className: "event-form-input"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, "Featured Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-upload-photo-div"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "file",
+        className: "upload-event-photo"
+      }, "Upload photo", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "inputfileevent",
+        onChange: this.handleFile.bind(this)
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "event-step-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-step-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "event-step-label"
-      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "event-step-description-caption"
+      }, "Let your attendees know what to expect, including the agenda, what they need to bring, and how to find the group."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         // value={this.state.description}
         onChange: this.update('description'),
-        className: "event-form-input"
+        className: "event-form-input event-textarea"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "submit-stripe"
+        className: "event-form-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "group-form-submit",
         type: "submit",
-        value: "Next"
+        value: "Publish"
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-form-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-form-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Tips for a great event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Be descriptive"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "A good title immediately gives people an idea of what the event is about."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Get organized"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Describe things in a clear order so it's easy to digest. Start with an overall description of the event and include a basic agenda, before you move into really specific details."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Upload a photo or image to give members a better feel for the event.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "event-form-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Submit")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Tips for a great event"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Be descriptive"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "A good title immediately gives people an idea of what the event is about."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Get organized"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Describe things in a clear order so it's easy to digest. Start with an overall description of the event and include a basic agenda, before you move into really specific details."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Add an image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Upload a photo or image to give members a better feel for the event.")))));
     }
   }]);
 
@@ -1064,6 +1113,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       private: false
     },
     selectedDay: null,
+    selectedEnd: null,
+    selectedTime: null,
+    selectedEndTime: null,
     currentGroup: state.entities.groups[ownProps.match.params.groupId]
   };
 };

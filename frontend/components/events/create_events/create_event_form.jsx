@@ -9,15 +9,20 @@ class CreateEventForm extends React.Component {
     constructor(props) {
         super(props);
         let event = this.props.event;
-        this.handleDayClick = this.handleDayClick.bind(this);
-        this.showDate = this.showDate.bind(this);
-        this.closeDate = this.closeDate.bind(this);
-        this.showTime = this.showTime.bind(this);
-        this.closeTime = this.closeTime.bind(this);
+        this.handleStartDayClick = this.handleStartDayClick.bind(this);
+        this.handleEndDayClick = this.handleEndDayClick.bind(this);
+        this.showStartDate = this.showStartDate.bind(this);
+        this.closeStartDate = this.closeStartDate.bind(this);
+        this.showEndDate = this.showEndDate.bind(this);
+        this.closeEndDate = this.closeEndDate.bind(this);
         this.state = {
-            selectedDay: this.props.selectedDay,
-            showDate: false,
-            showTime: false,
+            selectedStartDay: this.props.selectedStartDay,
+            selectedStartTime: this.props.selectedStartTime,
+            selectedEndDay: this.props.selectedEndDay,
+            selectedEndTime: this.props.selectedEndTime,
+            showStartDate: false,
+            showEndDate: false,
+            photoFile: null,
         };
 
     }
@@ -26,42 +31,48 @@ class CreateEventForm extends React.Component {
         this.props.fetchGroup(this.props.match.params.groupId);
     }
 
+    handleFile(e) {
+        this.setState({ photoFile: e.currentTarget.files[0] });
+    }
+
     update(field) {
         return (e) => {
             this.setState({ [field]: e.target.value });
         };
     }
 
-    showDate(event) {
+    showStartDate(event) {
         event.preventDefault();
         this.setState({
-            showDate: true,
+            showStartDate: true,
         }, () => {
-            document.addEventListener('click', this.closeDate);
+            document.addEventListener('click', this.closeStartDate);
         });
     }
 
-    closeDate() {
-        if (!this.dateMenu.contains(event.target)) {
-            this.setState({ showDate: false}, () => {
-                document.removeEventListener('click', this.closeDate);
+    closeStartDate() {
+        if (!this.startDateMenu.contains(event.target)) {
+            this.setState({ showStartDate: false}, () => {
+                document.removeEventListener('click', this.closeStartDate);
             });
         }
     }
 
-    showTime(event) {
+    showEndDate(event) {
         event.preventDefault();
         this.setState({
-            showTime: true,
+            showEndDate: true,
         }, () => {
-            document.addEventListener('click', this.closeTime);
+            document.addEventListener('click', this.closeEndDate);
         });
     }
 
-    closeTime() {
-        th9is.setState({ showTime: false }, () => {
-            document.removeEventListener('click', this.closeTime);
-        });
+    closeEndDate() {
+        if (!this.endDateMenu.contains(event.target)) {
+            this.setState({ showEndDate: false}, () => {
+                document.removeEventListener('click', this.closeEndDate);
+            });
+        }
     }
 
     handleSubmit(e) {
@@ -76,8 +87,12 @@ class CreateEventForm extends React.Component {
             });
     }
     
-    handleDayClick(day) {
-        this.setState({ selectedDay: day });
+    handleStartDayClick(day) {
+        this.setState({ selectedStartDay: day });
+    }
+
+    handleEndDayClick(day) {
+        this.setState({ selectedEndDay: day });
     }
 
 
@@ -111,64 +126,98 @@ class CreateEventForm extends React.Component {
                                 
                                 <label className="event-step-container">
                                     <div className="event-step-details">
-                                        <p className="event-step-label">Date and Time</p>
-                                        <input
-                                            type="text"
-                                            value={ (this.state.selectedDay) ? this.state.selectedDay.toLocaleDateString() : "Select a date"}
-                                            // onChange={this.update('start_time')}
-                                            className="event-form-input"
-                                            onClick={ this.showDate }
-                                        />
+                                        <p className="event-step-label">Start</p>
+                                        <div className="event-date-time">
+                                            <input
+                                                type="text"
+                                                value={ (this.state.selectedStartDay) ? this.state.selectedStartDay.toLocaleDateString() : "Select a start date"}
+                                                // onChange={this.update('start_time')}
+                                                className="event-form-input event-form-date"
+                                                onClick={ this.showStartDate }
+                                            />
+                                            <input
+                                                type="time"
+                                                value={ (this.state.selectedStartTime) ? this.state.selectedStartTime : "19:00:00" }
+                                                // onChange={this.update('start_time')}
+                                                className="event-form-input event-form-time"
+                                            />
+                                        </div>
                                     </div>
                                 </label>
 
                                 {
-                                    this.state.showDate ? (
+                                    this.state.showStartDate ? (
                                         <div className="day-picker-popup" ref={(element) => {
-                                            this.dateMenu = element;
+                                            this.startDateMenu = element;
                                         }}>
                                         <DayPicker
-                                            onDayClick={this.handleDayClick}
-                                            selectedDays={this.state.selectedDay}
+                                            onDayClick={this.handleStartDayClick}
+                                            selectedDays={this.state.selectedStartDay}
                                         />
                                     </div>
                                     ) : (null)
                                 }
+                                
                                 <label className="event-step-container">
                                     <div className="event-step-details">
-                                        <p className="event-step-label">Date and Time</p>
-                                        <input
-                                            type="datetime-local"
-                                            // value={this.state.start_time}
-                                            onChange={this.update('start_time')}
-                                            className="event-form-input"
-                                        />
+                                        <p className="event-step-label">End</p>
+                                        <div className="event-date-time">
+                                            <input
+                                                type="text"
+                                                value={ (this.state.selectedEndDay) ? this.state.selectedEndDay.toLocaleDateString() : "Select an end date"}
+                                                // onChange={this.update('start_time')}
+                                                className="event-form-input event-form-date"
+                                                onClick={ this.showEndDate }
+                                            />
+                                            <input
+                                                type="time"
+                                                value={ (this.state.selectedEndTime) ? this.state.selectedEndTime : "19:00:00" }
+                                                // onChange={this.update('end_time')}
+                                                className="event-form-input event-form-time"
+                                            />
+                                        </div>
                                     </div>
                                 </label>
 
+                                {
+                                    this.state.showEndDate ? (
+                                        <div className="day-picker-popup" ref={(element) => {
+                                            this.endDateMenu = element;
+                                        }}>
+                                        <DayPicker
+                                            onDayClick={this.handleEndDayClick}
+                                            selectedDays={this.state.selectedEndDay}
+                                        />
+                                    </div>
+                                    ) : (null)
+                                }
+
                                 <label className="event-step-container">
                                     <div className="event-step-details">
-                                        <p className="event-step-label">Duration</p>
-                                        <input
-                                            // value={this.state.description}
-                                            onChange={this.update('description')}
-                                            className="event-form-input"
-                                        />
+                                        <p className="event-step-label">Featured Photo</p>
+                                        <div className="event-upload-photo-div">
+                                            <label htmlFor="file" className="upload-event-photo">Upload photo
+                                            <input type="file" className="inputfileevent"
+                                                    onChange={this.handleFile.bind(this)}
+                                                     />
+                                            </label>
+                                        </div>
                                     </div>
                                 </label>
 
                                 <label className="event-step-container">
                                     <div className="event-step-details">
                                         <p className="event-step-label">Description</p>
+                                        <p className="event-step-description-caption">Let your attendees know what to expect, including the agenda, what they need to bring, and how to find the group.</p>
                                         <textarea
                                             // value={this.state.description}
                                             onChange={this.update('description')}
-                                            className="event-form-input"
+                                            className="event-form-input event-textarea"
                                         />
                                     </div>
                                 </label>
-                                <div className="submit-stripe">
-                                    <input className="group-form-submit" type="submit" value="Next" />
+                                <div className="event-form-footer">
+                                    <input className="group-form-submit" type="submit" value="Publish" />
                                 </div>
                             </form>
                         </div>
@@ -188,9 +237,9 @@ class CreateEventForm extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="event-form-footer">
+                {/* <div className="event-form-footer">
                     <h1>Submit</h1>
-                </div>
+                </div> */}
             </div>
         )
     }

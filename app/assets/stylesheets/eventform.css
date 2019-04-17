@@ -11,8 +11,9 @@
     width: 80%;
     /* padding-left: 100px;
     padding-right: 100px; */
-    height: 2000px;
+    /* height: 2000px; */
     justify-content: space-between;
+    padding-bottom: 50px;
 }
 
 .event-form-left {
@@ -21,12 +22,14 @@
     flex-direction: column;
     /* border: 1px solid black; */
     padding: 20px;
+    padding-top: 30px;
 }
 
 .event-form-right {
     width: 35%;
     /* border: 1px solid red; */
     padding: 20px;
+    padding-top: 30px;
 }
 
 .event-form-header {
@@ -61,7 +64,8 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 23.3px;
-    padding-bottom: 4px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .event-form-input {
@@ -77,27 +81,76 @@
     width: 600px;
     /* max-width: 600px; */
     padding: 16px;
-    padding-right: 0px;
-    padding-left: 0px;
+    /* padding-right: 0px;
+    padding-left: 0px; */
+}
+
+.event-upload-photo-div {
+    height: 160px;
+    width: 620px;
+    border: 3px dashed rgba(46, 62, 72, 0.12);
+    border-radius: 7px;
+}
+
+.event-textarea {
+    resize: none;
+    height: 65px;
+}
+
+.event-date-time {
+    display: flex;
+}
+
+.event-form-date {
+    width: 150px;
+}
+
+.event-form-time {
+    width: 125px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
 }
 
 
 .event-form-description {
     padding: 20px;
-    width: 75%;
+    width: 80%;
     background-color: white;
     position: -webkit-sticky;
     position: sticky;
     top: 20px;
-    border-radius: 7px;
+    border-radius: 8px;
+    resize: none;
+    color: rgb(46, 62, 72);
+}
+
+.event-form-description > h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.event-form-description > h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.event-form-description > p {
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .event-form-footer {
-    /* position: fixed;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0px;
     width: 100%;
-    height: 30px;
+    /* height: 30px; */
     background-color: white;
+    margin-left: -160px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .day-picker-popup {
@@ -106,6 +159,66 @@
     border-radius: 4px;
     padding: 10px;
 }
+
+.event-upload-photo-div {
+    display: flex;
+    align-items: center;
+}
+
+.upload-event-photo {
+    overflow: hidden;
+    position: relative;
+    /* min-width: 100%;
+    min-height: 100%; */
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: none;
+    background-color: rgba(41, 77, 107, 0.137);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.upload-event-photo:hover {
+    cursor: pointer;
+    background-color: rgba(41, 77, 107, 0.153);
+}
+
+.upload-event-photo [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    /* width: 40px; */
+    /* max-height: 100%;
+    max-width: 100%; */
+    /* min-height: 100%;
+    min-width: 100%; */
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+.event-step-description-caption {
+    color: rgb(46, 62, 72);
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+/* .inputfileevent:hover {
+    cursor: pointer;
+}
+
+.inputfileevent {
+} */
 
 /* actual form (inputs, form bounds, etc) styling */
 
