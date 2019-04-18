@@ -846,7 +846,6 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchGroup(this.props.match.params.groupId);
-      debugger;
     }
   }, {
     key: "handleFile",
@@ -860,7 +859,6 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -918,11 +916,9 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       var s = moment__WEBPACK_IMPORTED_MODULE_5___default()('05/01/2019', 'DD/MM/YYYY', true).format(); // DateTime.new(2019, 5, 1, 19, 0, 0, Rational(4, 24));
 
-      debugger;
       var end = moment__WEBPACK_IMPORTED_MODULE_5___default()('05/02/2019', 'DD/MM/YYYY', true).format();
       var formData = new FormData();
       formData.append('event[group_id]', 161);

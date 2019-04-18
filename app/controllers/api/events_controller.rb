@@ -13,11 +13,9 @@ class Api::EventsController < ApplicationController
     end
 
     def create
-        debugger
         @event = Event.new(event_params)
         @event.start_time = DateTime.strptime(event_params["start_time"], '%Y-%m-%dT%H:%M:%S%z')
         @event.end_time = DateTime.strptime(event_params["end_time"], '%Y-%m-%dT%H:%M:%S%z')
-        debugger
         if @event.save
             render :show
         else

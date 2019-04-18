@@ -33,7 +33,6 @@ class CreateEventForm extends React.Component {
 
     componentDidMount() {
         this.props.fetchGroup(this.props.match.params.groupId);
-        debugger
     }
 
     handleFile(e) {
@@ -41,7 +40,6 @@ class CreateEventForm extends React.Component {
     }
 
     update(field) {
-        debugger
         return (e) => {
             this.setState({[field]: e.target.value });
         };
@@ -82,11 +80,9 @@ class CreateEventForm extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
         let s = moment('05/01/2019', 'DD/MM/YYYY', true).format();
         // DateTime.new(2019, 5, 1, 19, 0, 0, Rational(4, 24));
-        debugger
         let end = moment('05/02/2019', 'DD/MM/YYYY', true).format();
         const formData = new FormData();
         formData.append('event[group_id]', 161);
