@@ -20,7 +20,7 @@ export const createEvent = (event) => {
     return (
         $.ajax({
             method: 'POST',
-            url: `api/${event.groupId}/events`,
+            url: `api/groups/${event.groupId}/events`,
             data: {event},
         })
     );
@@ -30,7 +30,7 @@ export const updateEvent = (event) => {
     return (
         $.ajax({
             method: 'PATCH',
-            url: `api/groups`,
+            url: `api/groups/${event.groupId}/events/${event.id}`,
             data: {event},
         })
     );

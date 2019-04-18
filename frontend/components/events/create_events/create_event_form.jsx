@@ -1,8 +1,10 @@
+
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { withRouter } from 'react-router-dom';
 import Script from 'react-load-script';
+import moment from 'moment';
 // import { DayPickerInput } from 'react-day-picker/types/DayPickerInput';
 
 class CreateEventForm extends React.Component {
@@ -11,11 +13,13 @@ class CreateEventForm extends React.Component {
         let event = this.props.event;
         this.handleStartDayClick = this.handleStartDayClick.bind(this);
         this.handleEndDayClick = this.handleEndDayClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.showStartDate = this.showStartDate.bind(this);
         this.closeStartDate = this.closeStartDate.bind(this);
         this.showEndDate = this.showEndDate.bind(this);
         this.closeEndDate = this.closeEndDate.bind(this);
         this.state = {
+            event: event,
             selectedStartDay: this.props.selectedStartDay,
             selectedStartTime: this.props.selectedStartTime,
             selectedEndDay: this.props.selectedEndDay,
@@ -29,6 +33,7 @@ class CreateEventForm extends React.Component {
 
     componentDidMount() {
         this.props.fetchGroup(this.props.match.params.groupId);
+        debugger
     }
 
     handleFile(e) {
@@ -36,8 +41,9 @@ class CreateEventForm extends React.Component {
     }
 
     update(field) {
+        debugger
         return (e) => {
-            this.setState({ [field]: e.target.value });
+            this.setState({[field]: e.target.value });
         };
     }
 
@@ -76,15 +82,31 @@ class CreateEventForm extends React.Component {
     }
 
     handleSubmit(e) {
+        debugger
         e.preventDefault();
-        let that = this;
-        this.props.action({ "name": this.state.name, "hometown": this.state.query, "description": this.state.description, "private": false })
-            .then((payload) => {
-                that.props.createMembership({ user_id: that.state.membership.user_id, group_id: payload.group.id, organizer: true })
-                    .then((payload) => {
-                        that.props.history.push(`/groups/${payload.group.id}`);
-                    });
-            });
+        let s = moment('05/01/2019', 'DD/MM/YYYY', true).format();
+        // DateTime.new(2019, 5, 1, 19, 0, 0, Rational(4, 24));
+        debugger
+        let end = moment('05/02/2019', 'DD/MM/YYYY', true).format();
+        const formData = new FormData();
+        formData.append('event[group_id]', 161);
+        formData.append('event[name]', this.state.name);
+        formData.append('event[description]', this.state.description);
+        formData.append('event[latitude]', 40.751260);
+        formData.append('event[longitude]', -73.984030);
+        formData.append('event[start_time]', s);
+        formData.append('event[end_time]', end);
+        if (this.state.photoFile) {
+            formData.append('event[photo]', this.state.photoFile);
+        }
+
+        $.ajax({
+            url: `api/groups/${event.groupId}/events`,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false
+        });
     }
     
     handleStartDayClick(day) {
