@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GroupIndexContainer from '../groups/group_index_container';
+import EventIndexContainer from '../events/event_index/event_index_container';
 // import meetupvideo from '../../../app/assets/videos/meetupbanner.mp4';
 
 class videoBanner extends React.Component {
@@ -28,6 +29,7 @@ class videoBanner extends React.Component {
                         </div>
                     </div>
                 </div>
+                <EventIndexContainer />
                 <GroupIndexContainer />
             </>
         )

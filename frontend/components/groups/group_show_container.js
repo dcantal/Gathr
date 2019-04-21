@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.session.id,
         group: state.entities.groups[ownProps.match.params.groupId],
-
+        events: state.entities.events,
     };
 };
 

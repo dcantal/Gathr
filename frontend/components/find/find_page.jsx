@@ -1,5 +1,6 @@
 import React from 'react';
 import GroupIndexContainer from '../groups/group_index_container';
+import EventIndexContainer from '../events/event_index/event_index_container';
 import { Link } from 'react-router-dom';
 import Script from 'react-load-script';
 
@@ -70,6 +71,7 @@ class FindPage extends React.Component {
                     </div>
 
                 </div>
+                <EventIndexContainer />
                 <GroupIndexContainer />
             </div>
         )

@@ -58,7 +58,7 @@ class GroupForm extends React.Component {
                 <div className="form-page">
                     <div className="group-form-banner">
                         <div className="overlay"></div>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/29/04/18/hot-air-balloons-1867279_960_720.jpg" className="video"></img>
+                        <img src="https://s3.amazonaws.com/gathr-dc-seeds/dweb_hero.jpg" className="video"></img>
                         <div className="banner-content">
                             <div className="banner-content-item">
                                 <h1 className="banner-text">Start a new Gathr Group</h1>

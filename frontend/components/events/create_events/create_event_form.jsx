@@ -5,7 +5,11 @@ import 'react-day-picker/lib/style.css';
 import { withRouter } from 'react-router-dom';
 import Script from 'react-load-script';
 import moment from 'moment';
-// import { DayPickerInput } from 'react-day-picker/types/DayPickerInput';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import MomentLocaleUtils, {
+    formatDate,
+    parseDate,
+} from 'react-day-picker/moment';
 
 class CreateEventForm extends React.Component {
     constructor(props) {
@@ -83,17 +87,18 @@ class CreateEventForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let s = moment('05/01/2019', 'DD/MM/YYYY', true).format();
-        // DateTime.new(2019, 5, 1, 19, 0, 0, Rational(4, 24));
-        let end = moment('05/02/2019', 'DD/MM/YYYY', true).format();
+        let start_date = moment(this.state.selectedStartDate).format("MM-DD-YYYY");
+        let start_datetime = moment(start_date + " " + this.state.selectedStartTime).format("MM-DD-YYYY hh:mm A" );
+        let end_date = moment(this.state.selectedEndDate).format("MM-DD-YYYY");
+        let end_datetime = moment(end_date + " " + this.state.selectedEndTime).format("MM-DD-YYYY hh:mm A");
         const formData = new FormData();
-        formData.append('event[group_id]', 161);
+        formData.append('event[group_id]', this.props.currentGroup.id);
         formData.append('event[name]', this.state.name);
         formData.append('event[description]', this.state.description);
         formData.append('event[latitude]', this.state.latitude);
         formData.append('event[longitude]', this.state.longitude);
-        formData.append('event[start_time]', s);
-        formData.append('event[end_time]', end);
+        formData.append('event[start_time]', start_datetime);
+        formData.append('event[end_time]', end_datetime);
         if (this.state.photoFile) {
             formData.append('event[photo]', this.state.photoFile);
         }
@@ -105,7 +110,7 @@ class CreateEventForm extends React.Component {
             contentType: false,
             processData: false
         }).then((payload) => {
-            this.props.history.push(`/groups/${payload.event.id}`);
+            this.props.history.push(`/events/${payload.event.id}`);
         });
 
         // $.ajax({
@@ -184,14 +189,18 @@ class CreateEventForm extends React.Component {
                                                 <input
                                                     type="text"
                                                     value={ (this.state.selectedStartDay) ? this.state.selectedStartDay.toLocaleDateString() : "Select a start date"}
-                                                    // onChange={this.update('start_time')}
+                                                    onChange={this.update('selectedStartDay')}
                                                     className="event-form-input event-form-date"
                                                     onClick={ this.showStartDate }
                                                 />
+                                                {/* <DayPickerInput
+                                                    placeholder="Select a start date"
+                                                    onDayChange={day => this.setState({selectedStartDate: day})}/>
+                                                     */}
                                                 <input
                                                     type="time"
                                                     value={ (this.state.selectedStartTime) ? this.state.selectedStartTime : "19:00:00" }
-                                                    // onChange={this.update('start_time')}
+                                                    onChange={this.update('selectedStartTime')}
                                                     className="event-form-input event-form-time"
                                                 />
                                             </div>
@@ -218,14 +227,14 @@ class CreateEventForm extends React.Component {
                                                 <input
                                                     type="text"
                                                     value={ (this.state.selectedEndDay) ? this.state.selectedEndDay.toLocaleDateString() : "Select an end date"}
-                                                    // onChange={this.update('start_time')}
+                                                    onChange={this.update('selectedEndDay')}
                                                     className="event-form-input event-form-date"
                                                     onClick={ this.showEndDate }
                                                 />
                                                 <input
                                                     type="time"
                                                     value={ (this.state.selectedEndTime) ? this.state.selectedEndTime : "19:00:00" }
-                                                    // onChange={this.update('end_time')}
+                                                    onChange={this.update('selectedEndTime')}
                                                     className="event-form-input event-form-time"
                                                 />
                                             </div>

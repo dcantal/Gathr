@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GroupMembersContainer from './GroupMembers/group_members_container';
+import GroupShowEventIndexContainer from '../events/group_event_index/group_show_event_index_container';
 import { Route, Switch } from 'react-router';
 import ManageButton from '../button_menus/manage_button';
 import MemberButton from '../button_menus/member_button';
@@ -175,7 +176,9 @@ class GroupShow extends React.Component {
                                 <p>{this.props.group.description}</p>
                             </div>
                             <div className="group-upcoming-events">
-                                <h3 className="group-section-label">Events</h3>
+                                <h3 className="group-section-label">Upcoming Events</h3>
+                                {/* <h1>{this.props.events[10].name}</h1> */}
+                                <GroupShowEventIndexContainer />
                             </div>
                             <div className="group-photos">
                                 <h3 className="group-section-label">Photos</h3>

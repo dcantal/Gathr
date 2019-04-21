@@ -85,6 +85,19 @@
     padding-left: 0px; */
 }
 
+.DayPickerInput > input {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23.3px;
+    border-radius: 5px;
+    border: 1px solid rgba(46, 62, 72, 0.12);
+    box-shadow: 0;
+    color: rgb(46, 62, 72);
+    cursor: text;
+    width: 150px;
+    padding: 16px;
+}
+
 .event-upload-photo-div {
     height: 160px;
     width: 620px;

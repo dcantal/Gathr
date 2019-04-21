@@ -24,7 +24,14 @@ json.group do
             end
         end
     end
-    json.photoUrl url_for(@group.photo)\
+    json.photoUrl url_for(@group.photo)
+    json.events do
+        @group.events.each do |event|
+            json.set! event.id do
+                json.extract! event, :id, :name, :description, :start_time, :end_time, :latitude, :longitude
+            end
+        end
+    end
 end
 
 json.members do
