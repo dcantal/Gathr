@@ -126,6 +126,7 @@ label:hover {
 }
 
 .group-actions-right {
+    display: flex;
     width: 42%;
 }
 
@@ -209,6 +210,7 @@ i {
     border: none;
     position: relative;
     /* top: 38px; */
+    margin-right: 20px;
 }
 
 .group-button-dropdown-complete {
@@ -218,24 +220,6 @@ i {
 .group-button:hover {
     cursor: pointer;
 }
-
-/* .manage-button {
-    background: rgba(41,77,107,.12);
-    color: #2e3e48;
-}
-
-.manage-button {
-    background: rgba(41,77,107,.145);
-}
-
-.join-group-button {
-    background: #f13a59;
-    color: white;
-}
-
-.join-group-button:hover {
-    background: #e81035;
-} */
 
 #leave {
     background: rgba(41,77,107,.12);
@@ -271,7 +255,7 @@ i {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     /* margin-bottom: -78px; */
     width: 200px;
     background: white;
@@ -294,6 +278,80 @@ i {
 }
 
 .group-button-dropdown-item:hover {
+    background-color: grey;
+    cursor: pointer;
+    background: rgba(30, 35, 39, 0.12);
+}
+
+
+/* create-event */
+
+.create-event-button {
+    padding: 8px 32px;
+    text-align: center;
+    font-size: 14px;
+    height: 38px;
+    width: 200px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    line-height: 1.6;
+    border: none;
+    position: relative;
+    /* top: 38px; */
+}
+
+.create-event-button-dropdown-complete {
+    position: relative;
+}
+
+.create-event-button:hover {
+    cursor: pointer;
+}
+
+
+#createEvent {
+    background: #f13a59;
+    color: white;
+}
+
+#createEvent:hover {
+    background: #e81035;
+}
+
+.create-event-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-event-button-dropdown {
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid grey; */
+    /* margin-bottom: -78px; */
+    width: 200px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    top: 43px;
+}
+
+.create-event-button-dropdown-item {
+    background-color: white;
+    height: 38px;
+    color: rgb(46, 62, 72);
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-event-button-dropdown-item:hover {
     background-color: grey;
     cursor: pointer;
     background: rgba(41,77,107,.12);

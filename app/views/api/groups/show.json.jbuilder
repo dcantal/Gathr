@@ -29,6 +29,7 @@ json.group do
         @group.events.each do |event|
             json.set! event.id do
                 json.extract! event, :id, :name, :description, :start_time, :end_time, :latitude, :longitude
+                json.photoUrl url_for(event.photo)
             end
         end
     end

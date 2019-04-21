@@ -4,6 +4,7 @@ import GroupMembersContainer from './GroupMembers/group_members_container';
 import GroupShowEventIndexContainer from '../events/group_event_index/group_show_event_index_container';
 import { Route, Switch } from 'react-router';
 import ManageButton from '../button_menus/manage_button';
+import CreateEventButton from '../button_menus/create_event_button';
 import MemberButton from '../button_menus/member_button';
 
 class GroupShow extends React.Component {
@@ -153,6 +154,11 @@ class GroupShow extends React.Component {
                         {
                             this.props.group.members.includes(this.props.currentUser) && this.state.organizer &&
                                 <ManageButton group={this.props.group} />
+                        }
+
+                        {
+                            this.props.group.members.includes(this.props.currentUser) && this.state.organizer &&
+                            <CreateEventButton group={this.props.group} />
                         }
 
                         {
