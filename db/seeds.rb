@@ -60,6 +60,5 @@ b.photo.attach(io: fileb, filename: 'bonfire.jpg')
 c = Group.create(name: "Camelriders of Brooklyn", hometown: "New York City, NY, USA", description: "Anyone who loves camelriding in Brooklyn should join. We haven't done it or seen anyone do it but we're determined to be the first")
 
 filec = open('https://s3.amazonaws.com/gathr-dc-seeds/camelriding.jpg')
-https://s3.amazonaws.com/gathr-dc-seeds/shy.jpg
 c.photo.attach(io: filec, filename: 'camelriding.jpg')
 
