@@ -115,7 +115,7 @@ class EventShow extends React.Component {
                                                 <h1 className="event-show-side-date event-show-side-start-date">
                                                     {
                                                         moment(this.props.event.start_time).format('dddd, LL, h:mm A')
-                                                    }
+                                                    } to
                                                 </h1>
                                                 <h1 className="event-show-side-date vent-show-side-start-date">
                                                     {

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
       resources :memberships, only: [:create, :index, :destroy]
     end
-    resources :events, only: [:index, :show, :update]
+    resources :events, only: [:index, :show, :update] do
+      resources :rsvps, only: [:create, :index, :destroy]
+    end
   end
 end

@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import GroupShow from './group_show';
 import { fetchGroup, fetchMembers, createMembership, deleteMembership, updateGroup  } from '../../actions/group_actions';
 
-
 const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.session.id,

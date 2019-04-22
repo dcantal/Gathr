@@ -74,13 +74,17 @@ class GroupShow extends React.Component {
     }
 
     render() {
+        debugger
         if (!this.props.group || !this.props.group.organizers) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
-        
+        debugger
 
         let members = this.props.group.members;
         let member_info = this.props.group.member_info;
+        let events = this.props.group.events;
+
+        debugger
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -183,8 +187,7 @@ class GroupShow extends React.Component {
                             </div>
                             <div className="group-upcoming-events">
                                 <h3 className="group-section-label">Upcoming Events</h3>
-                                {/* <h1>{this.props.events[10].name}</h1> */}
-                                <GroupShowEventIndexContainer />
+                                <GroupShowEventIndexContainer events={events}/>
                             </div>
                             <div className="group-photos">
                                 <h3 className="group-section-label">Photos</h3>

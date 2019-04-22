@@ -39,11 +39,12 @@ class CreateEventButton extends React.Component {
 
     render() {
         let group = this.props.group;
+        debugger
         return (
             <div className="create-event-button-dropdown-complete">
                 <button onClick={this.showMenu} className="create-event-button" id="createEvent">
                     <div className="create-event-button-content">
-                        Create Event <img src="https://img.icons8.com/material-sharp/24/000000/chevron-down.png" />
+                        Create Event
                     </div>
                 </button>
 

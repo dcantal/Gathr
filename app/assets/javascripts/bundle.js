@@ -90,24 +90,34 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_EVENTS, RECEIVE_EVENT, receiveEvents, receiveEvent, fetchEvents, fetchEvent, createEvent, updateEvent */
+/*! exports provided: RECEIVE_EVENTS, RECEIVE_EVENT, RECEIVE_RSVP, REMOVE_RSVP, receiveEvents, receiveEvent, removeRsvp, fetchEvents, fetchEvent, createEvent, updateEvent, createRsvp, deleteRsvp */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_EVENTS", function() { return RECEIVE_EVENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_EVENT", function() { return RECEIVE_EVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_RSVP", function() { return RECEIVE_RSVP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_RSVP", function() { return REMOVE_RSVP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveEvents", function() { return receiveEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveEvent", function() { return receiveEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeRsvp", function() { return removeRsvp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEvents", function() { return fetchEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEvent", function() { return fetchEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRsvp", function() { return createRsvp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteRsvp", function() { return deleteRsvp; });
 /* harmony import */ var _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/event_api_util */ "./frontend/util/event_api_util.js");
+/* harmony import */ var _util_rsvp_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/rsvp_api_util */ "./frontend/util/rsvp_api_util.js");
+
 
 var RECEIVE_EVENTS = "RECEIVE_EVENTS";
 var RECEIVE_EVENT = "RECEIVE_EVENT";
+var RECEIVE_RSVP = "RECEIVE_RSVP";
+var REMOVE_RSVP = "REMOVE_RSVP";
 var receiveEvents = function receiveEvents(events) {
+  debugger;
   return {
     type: RECEIVE_EVENTS,
     events: events
@@ -120,8 +130,15 @@ var receiveEvent = function receiveEvent(_ref) {
     event: event
   };
 };
+var removeRsvp = function removeRsvp(rsvpId) {
+  return {
+    type: REMOVE_RSVP,
+    rsvpId: rsvpId
+  };
+};
 var fetchEvents = function fetchEvents() {
   return function (dispatch) {
+    debugger;
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchEvents"]().then(function (events) {
       return dispatch(receiveEvents(events));
     });
@@ -145,6 +162,20 @@ var updateEvent = function updateEvent(event) {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["updateEvent"](event).then(function (event) {
       return dispatch(receiveEvent(event));
+    });
+  };
+};
+var createRsvp = function createRsvp(rsvp) {
+  return function (dispatch) {
+    return _util_rsvp_api_util__WEBPACK_IMPORTED_MODULE_1__["createRsvp"](rsvp).then(function (group) {
+      return dispatch(receiveGroup(group));
+    });
+  };
+};
+var deleteRsvp = function deleteRsvp(rsvp) {
+  return function (dispatch) {
+    return _util_rsvp_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteRsvp"](rsvp).then(function (rsvpId) {
+      return dispatch(removeRsvp(rsvpId));
     });
   };
 };
@@ -599,6 +630,7 @@ function (_React$Component) {
       var _this4 = this;
 
       var group = this.props.group;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-event-button-dropdown-complete"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -607,9 +639,7 @@ function (_React$Component) {
         id: "createEvent"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-event-button-content"
-      }, "Create Event ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://img.icons8.com/material-sharp/24/000000/chevron-down.png"
-      }))), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Create Event")), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-event-button-dropdown",
         ref: function ref(element) {
           _this4.dropdownMenu = element;
@@ -719,9 +749,7 @@ function (_React$Component) {
         id: "leave"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-button-content"
-      }, "Manage Group ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://img.icons8.com/material-sharp/24/000000/chevron-down.png"
-      }))), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Manage Group")), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-button-dropdown",
         ref: function ref(element) {
           _this4.dropdownMenu = element;
@@ -855,9 +883,7 @@ function (_React$Component) {
         id: "leave"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-button-content"
-      }, "You're a member ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://img.icons8.com/material-sharp/24/000000/chevron-down.png"
-      }))), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "You're a member")), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-button-dropdown",
         ref: function ref(element) {
           _this4.dropdownMenu = element;
@@ -1420,6 +1446,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
   return {
     fetchEvents: function fetchEvents() {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchEvents"])());
@@ -1502,26 +1529,34 @@ var GroupShowEventIndex =
 function (_React$Component) {
   _inherits(GroupShowEventIndex, _React$Component);
 
-  function GroupShowEventIndex() {
+  function GroupShowEventIndex(props) {
     _classCallCheck(this, GroupShowEventIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(GroupShowEventIndex).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(GroupShowEventIndex).call(this, props));
   }
 
   _createClass(GroupShowEventIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchGroup(); // window.scrollTo(0, 0);
+      this.props.fetchGroup(this.props.groupId); // window.scrollTo(0, 0);
     }
   }, {
     key: "render",
     value: function render() {
-      var events = this.props.events.map(function (event) {
+      debugger;
+
+      if (!this.props.events) {
+        return null;
+      } // let events = this.props.events.map((event) => {
+
+
+      var events = Object.values(this.props.events).map(function (event) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_show_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: event.id,
           event: event
         });
       });
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-event-list"
       }, events);
@@ -1552,17 +1587,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var events = Object.values(state.entities.events);
-  return {
-    events: events // groups: []
-
+  // let events = Object.values(state.entities.events);
+  return {// events: events
+    // groups: []
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
   return {
-    fetchGroup: function fetchGroup() {
-      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchGroup"])());
+    fetchGroup: function fetchGroup(id) {
+      return dispatch(Object(_actions_group_actions__WEBPACK_IMPORTED_MODULE_2__["fetchGroup"])(id));
     }
   };
 };
@@ -1790,7 +1825,7 @@ function (_React$Component) {
         className: "event-side-dates"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "event-show-side-date event-show-side-start-date"
-      }, moment__WEBPACK_IMPORTED_MODULE_3___default()(this.props.event.start_time).format('dddd, LL, h:mm A')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      }, moment__WEBPACK_IMPORTED_MODULE_3___default()(this.props.event.start_time).format('dddd, LL, h:mm A'), " to"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "event-show-side-date vent-show-side-start-date"
       }, moment__WEBPACK_IMPORTED_MODULE_3___default()(this.props.event.end_time).format('dddd, LL, h:mm A'))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-location"
@@ -3137,6 +3172,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
+
       if (!this.props.group || !this.props.group.organizers) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "loading-icon"
@@ -3145,8 +3182,11 @@ function (_React$Component) {
         }));
       }
 
+      debugger;
       var members = this.props.group.members;
       var member_info = this.props.group.member_info;
+      var events = this.props.group.events;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3226,7 +3266,9 @@ function (_React$Component) {
         className: "group-upcoming-events"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
-      }, "Upcoming Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_group_event_index_group_show_event_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Upcoming Events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_group_event_index_group_show_event_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        events: events
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-photos"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "group-section-label"
@@ -4801,6 +4843,35 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Auth));
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Protected));
+
+/***/ }),
+
+/***/ "./frontend/util/rsvp_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/rsvp_api_util.js ***!
+  \****************************************/
+/*! exports provided: createRsvp, deleteRsvp */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRsvp", function() { return createRsvp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteRsvp", function() { return deleteRsvp; });
+var createRsvp = function createRsvp(rsvp) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/events/".concat(rsvp.event_id, "/rsvps"),
+    data: {
+      rsvp: rsvp
+    }
+  });
+};
+var deleteRsvp = function deleteRsvp(rsvp) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/events/".concat(rsvp.event_id, "/rsvps/").concat(rsvp.id)
+  });
+};
 
 /***/ }),
 

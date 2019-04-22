@@ -44,7 +44,7 @@ class ManageButton extends React.Component {
                 <button onClick={this.showMenu} className="group-button" id="leave">
                     <div className="group-button-content">
                         {/* Manage Group <i class="fal fa-chevron-down"></i> */}
-                        Manage Group <img src="https://img.icons8.com/material-sharp/24/000000/chevron-down.png"/>
+                        Manage Group
                     </div>
                 </button>
 

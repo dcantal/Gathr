@@ -64,7 +64,7 @@ class MemberButton extends React.Component {
                 <button onClick={this.showMenu} className="group-button" id="leave">
                     <div className="group-button-content">
                         {/* You're a member <i class="fal fa-chevron-down"></i> */}
-                        You're a member <img src="https://img.icons8.com/material-sharp/24/000000/chevron-down.png" />
+                        You're a member
                     </div>
                 </button>
 
