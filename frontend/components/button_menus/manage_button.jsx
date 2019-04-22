@@ -57,8 +57,6 @@ class ManageButton extends React.Component {
                                     this.dropdownMenu = element;
                                 }}>
                                 <Link to={`${group.id}/manage`} className="group-button-dropdown-item" target="_blank">Edit Group Settings</Link>
-                                <a className="group-button-dropdown-item" href="http://google.com/" target="_blank">Step down as organizer</a>
-
                             </div>
                         )
                         : (

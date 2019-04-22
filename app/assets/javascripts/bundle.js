@@ -599,7 +599,6 @@ function (_React$Component) {
       var _this4 = this;
 
       var group = this.props.group;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-event-button-dropdown-complete"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -616,7 +615,7 @@ function (_React$Component) {
           _this4.dropdownMenu = element;
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "events/schedule",
+        to: "/groups/".concat(group.id, "/events/schedule"),
         className: "create-event-button-dropdown-item"
       }, "Create a new event")) : null);
     }
@@ -731,11 +730,7 @@ function (_React$Component) {
         to: "".concat(group.id, "/manage"),
         className: "group-button-dropdown-item",
         target: "_blank"
-      }, "Edit Group Settings"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "group-button-dropdown-item",
-        href: "http://google.com/",
-        target: "_blank"
-      }, "Step down as organizer")) : null);
+      }, "Edit Group Settings")) : null);
     }
   }]);
 

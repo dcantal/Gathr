@@ -39,7 +39,6 @@ class CreateEventButton extends React.Component {
 
     render() {
         let group = this.props.group;
-        debugger
         return (
             <div className="create-event-button-dropdown-complete">
                 <button onClick={this.showMenu} className="create-event-button" id="createEvent">
@@ -56,7 +55,7 @@ class CreateEventButton extends React.Component {
                                 ref={(element) => {
                                     this.dropdownMenu = element;
                                 }}>
-                                <Link to={`events/schedule`} className="create-event-button-dropdown-item">Create a new event</Link>
+                                <Link to={`/groups/${group.id}/events/schedule`} className="create-event-button-dropdown-item">Create a new event</Link>
                             </div>
                         )
                         : (
