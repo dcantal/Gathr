@@ -77,10 +77,14 @@
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    
 }
 
 .manage-group-settings-button > h3 {
     color: #323BD1;
+    font-size: 18.72px;
+    font-weight: 700;
+
 }
 
 .manage-group-settings-button:hover {

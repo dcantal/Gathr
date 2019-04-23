@@ -33,7 +33,7 @@ class SessionForm extends React.Component {
 
     demoLogin(e) {
         e.preventDefault();
-        this.props.processForm({email: "testing105@gmail.com", password: "testtest"});
+        this.props.processForm({email: "danteacantal@gmail.com", password: "testtest"});
     }
 
     componentWillUnmount() {

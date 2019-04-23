@@ -61,7 +61,7 @@ class NavBar extends React.Component {
                     this.state.showMenu
                         ? (
                         <div className="navbar-dropdown">
-                            <div className="dropdown-left">
+                            {/* <div className="dropdown-left">
                                 <ul className="nav-account-groups">
                                     <button className="header-button first-button" onClick={this.props.logout}>App Academy Alumni</button>
                                     <button className="header-button" onClick={this.props.logout}>Super Smash Bros Bros</button>
@@ -75,7 +75,8 @@ class NavBar extends React.Component {
                                     <button className="header-button" onClick={this.props.logout}>Settings</button>
                                     <button className="header-button" onClick={this.props.logout}>Log Out</button>
                                 </ul>
-                            </div>
+                            </div> */}
+                            <button className="header-button" onClick={this.props.logout}>Log Out</button>
                         </div>
                         )
                         : (

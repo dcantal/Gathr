@@ -11,7 +11,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
     return ({
         fetchGroup: (id) => dispatch(fetchGroup(id)),
     });

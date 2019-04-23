@@ -193,14 +193,18 @@ i {
 }
 
 .avatar {
-    height: 50x;
+    height: 50px;
     width: 50px;
     /* background-color: #D3DAE0; */
     /* margin: 20px; */
-    margin-right: 20px;
+    /* margin-right: 20px; */
     display: flex;
     justify-content: center;
     align-content: center;
+}
+
+#organizer-group-avatar {
+    margin-right: 20px;
 }
 
 .group-button {

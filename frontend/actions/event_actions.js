@@ -7,7 +7,6 @@ export const RECEIVE_RSVP = "RECEIVE_RSVP";
 export const REMOVE_RSVP = "REMOVE_RSVP";
 
 export const receiveEvents = (events) => {
-    debugger
     return ({
         type: RECEIVE_EVENTS,
         events
@@ -29,7 +28,6 @@ export const removeRsvp = (rsvpId) => {
 };
 
 export const fetchEvents = () => dispatch => {
-    debugger
     return (
         APIUtil.fetchEvents().then((events) => dispatch(receiveEvents(events)))
     );

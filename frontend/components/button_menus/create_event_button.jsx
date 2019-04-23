@@ -39,7 +39,6 @@ class CreateEventButton extends React.Component {
 
     render() {
         let group = this.props.group;
-        debugger
         return (
             <div className="create-event-button-dropdown-complete">
                 <button onClick={this.showMenu} className="create-event-button" id="createEvent">

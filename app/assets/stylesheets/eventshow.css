@@ -156,7 +156,8 @@
     display: flex;
     background-color: #F6F7F8;
     width: 100%;
-    height: 2000px;
+    /* height: 2000px; */
+    /* margin-bottom: 300px; */
     justify-content: center;
 }
 

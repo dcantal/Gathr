@@ -44,10 +44,6 @@ class GroupSettings extends React.Component {
                                     <img className="settings-button-icon" src="https://s3.amazonaws.com/gathr-dc-seeds/rocket.svg"/>
                                     <h3>Basics</h3>
                                 </Link>
-                                <Link className="manage-group-settings-button" to="/edit">
-                                    <img className="settings-button-icon" src="https://s3.amazonaws.com/gathr-dc-seeds/login.svg"/>
-                                    <h3>Group Privacy</h3>
-                                </Link>
                                 <button className="manage-group-settings-button" onClick={this.handleClick}>
                                     <img className="settings-button-icon" src="https://s3.amazonaws.com/gathr-dc-seeds/x-button.svg"/>
                                     <h3>Delete Group</h3>

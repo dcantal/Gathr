@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router';
+import EventAttendeesContainer from '../event_attendees/event_attendees_container';
 import moment from 'moment';
 
 class EventShow extends React.Component {
@@ -55,7 +56,10 @@ class EventShow extends React.Component {
                             <div className="event-show-head-rsvp">
                                 <div className="event-show-rsvp-status">
                                     <h1 className="rsvp-status">Are you going?</h1> &nbsp; &nbsp;
-                                    <h1 className="event-attendee-numbers">2 people are going</h1>
+                                    <h1 className="event-attendee-numbers">
+                                        {this.props.event.attendee_count} 
+                                        { this.props.event.attendee_count ===1 ? " person is going" : " people are going"}
+                                    </h1>
                                 </div>
                                 <div className="event-show-rsvp-buttons">
                                     <button className="rsvp-button">Y</button>
@@ -93,6 +97,11 @@ class EventShow extends React.Component {
                                 <div className="event-details">
                                     <h1 className="event-show-label">Details</h1>
                                     <p className="event-show-details">{this.props.event.description}</p>
+                                </div>
+                                <div className="event-attendees">
+                                    {/* <h1 className="event-show-label">Attendees&nsbp;({this.props.event.attendee_count})</h1> */}
+                                    <h1 className="event-show-label">Attendees&nbsp;({this.props.event.attendee_count})</h1>
+                                    <EventAttendeesContainer attendees={this.props.event.attendees} attendee_info={this.props.event.attendee_info}/>
                                 </div>
                             </div>
                         </div>

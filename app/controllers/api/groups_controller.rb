@@ -11,7 +11,11 @@ class Api::GroupsController < ApplicationController
 
     def show
         @group = Group.find(params[:id])
-        render :show
+        if @group
+            render :show
+        else
+            render json: ["No events"]
+        end
     end
 
     def create

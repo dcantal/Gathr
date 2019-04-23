@@ -15,7 +15,6 @@ class GroupShowEventIndex extends React.Component {
     }
 
     render() {
-        debugger
         if (!this.props.events) {
             return null;
         }
@@ -25,7 +24,6 @@ class GroupShowEventIndex extends React.Component {
                 <GroupShowEventIndexItem key={event.id} event={event} />
             );
         });
-        debugger
         return (
             <div className="group-event-list">
                 {events}

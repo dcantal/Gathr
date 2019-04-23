@@ -74,17 +74,14 @@ class GroupShow extends React.Component {
     }
 
     render() {
-        debugger
         if (!this.props.group || !this.props.group.organizers) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
-        debugger
 
         let members = this.props.group.members;
         let member_info = this.props.group.member_info;
         let events = this.props.group.events;
 
-        debugger
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -197,7 +194,7 @@ class GroupShow extends React.Component {
                             <div className="group-organizers">
                                 <h3 className="group-section-label">Organizers</h3>
                                 <div className="organizer-info">
-                                    <img className="avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
+                                    <img className="avatar" id="organizer-group-avatar" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png"/>
                                     {(this.props.group.organizers && this.props.group.organizers.length < 1) ? <h2>No one right now! Apply to be an organizer!</h2>
                                         : <h2>{this.props.group.organizer_info[this.props.group.organizers[0]].username}</h2>
                                     }

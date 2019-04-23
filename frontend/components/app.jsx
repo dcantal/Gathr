@@ -18,7 +18,7 @@ import GroupShowContainer from './groups/group_show_container';
 import SignupAltContainer from './session_form/signup_alt_container';
 import GroupSettingsContainer from './groups/group_settings/group_settings_container';
 import GroupEditContainer from './groups/group_edit/group_edit_container';
-// import Footer from './footer/footer';
+import Footer from './footer/footer';
 import CreateEventFormContainer from './events/create_events/create_event_form_container';
 import EventShowContainer from './events/show_events/event_show_container';
 // import GroupMembers from './groups/GroupMembers/group_members';
@@ -32,7 +32,7 @@ const app = () => (
         <header>
             <nav className="Navbar">
                 <Link className="logo" to="/">
-                    <img id="logo" src="https://s3.amazonaws.com/gathr-dc-seeds/gathr_logo_name.svg" />
+                    <img id="logo" src="https://s3.amazonaws.com/gathr-dc-seeds/gathr-logo-name-2.png" />
                 </Link>
                 <div id="nav-links">
                     <NavBarContainer id="nav-links"/>
@@ -53,7 +53,7 @@ const app = () => (
             <ProtectedRoute exact path="/groups/:groupId/events/schedule" component={CreateEventFormContainer} />
             <Route exact path="/events/:eventId" component={EventShowContainer} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
     </div>
 );
 

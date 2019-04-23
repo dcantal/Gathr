@@ -1,4 +1,5 @@
 .member-grid {
     display: flex;
-    height: 50px;
+    flex-wrap: wrap;
+    width: 50%
 }
