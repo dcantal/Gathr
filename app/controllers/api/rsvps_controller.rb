@@ -2,7 +2,7 @@ class Api::RsvpsController < ApplicationController
     before_action :require_logged_in
 
     def create
-        @rsvp = Rsvp.new(user_id: current_user.id, event_id: rsvp_params[:event_id], rsvp_params[:organizer])
+        @rsvp = Rsvp.new(user_id: current_user.id, event_id: rsvp_params[:event_id], organizer: rsvp_params[:organizer])
         if @rsvp.save
             @event = @rsvp.event
             render "api/events/show"
