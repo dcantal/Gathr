@@ -10,7 +10,7 @@
 
 .footer-stripe-bottom {
     background-color: rgb(47, 54, 63);
-    height: 100px;
+    height: 25px;
 }
 
 .footer-content {
@@ -42,7 +42,13 @@
 .footer-content-links {
     display: flex;
     justify-content: space-evenly;
-    height: 350px;
+    padding-top: 30px;
+    height: 200px;
+}
+
+.footer-thank-you {
+    display: flex;
+    justify-content: center;
 }
 
 .footer-links-column-middle {
@@ -67,4 +73,27 @@
     color: #c2c4c7;
     font-size: 14px;
     line-height: 1.6;
+}
+
+.footer-img {
+    width: 60px;
+    height: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 7px;
+}
+
+.footer-img-angel {
+    height: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 7px;
+}
+
+.footer-img:hover {
+    border-bottom: 4px solid #00a2c7;
+}   
+
+.footer-img-angel:hover {
+    border-bottom: 4px solid #00a2c7;
 }

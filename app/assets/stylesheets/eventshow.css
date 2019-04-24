@@ -144,7 +144,31 @@
     font-weight: 400;
     padding: 8px 16px 8px 16px;
     width: 47%;
+    display: flex;
+    justify-content: center;
 }
+
+.rsvp-button-off {
+    color: #2e3e48;
+    background-color: white;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 16px 8px 16px;
+    width: 47%;
+    display: flex;
+    justify-content: center;
+}
+
+.fas {
+    margin: 0;
+}
+
+.rsvp-button-off:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
 
 .rsvp-button:hover {
     color: white;

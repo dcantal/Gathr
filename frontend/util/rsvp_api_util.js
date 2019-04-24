@@ -14,5 +14,5 @@ export const deleteRsvp = (rsvp) => {
             method: 'DELETE',
             url: `api/events/${rsvp.event_id}/rsvps/${rsvp.id}`,
         })
-    )
-}
+    );
+};

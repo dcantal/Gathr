@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Typed from 'typed.js';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -33,7 +34,21 @@ class SessionForm extends React.Component {
 
     demoLogin(e) {
         e.preventDefault();
-        this.props.processForm({email: "danteacantal@gmail.com", password: "testtest"});
+        new Typed("#login-input-email", {
+            strings: ['danteacantal@gmail.com'],
+            typeSpeed: 40,
+            loop: false,
+        });
+        setTimeout(() => 
+            {
+                new Typed("#login-input-pass", 
+                {
+                    strings: ['testtest'],
+                    typeSpeed: 40,
+                    loop: false,
+                });
+            }, 1500);
+        setTimeout(() => {this.props.processForm({email: "danteacantal@gmail.com", password: "testtest"});}, 3000);
     }
 
     componentWillUnmount() {
@@ -84,6 +99,7 @@ class SessionForm extends React.Component {
                                     value={this.state.email}
                                     onChange={this.update('email')}
                                     className="login-input"
+                                    id="login-input-email"
                                 />
                                 </label>
                                 <br />
@@ -94,6 +110,7 @@ class SessionForm extends React.Component {
                                     value={this.state.password}
                                     onChange={this.update('password')}
                                     className="login-input"
+                                    id="login-input-pass"
                                 />
                                 </label>
                                 <br />

@@ -8,18 +8,60 @@ class EventShow extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClickJoin = this.handleClickJoin.bind(this);
+        this.handleClickCancel = this.handleClickCancel.bind(this);
+        this.joinEvent = this.joinEvent.bind(this);
+        this.cancelRsvp = this.cancelRsvp.bind(this);
         this.state = {
+            attending: false,
+            organizer: false,
+            organizer_name: "",
         };
+        this.joinEvent = this.joinEvent.bind(this);
+        this.cancelRsvp = this.cancelRsvp.bind(this);
 
     }
     componentDidMount() {
         window.scrollTo(0, 0);
-        this.props.fetchEvent(this.props.match.params.eventId);
+        this.props.fetchEvent(this.props.match.params.eventId).then(() => {
+            return this.setState({ attending: this.props.event.attendees.includes(this.props.currentUser), rsvps: this.props.event.attendees, organizer: this.props.event.organizers.includes(this.props.currentUser), attendees: this.props.event.attendees, attendee_info: this.props.event.attendee_info });
+        });
     }
 
-    handleClick(e) {
+    handleClickJoin(e) {
         e.preventDefault();
+        this.joinEvent();
+    }
+
+    handleClickCancel(e) {
+        e.preventDefault();
+        this.cancelRsvp();
+    }
+
+    joinEvent() {
+        if (!this.props.currentUser) {
+            this.props.history.push('/login');
+        }
+        const event = this.props.event;
+        const currentEventId = event.id;
+        const userId = this.props.currentUser;
+        if (!this.state.attending) {
+            return this.props.createRsvp({ user_id: userId, event_id: currentEventId, organizer: false }).then(() => {
+                this.setState({ attending: true, button: "cancel" });
+            });
+        }
+
+    }
+
+    cancelRsvp() {
+        if (this.state.attending) {
+
+            this.props.deleteRsvp(this.props.event.rsvps[this.props.currentUser]).then(() => {
+                this.props.fetchEvent(this.props.match.params.eventId).then(() => {
+                    this.setState({ attending: false, button: "join" });
+                });
+            });
+        }
     }
 
 
@@ -48,22 +90,28 @@ class EventShow extends React.Component {
                                 <img className="avatar-event" src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png" />
                                 <div className="event-show-head-host-info">
                                     <h1 className="event-show-head-hosted-by">Hosted by</h1>
-                                    <h1 className="event-show-head-host-name">Dante C.</h1>
+                                    <h1 className="event-show-head-host-name">
+                                        {
+                                            (!this.props.event.organizers && this.props.event.organizers.length < 1) ? "Dante C." : this.props.event.organizer_info[this.props.event.organizers[0]].username
+                                        }
+                                    </h1>
                                 </div>
                             </div>
                         </div>
                         <div className="event-show-head-right">
                             <div className="event-show-head-rsvp">
                                 <div className="event-show-rsvp-status">
-                                    <h1 className="rsvp-status">Are you going?</h1> &nbsp; &nbsp;
+                                    <h1 className="rsvp-status">
+                                        { (this.state.attending) ? ("You're going!") : ("Are you going?") }
+                                    </h1> &nbsp; &nbsp;
                                     <h1 className="event-attendee-numbers">
                                         {this.props.event.attendee_count} 
                                         { this.props.event.attendee_count ===1 ? " person is going" : " people are going"}
                                     </h1>
                                 </div>
                                 <div className="event-show-rsvp-buttons">
-                                    <button className="rsvp-button">Y</button>
-                                    <button className="rsvp-button">N</button>
+                                    <button onClick={this.handleClickJoin} className={this.state.attending ? "rsvp-button" : "rsvp-button-off"}><i className="fas fa-check"></i></button>
+                                    <button onClick={this.handleClickCancel} className={this.state.attending ? "rsvp-button-off" : "rsvp-button"}><i className="fas fa-times"></i></button>
                                 </div>
                             </div>
                         </div>

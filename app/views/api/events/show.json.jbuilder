@@ -16,7 +16,7 @@ json.event do
     end
     json.rsvps do
         @event.rsvps.each do |rsvp|
-            json.set! rsvp.id do
+            json.set! rsvp.user_id do
                 json.extract! rsvp, :id, :user_id, :event_id, :organizer
             end
         end

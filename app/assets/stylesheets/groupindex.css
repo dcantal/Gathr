@@ -10,6 +10,10 @@
     box-shadow:inset 0 0 0 2000px rgba(8, 2, 65, 0.37);
 }
 
+.group-index-item:hover {
+    cursor: pointer;
+}
+
 .group-grid {
     margin-top: 15px;
     display: flex;

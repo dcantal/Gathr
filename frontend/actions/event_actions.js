@@ -53,7 +53,7 @@ export const updateEvent = (event) => dispatch => {
 
 export const createRsvp = (rsvp) => dispatch => {
     return (
-        RsvpAPIUtil.createRsvp(rsvp).then((group) => dispatch(receiveGroup(group)))
+        RsvpAPIUtil.createRsvp(rsvp).then((event) => dispatch(receiveEvent(event)))
     );
 };
 

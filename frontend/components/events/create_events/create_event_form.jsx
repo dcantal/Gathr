@@ -109,8 +109,9 @@ class CreateEventForm extends React.Component {
             data: formData,
             contentType: false,
             processData: false
-        }).then((payload) => {
-            this.props.history.push(`/events/${payload.event.id}`);
+        }).then((payload) => this.props.createRsvp({user_id: this.props.currentUser, event_id: payload.event.id, organizer: true }))
+            .then((payload) => {
+                this.props.history.push(`/events/${payload.event.id}`);
         });
 
         // $.ajax({

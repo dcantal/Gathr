@@ -1,4 +1,5 @@
 import React from 'react';
+import Typed from 'typed.js';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -26,7 +27,28 @@ class SignupForm extends React.Component {
 
     demoLogin(e) {
         e.preventDefault();
-        this.props.demoLogin({ email: "danteacantal@gmail.com", password: "testtest" });
+        new Typed("#signup-input-name", {
+            strings: ['Dante Cantal'],
+            typeSpeed: 40,
+            loop: false,
+        });
+        setTimeout(() => {
+            new Typed("#signup-input-email", 
+                {
+                    strings: ['danteacantal@gmail.com'],
+                    typeSpeed: 40,
+                    loop: false,
+                });
+        }, 1100);
+        setTimeout(() => {
+            new Typed("#signup-input-pass",
+                {
+                    strings: ['testtest'],
+                    typeSpeed: 40,
+                    loop: false,
+                });
+        }, 2600);
+        setTimeout(() => { this.props.demoLogin({ email: "danteacantal@gmail.com", password: "testtest" }); }, 3300);
     }
 
     componentWillUnmount() {
@@ -72,6 +94,7 @@ class SignupForm extends React.Component {
                                         value={this.state.username}
                                         onChange={this.update('username')}
                                         className="login-input"
+                                        id="signup-input-name"
                                     />
                                 </label>
                                 <br />
@@ -82,6 +105,7 @@ class SignupForm extends React.Component {
                                         value={this.state.email}
                                         onChange={this.update('email')}
                                         className="login-input"
+                                        id="signup-input-email"
                                     />
                                 </label>
                                 <br />
@@ -92,6 +116,7 @@ class SignupForm extends React.Component {
                                         value={this.state.password}
                                         onChange={this.update('password')}
                                         className="login-input"
+                                        id="signup-input-pass"
                                     />
                                 </label>
                                 <br />

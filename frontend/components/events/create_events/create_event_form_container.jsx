@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CreateEventForm from './create_event_form';
-import { createEvent } from '../../../actions/event_actions';
+import { createEvent, createRsvp } from '../../../actions/event_actions';
 import { fetchGroup } from '../../../actions/group_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => {
     return ({
         createEvent: (event) => dispatch(createEvent(event)),
         fetchGroup: (group) => dispatch(fetchGroup(group)),
+        createRsvp: (rsvp) => dispatch(createRsvp(rsvp)),
     });
 };
 
