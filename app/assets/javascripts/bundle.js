@@ -1065,9 +1065,9 @@ function (_React$Component) {
       var _this7 = this;
 
       e.preventDefault();
-      var start_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedStartDate).format("MM-DD-YYYY");
+      var start_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedStartDay).format("MM-DD-YYYY");
       var start_datetime = moment__WEBPACK_IMPORTED_MODULE_5___default()(start_date + " " + this.state.selectedStartTime).format("MM-DD-YYYY hh:mm A");
-      var end_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedEndDate).format("MM-DD-YYYY");
+      var end_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedEndDay).format("MM-DD-YYYY");
       var end_datetime = moment__WEBPACK_IMPORTED_MODULE_5___default()(end_date + " " + this.state.selectedEndTime).format("MM-DD-YYYY hh:mm A");
       var formData = new FormData();
       formData.append('event[group_id]', this.props.currentGroup.id);
@@ -3975,7 +3975,7 @@ function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user);
-      this.props.navigateToFind();
+      this.navigateToFind();
     }
   }, {
     key: "demoLogin",
@@ -4726,7 +4726,8 @@ var eventsReducer = function eventsReducer() {
       return action.events;
 
     case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_EVENT"]:
-      newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.event.id, action.event));
+      // newState = merge({}, state, {[action.event.id]: action.event});
+      newState = _defineProperty({}, action.event.id, action.event);
       return newState;
 
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_GROUP"]:
@@ -4876,7 +4877,7 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
-        id: action.currentUser.id
+        id: action.currentUser.user.id
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
@@ -4922,7 +4923,7 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_3___default()({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_3___default()({}, state, _defineProperty({}, action.currentUser.user.id, action.currentUser.user));
 
     default:
       return state;

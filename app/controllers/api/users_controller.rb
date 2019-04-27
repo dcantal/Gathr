@@ -10,6 +10,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.find(params[:id])
+        if @user
+            render :show
+        else
+            render json: ["No User Found"]
+        end
+    end
+
     private
 
     def user_params

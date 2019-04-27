@@ -17,6 +17,16 @@ class User < ApplicationRecord
     through: :memberships,
     source: :group
 
+  has_many :rsvps,
+    dependent: :destroy,
+    class_name: :Rsvp,
+    primary_key: :id,
+    foreign_key: :user_id
+
+  has_many :events,
+    through: :rsvps,
+    source: :event
+
   has_one_attached :photo
 
   def organized_groups
@@ -28,6 +38,17 @@ class User < ApplicationRecord
     end
 
     return groups
+  end
+
+  def organized_events
+    events = []
+    self.rsvps.each do |rsvp|
+      if rsvp.organizer == true
+        events << rsvp.event_id
+      end
+    end
+
+    return events
   end
 
   def self.find_by_credentials(email, password)

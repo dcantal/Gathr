@@ -87,9 +87,9 @@ class CreateEventForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let start_date = moment(this.state.selectedStartDate).format("MM-DD-YYYY");
+        let start_date = moment(this.state.selectedStartDay).format("MM-DD-YYYY");
         let start_datetime = moment(start_date + " " + this.state.selectedStartTime).format("MM-DD-YYYY hh:mm A" );
-        let end_date = moment(this.state.selectedEndDate).format("MM-DD-YYYY");
+        let end_date = moment(this.state.selectedEndDay).format("MM-DD-YYYY");
         let end_datetime = moment(end_date + " " + this.state.selectedEndTime).format("MM-DD-YYYY hh:mm A");
         const formData = new FormData();
         formData.append('event[group_id]', this.props.currentGroup.id);

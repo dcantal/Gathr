@@ -18,8 +18,8 @@ class Api::EventsController < ApplicationController
             file = open('https://s3.amazonaws.com/gathr-dc-seeds/default-event.jpg')
             @event.photo.attach(io: file, filename: 'default-event.jpg')
         end
-        @event.start_time = DateTime.strptime(event_params["start_time"], '%m-%d-%Y %I:%M %p')
-        @event.end_time = DateTime.strptime(event_params["end_time"], '%m-%d-%Y %I:%M %p')
+        @event.start_time = DateTime.strptime(event_params["start_time"] + "-04:00", '%m-%d-%Y %I:%M %p %z')
+        @event.end_time = DateTime.strptime(event_params["end_time"] + "-04:00", '%m-%d-%Y %I:%M %p %z')
         if @event.save
             render :show
         else
