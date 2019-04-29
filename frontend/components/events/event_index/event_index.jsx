@@ -9,11 +9,11 @@ class EventIndex extends React.Component {
 
     render() {
         let events = this.props.events.map((event) => {
-            if (this.props.currentUserGroups.includes(event.group_id)) {
+            // if (this.props.currentUserGroups.includes(event.group_id)) {
                 return (
                     <EventIndexItem key={event.id} event={event} /> 
                 );
-            }
+            // }
         });
         return (
             <div className="event-list">

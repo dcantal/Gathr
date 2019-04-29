@@ -3,10 +3,10 @@ import FindPage from './find_page';
 import { receiveCurrentUser } from "../../actions/session_actions";
 
 const mapStateToProps = state => {
-    let currentUserGroups = state.entities.users[state.session.id].groups;
-    return {
-        currentUserGroups: currentUserGroups,
-    };
+    // let currentUserGroups = state.entities.users[state.session.id].groups;
+    // return {
+    //     currentUserGroups: currentUserGroups,
+    // };
 };
 
 const mapDispatchToProps = dispatch => {

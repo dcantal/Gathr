@@ -4,10 +4,10 @@ import { fetchGroups, fetchGroup } from '../../actions/group_actions';
 
 const mapStateToProps = state => {
     let groups = Object.values(state.entities.groups);
-    let currentUserGroups = state.entities.users[state.session.id].groups;
+    // let currentUserGroups = state.entities.users[state.session.id].groups;
     return {
         groups: groups,
-        currentUserGroups: currentUserGroups,
+        // currentUserGroups: currentUserGroups,
         // groups: []
     };
 };

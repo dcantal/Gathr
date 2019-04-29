@@ -1548,15 +1548,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       var events = this.props.events.map(function (event) {
-        if (_this.props.currentUserGroups.includes(event.group_id)) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: event.id,
-            event: event
-          });
-        }
+        // if (this.props.currentUserGroups.includes(event.group_id)) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: event.id,
+          event: event
+        }); // }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-list"
@@ -1590,11 +1587,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var events = Object.values(state.entities.events);
-  var currentUserGroups = state.entities.users[state.session.id].groups;
+  var events = Object.values(state.entities.events); // let currentUserGroups = state.entities.users[state.session.id].groups;
+
   return {
-    events: events,
-    currentUserGroups: currentUserGroups
+    events: events // currentUserGroups: currentUserGroups,
+
   };
 };
 
@@ -2311,11 +2308,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
-  var currentUserGroups = state.entities.users[state.session.id].groups;
-  return {
-    currentUserGroups: currentUserGroups
-  };
+var mapStateToProps = function mapStateToProps(state) {// let currentUserGroups = state.entities.users[state.session.id].groups;
+  // return {
+  //     currentUserGroups: currentUserGroups,
+  // };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -3137,15 +3133,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       var groups = this.props.groups.map(function (group) {
-        if (_this.props.currentUserGroups.includes(group.id)) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: group.id,
-            group: group
-          });
-        }
+        // if (this.props.currentUserGroups.includes(group.id)) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: group.id,
+          group: group
+        }); // }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-list"
@@ -3179,11 +3172,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var groups = Object.values(state.entities.groups);
-  var currentUserGroups = state.entities.users[state.session.id].groups;
+  var groups = Object.values(state.entities.groups); // let currentUserGroups = state.entities.users[state.session.id].groups;
+
   return {
-    groups: groups,
-    currentUserGroups: currentUserGroups // groups: []
+    groups: groups // currentUserGroups: currentUserGroups,
+    // groups: []
 
   };
 };

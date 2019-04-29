@@ -11,11 +11,11 @@ class GroupIndex extends React.Component {
 
     render() {
         let groups = this.props.groups.map((group) => {
-            if (this.props.currentUserGroups.includes(group.id)) {
+            // if (this.props.currentUserGroups.includes(group.id)) {
                 return (
                     <GroupIndexItem key = {group.id} group = {group} />
                 );
-            }
+            // }
         });
         return (
             <div className="group-list">
