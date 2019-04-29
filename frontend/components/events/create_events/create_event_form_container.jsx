@@ -19,8 +19,8 @@ const mapStateToProps = (state, ownProps) => {
         },
         selectedDay: null,
         selectedEnd: null,
-        selectedTime: null,
-        selectedEndTime: null,
+        selectedStartTime: "19:00",
+        selectedEndTime: "20:00",
         currentGroup: state.entities.groups[ownProps.match.params.groupId]
     });
 };
