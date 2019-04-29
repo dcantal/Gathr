@@ -4693,14 +4693,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var root = document.getElementById('root'); //testing start//
-
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"]; // window.createGroup = GroupActions.createGroup;
-
-  window.createGroup = _util_group_api_util__WEBPACK_IMPORTED_MODULE_5__["createGroup"]; //testing end//
+  // window.createGroup = GroupActions.createGroup;
+  //testing end//
 
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store

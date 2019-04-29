@@ -23,13 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
 
     //testing start//
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    window.signup = SessionActions.signup;
-    window.login = SessionActions.login;
-    window.logout = SessionActions.logout;
+
     // window.createGroup = GroupActions.createGroup;
-    window.createGroup = GroupAjax.createGroup;
+
     //testing end//
 
 
