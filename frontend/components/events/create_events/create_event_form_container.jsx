@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
             end_time: null,
             latitude: null,
             longitude: null,
+            address: null,
             private: false,
         },
         selectedDay: null,

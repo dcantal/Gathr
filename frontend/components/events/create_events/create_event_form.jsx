@@ -97,6 +97,7 @@ class CreateEventForm extends React.Component {
         formData.append('event[description]', this.state.description);
         formData.append('event[latitude]', this.state.latitude);
         formData.append('event[longitude]', this.state.longitude);
+        formatDate.append('event[address]', this.state.address);
         formData.append('event[start_time]', start_datetime);
         formData.append('event[end_time]', end_datetime);
         if (this.state.photoFile) {
@@ -285,9 +286,8 @@ class CreateEventForm extends React.Component {
                                             <p className="event-step-label">Location</p>
                                             <input
                                                 type="text"
-                                                // value={this.state.hometown}
                                                 id="autocomplete"
-                                                onChange={this.update('hometown')}
+                                                onChange={this.update('address')}
                                                 className="event-form-input"
                                                 placeholder="Search a location"
                                             />

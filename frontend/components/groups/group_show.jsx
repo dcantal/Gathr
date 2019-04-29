@@ -53,7 +53,7 @@ class GroupShow extends React.Component {
             processData: false
             }).then(() => 
             this.setState({ photoFile: this.props.group.photo })
-            ).then(location.reload());
+            ).then(() => {location.reload();});
 
     }
 

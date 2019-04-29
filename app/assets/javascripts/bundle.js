@@ -1077,6 +1077,7 @@ function (_React$Component) {
       formData.append('event[description]', this.state.description);
       formData.append('event[latitude]', this.state.latitude);
       formData.append('event[longitude]', this.state.longitude);
+      react_day_picker_moment__WEBPACK_IMPORTED_MODULE_7__["formatDate"].append('event[address]', this.state.address);
       formData.append('event[start_time]', start_datetime);
       formData.append('event[end_time]', end_datetime);
 
@@ -1274,10 +1275,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "event-step-label"
       }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text" // value={this.state.hometown}
-        ,
+        type: "text",
         id: "autocomplete",
-        onChange: this.update('hometown'),
+        onChange: this.update('address'),
         className: "event-form-input",
         placeholder: "Search a location"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1330,6 +1330,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       end_time: null,
       latitude: null,
       longitude: null,
+      address: null,
       private: false
     },
     selectedDay: null,
@@ -3505,7 +3506,9 @@ function (_React$Component) {
         return _this2.setState({
           photoFile: _this2.props.group.photo
         });
-      }).then(location.reload());
+      }).then(function () {
+        location.reload();
+      });
     }
   }, {
     key: "handleFile",
@@ -55340,7 +55343,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
