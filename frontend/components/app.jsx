@@ -14,6 +14,7 @@ import SignupFormContainer from './session_form/signup_form_container';
 import videoBanner from './video_banner/video_banner';
 import CreateGroupFormContainer from '../components/groups/create_group_form_container';
 import FindPage from './find/find_page';
+import FindPageContainer from './find/find_page_container';
 import GroupShowContainer from './groups/group_show_container';
 import SignupAltContainer from './session_form/signup_alt_container';
 import GroupSettingsContainer from './groups/group_settings/group_settings_container';
@@ -44,7 +45,7 @@ const app = () => (
             <AuthRoute exact path="/register" component={SignupAltContainer} />
             <ProtectedRoute exact path="/groups/new" component={CreateGroupFormContainer} />
             <AuthRoute exact path="/" component={videoBanner}/>
-            <Route exact path="/find" component={FindPage}/>
+            <Route exact path="/find" component={FindPageContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <Route exact path="/groups/:groupId" component={GroupShowContainer} />

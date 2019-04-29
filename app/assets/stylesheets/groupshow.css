@@ -260,7 +260,7 @@ i {
 }
 
 .group-button-dropdown {
-    background-color: white;
+    background-color: rgb(245, 237, 237);
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -363,4 +363,119 @@ i {
     background-color: grey;
     cursor: pointer;
     background: rgba(41,77,107,.12);
+}
+
+@media screen and (max-width: 600px) {  
+    .group-header-wrapper{
+        width: 100%;
+        height: 435px;
+    }
+
+    .group-header-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .group-picture {
+        width: 100%;
+        margin: 0;
+        height: 200px;
+        box-sizing: border-box;
+    }
+
+    .group-details {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+
+    .group-name {
+        width: 100%;
+    }
+
+    .group-actions-wrapper{
+        width: 100%;
+        height: 150px;
+    }
+
+    .group-actions-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        height: 135px;
+    }
+
+    .group-button {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .create-event-button {
+        width: 100%;
+        padding: 0px;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    .group-button-dropdown-complete {
+        display: flex;
+        justify-content: center;
+        width: 90%;
+    }
+
+    .create-event-button-dropdown-complete {
+        display: flex;
+        justify-content: center;
+        width: 90%;
+    }
+
+    .group-actions-left {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        /* overflow: hidden; */
+    }
+
+    .group-actions-left > li {
+        flex: 0 0 auto;
+    }
+
+    .group-actions-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .group-details-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .group-details-left {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .group-details-right {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .group-details-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
 }

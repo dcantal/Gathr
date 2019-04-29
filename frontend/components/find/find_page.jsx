@@ -14,6 +14,11 @@ class FindPage extends React.Component {
         this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     }
 
+    componentDidMount() {
+        // debugger
+        // this.props.receiveCurrentUser();
+    }
+
     update(field) {
         return (e) => {
             this.setState({ [field]: e.target.value });
@@ -36,6 +41,15 @@ class FindPage extends React.Component {
     }
 
     render() {
+        // debugger
+        // if (!this.props.currentUserGroups) {
+        //     debugger
+        //     return (
+        //         <div className="loading-icon">
+        //         <img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg" />
+        //         </div>
+        //     );
+        // }
         return (
             <div className="member-home-banner">
                 <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places" onLoad={this.handleScriptLoad} />
@@ -71,8 +85,8 @@ class FindPage extends React.Component {
                     </div>
 
                 </div>
-                <EventIndexContainer />
                 <GroupIndexContainer />
+                <EventIndexContainer />
             </div>
         )
     }

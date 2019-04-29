@@ -38,4 +38,19 @@ class Group < ApplicationRecord
         return org
     end
 
+    def past_events
+        self.events.select {|event| event.end_time < Time.now }.sort_by {|event| event.start_time}.reverse
+    end
+
+    def current_events
+        self.events.select do |event|
+            event.end_time > Time.now && 
+            event.start_time < Time.now
+        end
+    end
+
+    def upcoming_events
+        self.events.select {|event| event.start_time > Time.now }.sort_by {|event| event.start_time }
+    end
+
 end

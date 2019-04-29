@@ -455,14 +455,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_banner_video_banner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./video_banner/video_banner */ "./frontend/components/video_banner/video_banner.jsx");
 /* harmony import */ var _components_groups_create_group_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/groups/create_group_form_container */ "./frontend/components/groups/create_group_form_container.jsx");
 /* harmony import */ var _find_find_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./find/find_page */ "./frontend/components/find/find_page.jsx");
-/* harmony import */ var _groups_group_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./groups/group_show_container */ "./frontend/components/groups/group_show_container.js");
-/* harmony import */ var _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./session_form/signup_alt_container */ "./frontend/components/session_form/signup_alt_container.jsx");
-/* harmony import */ var _groups_group_settings_group_settings_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./groups/group_settings/group_settings_container */ "./frontend/components/groups/group_settings/group_settings_container.jsx");
-/* harmony import */ var _groups_group_edit_group_edit_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./groups/group_edit/group_edit_container */ "./frontend/components/groups/group_edit/group_edit_container.jsx");
-/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
-/* harmony import */ var _events_create_events_create_event_form_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./events/create_events/create_event_form_container */ "./frontend/components/events/create_events/create_event_form_container.jsx");
-/* harmony import */ var _events_show_events_event_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./events/show_events/event_show_container */ "./frontend/components/events/show_events/event_show_container.jsx");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _find_find_page_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./find/find_page_container */ "./frontend/components/find/find_page_container.jsx");
+/* harmony import */ var _groups_group_show_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./groups/group_show_container */ "./frontend/components/groups/group_show_container.js");
+/* harmony import */ var _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./session_form/signup_alt_container */ "./frontend/components/session_form/signup_alt_container.jsx");
+/* harmony import */ var _groups_group_settings_group_settings_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./groups/group_settings/group_settings_container */ "./frontend/components/groups/group_settings/group_settings_container.jsx");
+/* harmony import */ var _groups_group_edit_group_edit_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./groups/group_edit/group_edit_container */ "./frontend/components/groups/group_edit/group_edit_container.jsx");
+/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
+/* harmony import */ var _events_create_events_create_event_form_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./events/create_events/create_event_form_container */ "./frontend/components/events/create_events/create_event_form_container.jsx");
+/* harmony import */ var _events_show_events_event_show_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./events/show_events/event_show_container */ "./frontend/components/events/show_events/event_show_container.jsx");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+
 
 
 
@@ -495,51 +497,51 @@ var app = function app() {
     id: "nav-links"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "nav-links"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["AuthRoute"], {
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["AuthRoute"], {
     exact: true,
     path: "/register",
-    component: _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
+    component: _session_form_signup_alt_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["ProtectedRoute"], {
     exact: true,
     path: "/groups/new",
     component: _components_groups_create_group_form_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["AuthRoute"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["AuthRoute"], {
     exact: true,
     path: "/",
     component: _video_banner_video_banner__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/find",
-    component: _find_find_page__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["AuthRoute"], {
+    component: _find_find_page_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["AuthRoute"], {
     exact: true,
     path: "/login",
     component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["AuthRoute"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["AuthRoute"], {
     exact: true,
     path: "/signup",
     component: _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/groups/:groupId",
-    component: _groups_group_show_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
+    component: _groups_group_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["ProtectedRoute"], {
     exact: true,
     path: "/groups/:groupId/manage",
-    component: _groups_group_settings_group_settings_container__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
+    component: _groups_group_settings_group_settings_container__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["ProtectedRoute"], {
     exact: true,
     path: "/groups/:groupId/edit",
-    component: _groups_group_edit_group_edit_container__WEBPACK_IMPORTED_MODULE_11__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
+    component: _groups_group_edit_group_edit_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_16__["ProtectedRoute"], {
     exact: true,
     path: "/groups/:groupId/events/schedule",
-    component: _events_create_events_create_event_form_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _events_create_events_create_event_form_container__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/events/:eventId",
-    component: _events_show_events_event_show_container__WEBPACK_IMPORTED_MODULE_14__["default"]
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_12__["default"], null));
+    component: _events_show_events_event_show_container__WEBPACK_IMPORTED_MODULE_15__["default"]
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_13__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (app);
@@ -1546,15 +1548,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var events = this.props.events.map(function (event) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: event.id,
-          event: event
-        });
+        if (_this.props.currentUserGroups.includes(event.group_id)) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: event.id,
+            event: event
+          });
+        }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SUGGESTED EVENTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "EVENTS IN YOUR GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-grid"
       }, events));
     }
@@ -1585,8 +1591,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   var events = Object.values(state.entities.events);
+  var currentUserGroups = state.entities.users[state.session.id].groups;
   return {
-    events: events
+    events: events,
+    currentUserGroups: currentUserGroups
   };
 };
 
@@ -2186,6 +2194,11 @@ function (_React$Component) {
   }
 
   _createClass(FindPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// debugger
+      // this.props.receiveCurrentUser();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -2217,6 +2230,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // debugger
+      // if (!this.props.currentUserGroups) {
+      //     debugger
+      //     return (
+      //         <div className="loading-icon">
+      //         <img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg" />
+      //         </div>
+      //     );
+      // }
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "member-home-banner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_load_script__WEBPACK_IMPORTED_MODULE_4___default.a, {
@@ -2262,7 +2284,7 @@ function (_React$Component) {
         className: "find-button find-groups"
       }, "Groups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "find-button find-calendar"
-      }, "Calendar")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_event_index_event_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "Calendar")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_event_index_event_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
@@ -2270,6 +2292,41 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (FindPage);
+
+/***/ }),
+
+/***/ "./frontend/components/find/find_page_container.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/find/find_page_container.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _find_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./find_page */ "./frontend/components/find/find_page.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  var currentUserGroups = state.entities.users[state.session.id].groups;
+  return {
+    currentUserGroups: currentUserGroups
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveCurrentUser: function receiveCurrentUser() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentUser"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_find_page__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -3080,15 +3137,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var groups = this.props.groups.map(function (group) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: group.id,
-          group: group
-        });
+        if (_this.props.currentUserGroups.includes(group.id)) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: group.id,
+            group: group
+          });
+        }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SUGGESTED GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "YOUR GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "group-grid"
       }, groups));
     }
@@ -3119,8 +3180,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   var groups = Object.values(state.entities.groups);
+  var currentUserGroups = state.entities.users[state.session.id].groups;
   return {
-    groups: groups // groups: []
+    groups: groups,
+    currentUserGroups: currentUserGroups // groups: []
 
   };
 };

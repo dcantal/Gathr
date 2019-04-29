@@ -11,13 +11,15 @@ class GroupIndex extends React.Component {
 
     render() {
         let groups = this.props.groups.map((group) => {
-            return (
-                <GroupIndexItem key = {group.id} group = {group} />
-            );
+            if (this.props.currentUserGroups.includes(group.id)) {
+                return (
+                    <GroupIndexItem key = {group.id} group = {group} />
+                );
+            }
         });
         return (
             <div className="group-list">
-                <h1>SUGGESTED GROUPS</h1>
+                <h1>YOUR GROUPS</h1>
                 <div className="group-grid">
                     {groups}
                 </div>

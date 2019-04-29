@@ -4,8 +4,10 @@ import { fetchEvents } from '../../../actions/event_actions';
 
 const mapStateToProps = state => {
     let events = Object.values(state.entities.events);
+    let currentUserGroups = state.entities.users[state.session.id].groups;
     return {
-        events: events
+        events: events,
+        currentUserGroups: currentUserGroups,
     };
 };
 
