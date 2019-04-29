@@ -15,7 +15,6 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
     "typed.js": "^2.0.10",
@@ -52,6 +51,7 @@
   "devDependencies": {
     "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
+    "redux-logger": "^3.0.6",
     "url-loader": "^1.1.2"
   }
 }
