@@ -1554,6 +1554,14 @@ function (_React$Component) {
 
       var events;
 
+      if (!this.props.matches) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loading-icon"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
+        }));
+      }
+
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
         events = this.props.events.map(function (event) {
           if (_this.props.matches.includes(event.id)) {
@@ -1609,10 +1617,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var events = Object.values(state.entities.events);
-  var matches = ownProps.matches; // let currentUserGroups = state.entities.users[state.session.id].groups;
+  var matches = [];
+
+  if (ownProps.matches) {
+    matches = ownProps.matches;
+  } // let currentUserGroups = state.entities.users[state.session.id].groups;
+
 
   return {
     events: events,
+    // matches: [],
     matches: matches // currentUserGroups: currentUserGroups,
 
   };
@@ -3230,6 +3244,14 @@ function (_React$Component) {
 
       var groups;
 
+      if (!this.props.matches) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "loading-icon"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
+        }));
+      }
+
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
         groups = this.props.groups.map(function (group) {
           if (_this.props.matches.includes(group.id)) {
@@ -3285,10 +3307,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var groups = Object.values(state.entities.groups);
-  var matches = ownProps.matches; // let currentUserGroups = state.entities.users[state.session.id].groups;
+  var matches = [];
+
+  if (ownProps.matches) {
+    matches = ownProps.matches;
+  } // let currentUserGroups = state.entities.users[state.session.id].groups;
+
 
   return {
     groups: groups,
+    // matches: [],
     matches: matches // currentUserGroups: currentUserGroups,
     // groups: []
 
@@ -55577,7 +55605,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

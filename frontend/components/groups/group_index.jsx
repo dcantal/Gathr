@@ -11,6 +11,9 @@ class GroupIndex extends React.Component {
 
     render() {
         let groups;
+        if (!this.props.matches) {
+            return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
+        }
         if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
             groups = this.props.groups.map((group) => {
                 if (this.props.matches.includes(group.id)) {

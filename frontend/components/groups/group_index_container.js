@@ -4,10 +4,14 @@ import { fetchGroups, fetchGroup } from '../../actions/group_actions';
 
 const mapStateToProps = (state, ownProps) => {
     let groups = Object.values(state.entities.groups);
-    let matches = ownProps.matches;
+    let matches = [];
+    if (ownProps.matches) {
+        matches = ownProps.matches;
+    }
     // let currentUserGroups = state.entities.users[state.session.id].groups;
     return {
         groups: groups,
+        // matches: [],
         matches: matches,
         // currentUserGroups: currentUserGroups,
         // groups: []

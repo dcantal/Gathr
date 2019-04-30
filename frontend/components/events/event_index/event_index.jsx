@@ -9,6 +9,9 @@ class EventIndex extends React.Component {
 
     render() {
         let events;
+        if (!this.props.matches) {
+            return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
+        }
         if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
             events = this.props.events.map((event) => {
                 if (this.props.matches.includes(event.id)) {
