@@ -77,7 +77,6 @@ class GroupShow extends React.Component {
         if (!this.props.group || !this.props.group.organizers) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
-
         let members = this.props.group.members;
         let member_info = this.props.group.member_info;
         let events = this.props.group.events;

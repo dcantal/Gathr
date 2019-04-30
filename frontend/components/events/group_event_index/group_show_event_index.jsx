@@ -10,8 +10,6 @@ class GroupShowEventIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchGroup(this.props.groupId);
-        // window.scrollTo(0, 0);
     }
 
     render() {

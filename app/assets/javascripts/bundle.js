@@ -1697,9 +1697,7 @@ function (_React$Component) {
 
   _createClass(GroupShowEventIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchGroup(this.props.groupId); // window.scrollTo(0, 0);
-    }
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
