@@ -10,13 +10,30 @@ class GroupIndex extends React.Component {
     }
 
     render() {
-        let groups = this.props.groups.map((group) => {
-            // if (this.props.currentUserGroups.includes(group.id)) {
+        let groups;
+        if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
+            groups = this.props.groups.map((group) => {
+                if (this.props.matches.includes(group.id)) {
+                    return (
+                        <GroupIndexItem key={group.id} group={group} />
+                    );
+                }
+            });
+        }
+        else if (this.props.matches.length === 0){
+            groups = this.props.groups.map((group) => {
                 return (
-                    <GroupIndexItem key = {group.id} group = {group} />
+                    <GroupIndexItem key={group.id} group={group} />
                 );
-            // }
-        });
+            });
+        }
+        else {
+            return (
+                <div className="group-list">
+                    <h1>NO GROUPS FOUND</h1>
+                </div>
+            );
+        }
         return (
             <div className="group-list">
                 <h1>YOUR GROUPS</h1>

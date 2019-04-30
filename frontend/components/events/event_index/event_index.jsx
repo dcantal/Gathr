@@ -8,13 +8,31 @@ class EventIndex extends React.Component {
     }
 
     render() {
-        let events = this.props.events.map((event) => {
-            // if (this.props.currentUserGroups.includes(event.group_id)) {
-                return (
-                    <EventIndexItem key={event.id} event={event} /> 
-                );
-            // }
-        });
+        let events;
+        if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
+            events = this.props.events.map((event) => {
+                if (this.props.matches.includes(event.id)) {
+                    return (
+                        <EventIndexItem key={event.id} event={event} />
+                    );
+                }
+            });
+        }
+        else if (this.props.matches.length === 0){
+            events = this.props.events.map((event) => {
+                    return (
+                        <EventIndexItem key={event.id} event={event} />
+                    );
+            });
+        }
+        else {
+            return (
+                <div className="event-list">
+                    <h1>NO EVENTS FOUND</h1>
+                </div>
+            );
+        }
+
         return (
             <div className="event-list">
                 <h1>EVENTS IN YOUR GROUPS</h1>

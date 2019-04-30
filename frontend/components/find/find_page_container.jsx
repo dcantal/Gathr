@@ -1,17 +1,21 @@
 import { connect } from "react-redux";
 import FindPage from './find_page';
+import { fetchEvents } from '../../actions/event_actions';
 import { receiveCurrentUser } from "../../actions/session_actions";
 
 const mapStateToProps = state => {
-    // let currentUserGroups = state.entities.users[state.session.id].groups;
-    // return {
-    //     currentUserGroups: currentUserGroups,
-    // };
+  let events = Object.values(state.entities.events);
+  let groups = Object.values(state.entities.groups);
+  return {
+    events: events,
+    groups: groups,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    receiveCurrentUser: () => dispatch(receiveCurrentUser()),
+    fetchEvents: () => dispatch(fetchEvents()),
+    fetchGroups: () => dispatch(fetchGroups()),
   };
 };
 
