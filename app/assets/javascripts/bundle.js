@@ -617,13 +617,12 @@ function (_React$Component) {
     value: function closeMenu() {
       var _this3 = this;
 
-      if (!this.dropdownMenu.contains(event.target)) {
-        this.setState({
-          showMenu: false
-        }, function () {
-          document.removeEventListener('click', _this3.closeMenu);
-        });
-      }
+      // if (!this.dropdownMenu.contains(event.target)) {
+      this.setState({
+        showMenu: false
+      }, function () {
+        document.removeEventListener('click', _this3.closeMenu);
+      }); // }
     }
   }, {
     key: "render",
@@ -1007,7 +1006,6 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -1078,7 +1076,7 @@ function (_React$Component) {
       formData.append('event[description]', this.state.description);
       formData.append('event[latitude]', this.state.latitude);
       formData.append('event[longitude]', this.state.longitude);
-      react_day_picker_moment__WEBPACK_IMPORTED_MODULE_7__["formatDate"].append('event[address]', this.state.address);
+      formData.append('event[address]', this.state.address);
       formData.append('event[start_time]', start_datetime);
       formData.append('event[end_time]', end_datetime);
 
@@ -1140,9 +1138,11 @@ function (_React$Component) {
       var address = addressObject.geometry.location;
       var lat = address.lat();
       var lng = address.lng();
+      var addr = addressObject.formatted_address;
 
       if (address) {
         this.setState({
+          address: addr,
           latitude: lat,
           longitude: lng
         });

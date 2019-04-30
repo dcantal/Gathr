@@ -46,7 +46,6 @@ class CreateEventForm extends React.Component {
     }
 
     update(field) {
-        debugger
         return (e) => {
             this.setState({[field]: e.target.value });
         };
@@ -98,7 +97,7 @@ class CreateEventForm extends React.Component {
         formData.append('event[description]', this.state.description);
         formData.append('event[latitude]', this.state.latitude);
         formData.append('event[longitude]', this.state.longitude);
-        formatDate.append('event[address]', this.state.address);
+        formData.append('event[address]', this.state.address);
         formData.append('event[start_time]', start_datetime);
         formData.append('event[end_time]', end_datetime);
         if (this.state.photoFile) {
@@ -146,8 +145,10 @@ class CreateEventForm extends React.Component {
         let address = addressObject.geometry.location;
         let lat = address.lat();
         let lng = address.lng();
+        let addr = addressObject.formatted_address;
         if (address) {
             this.setState({
+                address: addr,
                 latitude: lat,
                 longitude: lng,
             });

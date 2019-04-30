@@ -30,11 +30,11 @@ class CreateEventButton extends React.Component {
     }
 
     closeMenu() {
-        if (!this.dropdownMenu.contains(event.target)) {
+        // if (!this.dropdownMenu.contains(event.target)) {
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
             });
-        }
+        // }
     }
 
     render() {
