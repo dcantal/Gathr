@@ -29,7 +29,7 @@ class videoBanner extends React.Component {
                         </div>
                     </div>
                 </div>
-                <EventIndexContainer />
+                {/* <EventIndexContainer /> */}
                 <GroupIndexContainer />
             </>
         )

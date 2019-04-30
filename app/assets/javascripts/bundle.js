@@ -1510,6 +1510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _event_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_index_item */ "./frontend/components/events/event_index/event_index_item.jsx");
+/* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-day-picker */ "./node_modules/react-day-picker/DayPicker.js");
+/* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_day_picker__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1520,13 +1522,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1536,10 +1539,17 @@ var EventIndex =
 function (_React$Component) {
   _inherits(EventIndex, _React$Component);
 
-  function EventIndex() {
+  function EventIndex(props) {
+    var _this;
+
     _classCallCheck(this, EventIndex);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(EventIndex).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EventIndex).call(this, props));
+    _this.state = {
+      selectedDay: null
+    };
+    _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(EventIndex, [{
@@ -1548,10 +1558,20 @@ function (_React$Component) {
       this.props.fetchEvents();
     }
   }, {
+    key: "handleDayClick",
+    value: function handleDayClick(day) {
+      debugger;
+      this.setState({
+        selectedDay: day
+      });
+      debugger;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
+      debugger;
       var events;
 
       if (!this.props.matches) {
@@ -1564,7 +1584,7 @@ function (_React$Component) {
 
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
         events = this.props.events.map(function (event) {
-          if (_this.props.matches.includes(event.id)) {
+          if (_this2.props.matches.includes(event.id) && event.start_time > _this2.state.selectedDay) {
             return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
               key: event.id,
               event: event
@@ -1584,11 +1604,29 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "NO EVENTS FOUND"));
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "event-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "EVENTS IN YOUR GROUPS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "event-grid"
-      }, events));
+      return (// <div className="event-list">
+        //     <h1>EVENTS IN YOUR GROUPS</h1>
+        //     <div className="event-grid">
+        //         {events}
+        //     </div>
+        // </div>
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-left"
+        }, events), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-right"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-mode"
+        }, "All upcoming events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "find-event-calendar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          onDayClick: this.handleDayClick,
+          selectedDays: this.state.selectedDay
+        })))))
+      );
     }
   }]);
 
@@ -1663,23 +1701,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EventIndexItem = function EventIndexItem(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/events/".concat(props.event.id),
-    className: "event-index-item",
-    style: {
-      backgroundImage: "url(".concat(props.event.photoUrl, ")")
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "event-index-item-content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "event-index-start-date-block"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "date-block-day"
-  }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format('D')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "date-block-month"
-  }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format('MMM'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "event-index-item-text"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name))));
+  return (// <Link to={`/events/${props.event.id}`} className="event-index-item" style={{backgroundImage: `url(${props.event.photoUrl})`}}>
+    //     <div className="event-index-item-content">
+    //         <div className="event-index-start-date-block">
+    //             <h1 className="date-block-day">{moment(props.event.start_time).format('D')}</h1>
+    //             <h1 className="date-block-month">{moment(props.event.start_time).format('MMM')}</h1>
+    //         </div>
+    //         <div className="event-index-item-text">
+    //             <h3>{props.event.name}</h3>
+    //         </div>
+    //     </div>
+    // </Link> 
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/events/".concat(props.event.id),
+      className: "event-index-list-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "event-index-list-item-content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "event-index-list-start-time"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "date-list-time"
+    }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format('h:mm A'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "event-index-list-item-text"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name))))
+  );
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EventIndexItem);
@@ -2224,11 +2269,14 @@ function (_React$Component) {
       query: "New York, NY, USA",
       names: Object.values(_this.props.events).map(function (event) {
         return event.name;
-      })
+      }),
+      mode: "groups"
     };
     _this.handleScriptLoad = _this.handleScriptLoad.bind(_assertThisInitialized(_this));
     _this.handlePlaceSelect = _this.handlePlaceSelect.bind(_assertThisInitialized(_this));
     _this.matchesEvents = _this.matchesEvents.bind(_assertThisInitialized(_this));
+    _this.switchToCalendar = _this.switchToCalendar.bind(_assertThisInitialized(_this));
+    _this.switchToGroups = _this.switchToGroups.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2298,6 +2346,20 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "switchToCalendar",
+    value: function switchToCalendar() {
+      this.setState({
+        mode: "calendar"
+      });
+    }
+  }, {
+    key: "switchToGroups",
+    value: function switchToGroups() {
+      this.setState({
+        mode: "groups"
+      });
+    }
+  }, {
     key: "handleScriptLoad",
     value: function handleScriptLoad() {
       var options = {
@@ -2322,10 +2384,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "member-home-banner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_load_script__WEBPACK_IMPORTED_MODULE_5___default.a, {
-        url: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places",
-        onLoad: this.handleScriptLoad
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-banner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "overlay"
@@ -2347,28 +2406,20 @@ function (_React$Component) {
         id: "findNavBar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        onChange: this.update('search'),
+        onChange: this.update("search"),
         className: "find-search",
         placeholder: "Search"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-text-div"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "filter-text"
-      }, "within 10 miles of "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.query,
-        onChange: this.update('query'),
-        id: "autocomplete-find",
-        className: "group-form-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-button-div"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "find-button find-groups"
+        className: "find-button find-groups ".concat(this.state.mode == "groups" ? "find-selected" : ""),
+        onClick: this.switchToGroups
       }, "Groups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "find-button find-calendar"
-      }, "Calendar")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        className: "find-button find-calendar ".concat(this.state.mode == "calendar" ? "find-selected" : ""),
+        onClick: this.switchToCalendar
+      }, "Calendar")))), this.state.mode == "groups" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         matches: this.matchesGroups()
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_event_index_event_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_event_index_event_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         matches: this.matchesEvents()
       }));
     }
@@ -4899,7 +4950,7 @@ function (_React$Component) {
         to: "/signup"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "join-button"
-      }, "Join Gathr"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_events_event_index_event_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+      }, "Join Gathr"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_groups_group_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
@@ -55605,7 +55656,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

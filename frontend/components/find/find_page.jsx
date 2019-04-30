@@ -13,10 +13,13 @@ class FindPage extends React.Component {
             search: '',
             query: "New York, NY, USA",
             names: Object.values(this.props.events).map(event => event.name),
+            mode: "groups",
         };
         this.handleScriptLoad = this.handleScriptLoad.bind(this);
         this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
         this.matchesEvents = this.matchesEvents.bind(this);
+        this.switchToCalendar = this.switchToCalendar.bind(this);
+        this.switchToGroups = this.switchToGroups.bind(this);
     }
 
     componentDidMount() {
@@ -69,6 +72,14 @@ class FindPage extends React.Component {
             this.setState({ [field]: e.target.value });
         };
     }
+
+    switchToCalendar() {
+        this.setState({ mode: "calendar" });
+    }
+
+    switchToGroups() {
+        this.setState({ mode: "groups" });
+    }
     
     handleScriptLoad() {
         const options = { types: ['(cities)'] };
@@ -88,25 +99,39 @@ class FindPage extends React.Component {
     render() {
         
         return (
-            <div className="member-home-banner">
-                <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places" onLoad={this.handleScriptLoad} />
-                <div className="find-banner">
-                    <div className="overlay"></div>
-                    <div className="banner-content">
-                        <div className="banner-content-item gathring-content-item">
-                            <h1 className="banner-text">Find your next Gathring</h1>
-                        </div>
-                        <div className="banner-content-item-details">
-                            <p className="find-banner-text-caption">98 gathrings in your groups</p>
-                            <p className="find-banner-text-caption">5,261 gathrings near you</p>
-                        </div>
-                    </div>
+          <div className="member-home-banner">
+            {/* <Script
+              url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places"
+              onLoad={this.handleScriptLoad}
+            /> */}
+            <div className="find-banner">
+              <div className="overlay" />
+              <div className="banner-content">
+                <div className="banner-content-item gathring-content-item">
+                  <h1 className="banner-text">
+                    Find your next Gathring
+                  </h1>
                 </div>
-                <div className="find-navbar-wrap">
-                    <div id="findNavBar">
-                        <input type="text" onChange={this.update('search')} className="find-search" placeholder="Search"/> 
-                        {/* <Search names={names}/> */}
-                        <div className="filter-text-div">
+                <div className="banner-content-item-details">
+                  <p className="find-banner-text-caption">
+                    98 gathrings in your groups
+                  </p>
+                  <p className="find-banner-text-caption">
+                    5,261 gathrings near you
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="find-navbar-wrap">
+              <div id="findNavBar">
+                <input
+                  type="text"
+                  onChange={this.update("search")}
+                  className="find-search"
+                  placeholder="Search"
+                />
+                {/* <Search names={names}/> */}
+                {/* <div className="filter-text-div">
                             <h3 className="filter-text">within 10 miles of </h3>
                             <input
                                 type="text"
@@ -115,18 +140,40 @@ class FindPage extends React.Component {
                                 id="autocomplete-find"
                                 className="group-form-input"
                             />
-                        </div>  
-                        <div className="find-button-div">
-                            <button className="find-button find-groups">Groups</button>
-                            <button className="find-button find-calendar">Calendar</button>
-                        </div>
-                    </div>
-
+                        </div>   */}
+                <div className="find-button-div">
+                  {/* <button className="find-button find-groups" onClick={this.switchToGroups}>Groups</button> */}
+                  <button
+                    className={`find-button find-groups ${
+                      this.state.mode == "groups" ? "find-selected" : ""
+                    }`}
+                    onClick={this.switchToGroups}
+                  >
+                    Groups
+                  </button>
+                  {/* <button className="find-button find-calendar" onClick={this.switchToCalendar}>Calendar</button> */}
+                  <button
+                    className={`find-button find-calendar ${
+                      this.state.mode == "calendar"
+                        ? "find-selected"
+                        : ""
+                    }`}
+                    onClick={this.switchToCalendar}
+                  >
+                    Calendar
+                  </button>
                 </div>
-                <GroupIndexContainer matches={this.matchesGroups()}/>
-                <EventIndexContainer matches={this.matchesEvents()}/>
+              </div>
             </div>
-        )
+            {this.state.mode == "groups" ? (
+              <>
+                <GroupIndexContainer matches={this.matchesGroups()} />
+              </>
+            ) : (
+              <EventIndexContainer matches={this.matchesEvents()} />
+            )}
+          </div>
+        );
     }
 }
 
