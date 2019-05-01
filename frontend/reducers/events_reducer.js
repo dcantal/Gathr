@@ -1,6 +1,7 @@
 import {
     RECEIVE_EVENTS,
-    RECEIVE_EVENT
+    RECEIVE_EVENT,
+    REMOVE_RSVP,
 } from '../actions/event_actions';
 
 import {
@@ -21,6 +22,9 @@ const eventsReducer = (state = {}, action) => {
             return newState;
         case RECEIVE_GROUP:
             newState = merge({}, state, action.group.events);
+            return newState;
+        case REMOVE_RSVP:
+            newState = {[action.rsvpId.event.id]: action.rsvpId.event};
             return newState;
         default:
             return state;

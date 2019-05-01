@@ -92,7 +92,7 @@ class EventShow extends React.Component {
                                     <h1 className="event-show-head-hosted-by">Hosted by</h1>
                                     <h1 className="event-show-head-host-name">
                                         {
-                                            (!this.props.event.organizers && this.props.event.organizers.length < 1) ? "Dante C." : this.props.event.organizer_info[this.props.event.organizers[0]].username
+                                            (!this.props.event.organizers || this.props.event.organizers.length < 1) ? "No one!" : this.props.event.organizer_info[this.props.event.organizers[0]].username
                                         }
                                     </h1>
                                 </div>

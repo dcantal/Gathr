@@ -2164,7 +2164,7 @@ function (_React$Component) {
         className: "event-show-head-hosted-by"
       }, "Hosted by"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "event-show-head-host-name"
-      }, !this.props.event.organizers && this.props.event.organizers.length < 1 ? "Dante C." : this.props.event.organizer_info[this.props.event.organizers[0]].username)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, !this.props.event.organizers || this.props.event.organizers.length < 1 ? "No one!" : this.props.event.organizer_info[this.props.event.organizers[0]].username)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-show-head-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-show-head-rsvp"
@@ -5197,6 +5197,10 @@ var eventsReducer = function eventsReducer() {
 
     case _actions_group_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_GROUP"]:
       newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.group.events);
+      return newState;
+
+    case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_RSVP"]:
+      newState = _defineProperty({}, action.rsvpId.event.id, action.rsvpId.event);
       return newState;
 
     default:
