@@ -79,6 +79,7 @@
 .find-event-wrapper {
     display:flex;
     justify-content: center;
+    padding-bottom: 50px;
 }
 
 .find-event-content {
@@ -94,7 +95,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border: 1px solid grey;
+    
     /* border: 1px solid green; */
 }
 
@@ -102,18 +103,19 @@
     width: 30%;
     display: flex;
     flex-direction: column;
+    padding-top: 37px;
     /* border: 1px solid blue; */
 }
 
 .find-event-calendar {
-    border: 1px solid grey;
+    border: 1px solid rgba(0,0,0,.12);
     background-color: white;
     padding: 5px;
 }
 
 .find-event-mode {
     background-color: #EDEEFA;
-    border: 1px solid grey;
+    border: 1px solid rgba(0,0,0,.12);
     margin-bottom: 5px;
     padding: 5px;
     padding-left: 10px;
@@ -128,6 +130,7 @@
 
 .event-index-list-item-content {
     display: flex;
+    align-items: baseline;
 }
 
 .event-index-list-start-time {
@@ -139,23 +142,70 @@
 }
 
 .event-index-list-item-text {
-    
+    padding-left: 15px;
+
+}
+
+.event-index-list-item-group-name > h4 {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0 0 0;
+}
+
+.event-index-list-item-text > h3 {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 20px;
+    font-weight: 500;
+    margin: 5px 0 0 0;
+}
+
+.event-index-list-item-text > h5 {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 5px 0 0 0;
+}
+
+.event-index-list-item {
+    height: 0;
+}
+
+.event-index-list-item:visited {
+    color: grey;
+}
+
+.event-index-list-item-events {
+    border: 1px solid rgba(0,0,0,.12);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.event-index-list-item-content {
+    background-color: white;
+    color: grey;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.event-index-list-item-event-name {
     color: rgba(0, 0, 0, 0.87);
     font-size: 20px;
     font-weight: 500;
 }
 
-.event-index-list-item-text > h3 {
-    padding-left: 15px;
+.event-index-list-item-event-name > h3 {
+    margin: 5px 0 0 0;
 }
 
-.event-index-list-item {
-    border-bottom: 1px solid grey;
-    background-color: white;
-    color: grey;
-    padding: 10px;
+.date-list-time {
+    margin: 0;
 }
 
-.event-index-list-item:visited {
-    color: grey;
+.event-index-list-day-start-day > h1 {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-transform: uppercase;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import EventIndexItem from './event_index_item';
 import DayPicker from 'react-day-picker';
+import * as moment from 'moment';
 
 class EventIndex extends React.Component {
 
@@ -17,31 +18,46 @@ class EventIndex extends React.Component {
     }
 
     handleDayClick(day) {
-        debugger
         this.setState({ selectedDay: day });
-        debugger
     }
 
     render() {
-        debugger
-        let events;
+        let days;
         if (!this.props.matches) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
         if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
-            events = this.props.events.map((event) => {
-                if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
-                    return (
-                        <EventIndexItem key={event.id} event={event} />
-                    );
-                }
-            });
+            days = this.props.event_days.map((day) => {
+                // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+                let events = [];
+                this.props.events.forEach((event) => {
+                    if (moment(event.start_time).format('dddd, MMMM D') == day) {
+                        events.push(event);
+                    } 
+                })
+                return (
+                    <EventIndexItem key={day} day={day} events={events} />
+                );
+            })
+            // events = this.props.events.map((event) => {
+            //     if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+            //         return (
+            //             <EventIndexItem key={event.id} event={event} />
+            //         );
+            //     }
+            // });
         }
         else if (this.props.matches.length === 0){
-            events = this.props.events.map((event) => {
-                    return (
-                        <EventIndexItem key={event.id} event={event} />
-                    );
+            days = this.props.event_days.map((day) => {
+                let events = [];
+                this.props.events.forEach((event) => {
+                    if (moment(event.start_time).format('dddd, MMMM D') == day) {
+                        events.push(event);
+                    } 
+                })
+                return (
+                    <EventIndexItem key={day} day={day} events={events} />
+                );
             });
         }
         else {
@@ -52,17 +68,13 @@ class EventIndex extends React.Component {
             );
         }
 
+
+
         return (
-            // <div className="event-list">
-            //     <h1>EVENTS IN YOUR GROUPS</h1>
-            //     <div className="event-grid">
-            //         {events}
-            //     </div>
-            // </div>
             <div className="find-event-wrapper">
                 <div className="find-event-content">
                     <div className="find-event-left">
-                        {events}
+                        {days}
                     </div>
                     <div className="find-event-right">
                         <div className="find-event-mode">

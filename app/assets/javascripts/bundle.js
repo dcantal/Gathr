@@ -1512,6 +1512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_index_item */ "./frontend/components/events/event_index/event_index_item.jsx");
 /* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-day-picker */ "./node_modules/react-day-picker/DayPicker.js");
 /* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_day_picker__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1529,6 +1531,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1560,19 +1563,16 @@ function (_React$Component) {
   }, {
     key: "handleDayClick",
     value: function handleDayClick(day) {
-      debugger;
       this.setState({
         selectedDay: day
       });
-      debugger;
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      debugger;
-      var events;
+      var days;
 
       if (!this.props.matches) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1583,19 +1583,42 @@ function (_React$Component) {
       }
 
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
-        events = this.props.events.map(function (event) {
-          if (_this2.props.matches.includes(event.id) && event.start_time > _this2.state.selectedDay) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-              key: event.id,
-              event: event
-            });
-          }
-        });
-      } else if (this.props.matches.length === 0) {
-        events = this.props.events.map(function (event) {
+        days = this.props.event_days.map(function (day) {
+          // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+          var events = [];
+
+          _this2.props.events.forEach(function (event) {
+            if (moment__WEBPACK_IMPORTED_MODULE_3__(event.start_time).format('dddd, MMMM D') == day) {
+              events.push(event);
+            }
+          });
+
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: event.id,
-            event: event
+            key: day,
+            day: day,
+            events: events
+          });
+        }); // events = this.props.events.map((event) => {
+        //     if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+        //         return (
+        //             <EventIndexItem key={event.id} event={event} />
+        //         );
+        //     }
+        // });
+      } else if (this.props.matches.length === 0) {
+        days = this.props.event_days.map(function (day) {
+          var events = [];
+
+          _this2.props.events.forEach(function (event) {
+            if (moment__WEBPACK_IMPORTED_MODULE_3__(event.start_time).format('dddd, MMMM D') == day) {
+              events.push(event);
+            }
+          });
+
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: day,
+            day: day,
+            events: events
           });
         });
       } else {
@@ -1604,29 +1627,22 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "NO EVENTS FOUND"));
       }
 
-      return (// <div className="event-list">
-        //     <h1>EVENTS IN YOUR GROUPS</h1>
-        //     <div className="event-grid">
-        //         {events}
-        //     </div>
-        // </div>
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-wrapper"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-content"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-left"
-        }, events), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-right"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-mode"
-        }, "All upcoming events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "find-event-calendar"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_2___default.a, {
-          onDayClick: this.handleDayClick,
-          selectedDays: this.state.selectedDay
-        })))))
-      );
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-left"
+      }, days), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-mode"
+      }, "All upcoming events"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-event-calendar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        onDayClick: this.handleDayClick,
+        selectedDays: this.state.selectedDay
+      })))));
     }
   }]);
 
@@ -1649,12 +1665,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _event_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_index */ "./frontend/components/events/event_index/event_index.jsx");
 /* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/event_actions */ "./frontend/actions/event_actions.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var events = Object.values(state.entities.events);
+  var event_days_date = events.map(function (event) {
+    return event.start_time;
+  });
+  var event_days = event_days_date.sort().map(function (date) {
+    return moment__WEBPACK_IMPORTED_MODULE_3__(date).format('dddd, MMMM D');
+  });
+
+  var unique_days = _toConsumableArray(new Set(event_days));
+
   var matches = [];
 
   if (ownProps.matches) {
@@ -1665,7 +1701,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     events: events,
     // matches: [],
-    matches: matches // currentUserGroups: currentUserGroups,
+    matches: matches,
+    event_days: unique_days // currentUserGroups: currentUserGroups,
 
   };
 };
@@ -1693,6 +1730,59 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _event_index_item_event__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_index_item_event */ "./frontend/components/events/event_index/event_index_item_event.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var EventIndexItem = function EventIndexItem(props) {
+  var events = props.events.map(function (event) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item_event__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: event.id,
+      event: event
+    });
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-item-day-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-day-start-day"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.day)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-item-events"
+  }, events)) // <Link to={`/events/${props.event.id}`} className="event-index-list-item">
+  //     <div className="event-index-list-item-content">
+  //         <div className="event-index-list-start-time">
+  //             <p className="date-list-time">{moment(props.event.start_time).format('h:mm A')}</p>
+  //             {/* <h1 className="date-list-ampm">{moment(props.event.start_time).format('mm')}</h1> */}
+  //         </div>
+  //         <div className="event-index-list-item-text">
+  //             <h4>{props.event.group_name}</h4>
+  //             <h3>{props.event.name}</h3>
+  //             <h5>{props.event.attendee_count} people going</h5>
+  //         </div>
+  //     </div>
+  // </Link> 
+  ;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EventIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/events/event_index/event_index_item_event.jsx":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/events/event_index/event_index_item_event.jsx ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
@@ -1700,34 +1790,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var EventIndexItem = function EventIndexItem(props) {
-  return (// <Link to={`/events/${props.event.id}`} className="event-index-item" style={{backgroundImage: `url(${props.event.photoUrl})`}}>
-    //     <div className="event-index-item-content">
-    //         <div className="event-index-start-date-block">
-    //             <h1 className="date-block-day">{moment(props.event.start_time).format('D')}</h1>
-    //             <h1 className="date-block-month">{moment(props.event.start_time).format('MMM')}</h1>
-    //         </div>
-    //         <div className="event-index-item-text">
-    //             <h3>{props.event.name}</h3>
-    //         </div>
+var EventIndexItemEvent = function EventIndexItemEvent(props) {
+  return (// <Link to={`/events/${props.event.id}`} className="event-index-list-item">
+    //   <div className="event-index-list-item-content">
+    //     <div className="event-index-list-start-time">
+    //       <p className="date-list-time">
+    //         {moment(props.event.start_time).format("h:mm A")}
+    //       </p>
+    //       {/* <h1 className="date-list-ampm">{moment(props.event.start_time).format('mm')}</h1> */}
     //     </div>
-    // </Link> 
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/events/".concat(props.event.id),
-      className: "event-index-list-item"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    //     <div className="event-index-list-item-text">
+    //       <h4>{props.event.group_name}</h4>
+    //       <Link to={`/events/${props.event.id}`}>
+    //         <h3>{props.event.name}</h3>
+    //       </Link>
+    //       <h5>{props.event.attendee_count} people going</h5>
+    //     </div>
+    //   </div>
+    // </Link>
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "event-index-list-item-content"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "event-index-list-start-time"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "date-list-time"
-    }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format('h:mm A'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format("h:mm A"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "event-index-list-item-text"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name))))
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/groups/".concat(props.event.group_id),
+      className: "event-index-list-item-group-name"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, props.event.group_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/events/".concat(props.event.id),
+      className: "event-index-list-item-event-name"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, props.event.attendee_count, " people going")))
   );
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (EventIndexItem);
+/* harmony default export */ __webpack_exports__["default"] = (EventIndexItemEvent);
 
 /***/ }),
 
@@ -2270,7 +2369,7 @@ function (_React$Component) {
       names: Object.values(_this.props.events).map(function (event) {
         return event.name;
       }),
-      mode: "groups"
+      mode: "calendar"
     };
     _this.handleScriptLoad = _this.handleScriptLoad.bind(_assertThisInitialized(_this));
     _this.handlePlaceSelect = _this.handlePlaceSelect.bind(_assertThisInitialized(_this));

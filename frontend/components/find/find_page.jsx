@@ -13,7 +13,7 @@ class FindPage extends React.Component {
             search: '',
             query: "New York, NY, USA",
             names: Object.values(this.props.events).map(event => event.name),
-            mode: "groups",
+            mode: "calendar",
         };
         this.handleScriptLoad = this.handleScriptLoad.bind(this);
         this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
