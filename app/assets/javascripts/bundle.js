@@ -2501,6 +2501,10 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      if (!this.props.currentUser) {
+        this.props.history.push('/');
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "member-home-banner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2574,7 +2578,8 @@ var mapStateToProps = function mapStateToProps(state) {
   var groups = Object.values(state.entities.groups);
   return {
     events: events,
-    groups: groups
+    groups: groups,
+    currentUser: state.session.id
   };
 };
 

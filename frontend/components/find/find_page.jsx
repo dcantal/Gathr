@@ -97,7 +97,9 @@ class FindPage extends React.Component {
     }
 
     render() {
-        
+        if (!this.props.currentUser) {
+          this.props.history.push('/');
+        }
         return (
           <div className="member-home-banner">
             {/* <Script
@@ -114,6 +116,7 @@ class FindPage extends React.Component {
                 </div>
                 <div className="banner-content-item-details">
                   <p className="find-banner-text-caption">
+                    {/* {this.props.events[0].name} */}
                     98 gathrings in your groups
                   </p>
                   <p className="find-banner-text-caption">

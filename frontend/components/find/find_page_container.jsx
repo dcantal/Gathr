@@ -9,6 +9,7 @@ const mapStateToProps = state => {
   return {
     events: events,
     groups: groups,
+    currentUser: state.session.id,
   };
 };
 
