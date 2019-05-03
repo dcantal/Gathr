@@ -1549,7 +1549,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EventIndex).call(this, props));
     _this.state = {
-      selectedDay: null
+      selectedDay: null,
+      selectedDayDate: null
     };
     _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
     return _this;
@@ -1564,7 +1565,8 @@ function (_React$Component) {
     key: "handleDayClick",
     value: function handleDayClick(day) {
       this.setState({
-        selectedDay: day
+        selectedDay: moment__WEBPACK_IMPORTED_MODULE_3__(day).format('dddd, MMMM D'),
+        selectedDayDate: day
       });
     }
   }, {
@@ -1573,6 +1575,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var days;
+      var days_dates;
 
       if (!this.props.matches) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1580,10 +1583,26 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
         }));
+      } // (this.state.selectedDay) ? (days_dates = [this.state.selectedDay]) : (days_dates = this.props.event_days);
+
+
+      if (this.state.selectedDay) {
+        var selected_date = new Date(this.state.selectedDayDate);
+        var days_dates_date = this.props.event_days.filter(function (date) {
+          var check_day = new Date(date);
+          return check_day >= selected_date; // test_day >= this.state.selectedDayDate;
+        });
+        days_dates = days_dates_date.map(function (date) {
+          return moment__WEBPACK_IMPORTED_MODULE_3__(date).format('dddd, MMMM D');
+        });
+      } else {
+        days_dates = this.props.event_days.map(function (date) {
+          return moment__WEBPACK_IMPORTED_MODULE_3__(date).format('dddd, MMMM D');
+        });
       }
 
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
-        days = this.props.event_days.map(function (day) {
+        days = days_dates.map(function (day) {
           // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
           var events = [];
 
@@ -1606,7 +1625,7 @@ function (_React$Component) {
         //     }
         // });
       } else if (this.props.matches.length === 0) {
-        days = this.props.event_days.map(function (day) {
+        days = days_dates.map(function (day) {
           var events = [];
 
           _this2.props.events.forEach(function (event) {
@@ -1641,7 +1660,7 @@ function (_React$Component) {
         className: "find-event-calendar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_day_picker__WEBPACK_IMPORTED_MODULE_2___default.a, {
         onDayClick: this.handleDayClick,
-        selectedDays: this.state.selectedDay
+        selectedDays: this.state.selectedDayDate
       })))));
     }
   }]);
@@ -1684,10 +1703,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var events = Object.values(state.entities.events);
   var event_days_date = events.map(function (event) {
     return event.start_time;
-  });
-  var event_days = event_days_date.sort().map(function (date) {
-    return moment__WEBPACK_IMPORTED_MODULE_3__(date).format('dddd, MMMM D');
-  });
+  }); // let event_days = event_days_date.sort().map((date) => {
+  //     return (moment(date).format('dddd, MMMM D'));
+  // });
+
+  var event_days = event_days_date.sort();
 
   var unique_days = _toConsumableArray(new Set(event_days));
 
@@ -55759,7 +55779,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
