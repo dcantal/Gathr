@@ -43,7 +43,8 @@
 
 .event-show-head-content {
     display: flex;
-    width: 55%;
+    /* width: 55%; */
+    width: 1100px;
     justify-content: space-between;
     margin: 20px;
 }
@@ -104,6 +105,8 @@
     display: flex;
     width: 35%;
     justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .event-show-head-rsvp {
@@ -187,7 +190,8 @@
 
 .event-show-content {
     display: flex;
-    width: 55%;
+    /* width: 55%; */
+    width: 1100px;
     justify-content: space-between;
     margin: 20px;
     margin-top: 40px;

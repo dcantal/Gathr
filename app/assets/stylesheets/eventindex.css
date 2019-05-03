@@ -84,7 +84,8 @@
 
 .find-event-content {
     display:flex;
-    width: 60%;
+    /* width: 60%; */
+    width: 980px;
 
     /* border: 1px solid red; */
 }
@@ -143,7 +144,8 @@
 
 .event-index-list-item-text {
     padding-left: 15px;
-
+    width: 90%;
+    box-sizing: border-box;
 }
 
 .event-index-list-item-group-name > h4 {
@@ -187,6 +189,8 @@
     color: grey;
     padding: 10px;
     border-bottom: 1px solid rgba(0,0,0,.12);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .event-index-list-item-event-name {
