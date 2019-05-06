@@ -9,7 +9,7 @@ class EventIndex extends React.Component {
         super(props);
         this.state = {
             selectedDay: null,
-            selectedDayDate: null,
+            selectedDayDate: new Date(),
         };
         this.handleDayClick = this.handleDayClick.bind(this);
     }
@@ -28,11 +28,12 @@ class EventIndex extends React.Component {
     render() {
         let days;
         let days_dates;
+        debugger;
         if (!this.props.matches) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
         // (this.state.selectedDay) ? (days_dates = [this.state.selectedDay]) : (days_dates = this.props.event_days);
-        if (this.state.selectedDay) {
+        if (this.state.selectedDayDate) {
             let selected_date = new Date(this.state.selectedDayDate);
             let days_dates_date = this.props.event_days.filter((date) => {
                 let check_day = new Date(date);

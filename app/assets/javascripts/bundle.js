@@ -1550,7 +1550,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EventIndex).call(this, props));
     _this.state = {
       selectedDay: null,
-      selectedDayDate: null
+      selectedDayDate: new Date()
     };
     _this.handleDayClick = _this.handleDayClick.bind(_assertThisInitialized(_this));
     return _this;
@@ -1576,6 +1576,7 @@ function (_React$Component) {
 
       var days;
       var days_dates;
+      debugger;
 
       if (!this.props.matches) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1586,7 +1587,7 @@ function (_React$Component) {
       } // (this.state.selectedDay) ? (days_dates = [this.state.selectedDay]) : (days_dates = this.props.event_days);
 
 
-      if (this.state.selectedDay) {
+      if (this.state.selectedDayDate) {
         var selected_date = new Date(this.state.selectedDayDate);
         var days_dates_date = this.props.event_days.filter(function (date) {
           var check_day = new Date(date);
