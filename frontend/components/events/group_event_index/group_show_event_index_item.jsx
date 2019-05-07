@@ -5,7 +5,7 @@ import moment from 'moment';
 const GroupShowEventIndexItem = props => {
     return (
 
-        <Link to={`/events/${props.event.id}`} className="group-event-index-item">
+        <Link to={(props.state == "attend") ? (`/events/${props.event.id}`) : (`/events/${props.event.id}/edit`)} className="group-event-index-item">
             <div className="group-event-index-item-content">
                 <div className="group-event-index-item-header">
                     <div className="group-event-index-item-header-left">
@@ -20,7 +20,16 @@ const GroupShowEventIndexItem = props => {
                     <p>{props.event.description}</p>
                 </div>
                 <div className="group-event-index-item-actions">
-                    <button className="attend-button">Attend</button>
+                    {
+                        (props.state == "attend") ?
+                            (
+                                <button className="attend-button">Attend</button>
+                            )
+                            : (
+                                <button className="attend-button">Edit</button>
+                            )
+                    }
+                    
                 </div>
             </div>
         </Link>

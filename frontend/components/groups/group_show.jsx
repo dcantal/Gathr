@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router';
 import ManageButton from '../button_menus/manage_button';
 import CreateEventButton from '../button_menus/create_event_button';
 import MemberButton from '../button_menus/member_button';
+import GroupShowEditEvents from './group_show_edit_events';
 
 class GroupShow extends React.Component {
 
@@ -80,7 +81,6 @@ class GroupShow extends React.Component {
         let members = this.props.group.members;
         let member_info = this.props.group.member_info;
         let events = this.props.group.events;
-
         return (
             <div className="group-show-wrapper">
                 <div className="group-header-wrapper group-section-wrapper">
@@ -158,7 +158,7 @@ class GroupShow extends React.Component {
 
                         {
                             this.props.group.members.includes(this.props.currentUser) && this.state.organizer &&
-                            <CreateEventButton group={this.props.group} />
+                                <CreateEventButton group={this.props.group} events={events}/>
                         }
 
                         {
@@ -183,7 +183,7 @@ class GroupShow extends React.Component {
                             </div>
                             <div className="group-upcoming-events">
                                 <h3 className="group-section-label">Upcoming Events</h3>
-                                <GroupShowEventIndexContainer events={events}/>
+                                <GroupShowEventIndexContainer events={events} state="attend"/>
                             </div>
                             <div className="group-photos">
                                 <h3 className="group-section-label">Photos</h3>

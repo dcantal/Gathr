@@ -16,10 +16,11 @@ class GroupShowEventIndex extends React.Component {
         if (!this.props.events) {
             return null;
         }
+        let state = this.props.state;
         // let events = this.props.events.map((event) => {
         let events = Object.values(this.props.events).map((event) => {
             return (
-                <GroupShowEventIndexItem key={event.id} event={event} />
+                <GroupShowEventIndexItem key={event.id} event={event} state={state} />
             );
         });
         return (

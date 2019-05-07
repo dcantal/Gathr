@@ -28,7 +28,6 @@ class EventIndex extends React.Component {
     render() {
         let days;
         let days_dates;
-        debugger;
         if (!this.props.matches) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }

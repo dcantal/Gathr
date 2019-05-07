@@ -6,6 +6,7 @@ import {
     Link,
     HashRouter
 } from 'react-router-dom';
+import GroupShowEventIndexContainer from '../events/group_event_index/group_show_event_index_container';
 
 
 class CreateEventButton extends React.Component {
@@ -13,10 +14,13 @@ class CreateEventButton extends React.Component {
         super(props);
         this.state = {
             showMenu: false,
+            showModal: false,
         };
 
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     showMenu(event) {
@@ -33,6 +37,24 @@ class CreateEventButton extends React.Component {
         // if (!this.dropdownMenu.contains(event.target)) {
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
+            });
+        // }
+    }
+
+    showModal(event) {
+        event.preventDefault();
+
+        this.setState({
+            showModal: true,
+        }, () => {
+            document.addEventListener('click', this.closeModal);
+        });
+    }
+
+    closeModal() {
+        // if (!this.dropdownMenu.contains(event.target)) {
+            this.setState({ showModal: false }, () => {
+                document.removeEventListener('click', this.closeModal);
             });
         // }
     }
@@ -56,6 +78,22 @@ class CreateEventButton extends React.Component {
                                     this.dropdownMenu = element;
                                 }}>
                                 <Link to={`/groups/${group.id}/events/schedule`} className="create-event-button-dropdown-item">Create a new event</Link>
+                                <button onClick={this.showModal} className="create-event-button-dropdown-item">Edit an event</button>
+                            </div>
+                        )
+                        : (
+                            null
+                        )
+                }
+
+                {
+                    this.state.showModal
+                        ? (
+                            <div className="event-modal">
+                                <div className="event-modal-content">
+                                    <h1>Select an event to edit</h1>
+                                    <GroupShowEventIndexContainer events={this.props.events} state="edit" />
+                                </div>
                             </div>
                         )
                         : (

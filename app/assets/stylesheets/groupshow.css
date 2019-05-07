@@ -382,6 +382,32 @@ i {
     background: rgba(41,77,107,.12);
 }
 
+.event-modal {
+    position: fixed;
+    background-color: rgb(1,1,1,.5);
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.event-modal-content {
+    background-color: #fafafa;
+    border-radius: 7px;
+    max-height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    overflow: scroll;
+}
+
+
 @media screen and (max-width: 710px) {  
     .group-header-wrapper{
         width: 100%;
