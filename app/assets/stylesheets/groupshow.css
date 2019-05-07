@@ -384,7 +384,7 @@ i {
 
 .event-modal {
     position: fixed;
-    background-color: rgb(1,1,1,.5);
+    background-color: rgba(1,1,1,.5);
     top: 0px;
     left: 0px;
     height: 100%;
