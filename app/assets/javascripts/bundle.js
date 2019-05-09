@@ -2097,7 +2097,7 @@ function (_React$Component) {
           var events = [];
 
           _this2.props.events.forEach(function (event) {
-            if (moment__WEBPACK_IMPORTED_MODULE_3__(event.start_time).format('dddd, MMMM D') == day) {
+            if (moment__WEBPACK_IMPORTED_MODULE_3__(event.start_time).format('dddd, MMMM D') == day && _this2.props.matches.includes(event.id)) {
               events.push(event);
             }
           });

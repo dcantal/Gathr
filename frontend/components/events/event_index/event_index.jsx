@@ -52,7 +52,7 @@ class EventIndex extends React.Component {
                 // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
                 let events = [];
                 this.props.events.forEach((event) => {
-                    if (moment(event.start_time).format('dddd, MMMM D') == day) {
+                    if (moment(event.start_time).format('dddd, MMMM D') == day && this.props.matches.includes(event.id)) {
                         events.push(event);
                     } 
                 })
