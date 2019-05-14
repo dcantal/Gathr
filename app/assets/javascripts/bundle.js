@@ -2091,8 +2091,8 @@ function (_React$Component) {
       }
 
       if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
-        days = days_dates.map(function (day) {
-          // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+        days = [];
+        days_dates.forEach(function (day) {
           var events = [];
 
           _this2.props.events.forEach(function (event) {
@@ -2101,11 +2101,13 @@ function (_React$Component) {
             }
           });
 
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: day,
-            day: day,
-            events: events
-          });
+          if (events.length > 0) {
+            days.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              key: day,
+              day: day,
+              events: events
+            }));
+          }
         });
       } else if (this.props.matches.length === 0) {
         days = days_dates.map(function (day) {
@@ -2126,11 +2128,7 @@ function (_React$Component) {
       } else {
         days = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-list"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "NO EVENTS FOUND")); // return (
-        //     <div className="event-list">
-        //         <h1>NO EVENTS FOUND</h1>
-        //     </div>
-        // );
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "NO EVENTS FOUND"));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56325,7 +56323,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

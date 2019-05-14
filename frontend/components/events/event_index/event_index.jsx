@@ -47,19 +47,18 @@ class EventIndex extends React.Component {
             })
         }
         if (this.props.matches.length > 0 && this.props.matches[0] !== -1) {
-            days = days_dates.map((day) => {
-                // if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
+            days = [];
+            days_dates.forEach((day) => {
                 let events = [];
                 this.props.events.forEach((event) => {
                     if (moment(event.start_time).format('dddd, MMMM D') == day && this.props.matches.includes(event.id)) {
                         events.push(event);
                     } 
                 })
-                return (
-                    <EventIndexItem key={day} day={day} events={events} />
-                );
+                if(events.length > 0) {
+                    days.push(<EventIndexItem key={day} day={day} events={events} />);
+                }
             })
-
         }
         else if (this.props.matches.length === 0){
             days = days_dates.map((day) => {
@@ -80,11 +79,6 @@ class EventIndex extends React.Component {
                     <h1>NO EVENTS FOUND</h1>
                 </div>
             );
-            // return (
-            //     <div className="event-list">
-            //         <h1>NO EVENTS FOUND</h1>
-            //     </div>
-            // );
         }
 
 
