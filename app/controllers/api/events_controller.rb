@@ -13,8 +13,10 @@ class Api::EventsController < ApplicationController
     end
 
     def create
+        debugger
         @event = Event.new(event_params)
-        if !@event.photo
+        debugger
+        if !event_params["photo"]
             file = open('https://s3.amazonaws.com/gathr-dc-seeds/default-event.jpg')
             @event.photo.attach(io: file, filename: 'default-event.jpg')
         end
