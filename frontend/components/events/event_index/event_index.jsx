@@ -75,11 +75,16 @@ class EventIndex extends React.Component {
             });
         }
         else {
-            return (
+            days = (
                 <div className="event-list">
                     <h1>NO EVENTS FOUND</h1>
                 </div>
             );
+            // return (
+            //     <div className="event-list">
+            //         <h1>NO EVENTS FOUND</h1>
+            //     </div>
+            // );
         }
 
 
