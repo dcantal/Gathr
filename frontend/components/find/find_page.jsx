@@ -28,12 +28,7 @@ class FindPage extends React.Component {
     matchesGroups() {
         const matches = [];
         if (this.state.search.length === 0) return [];
-        // this.props.groups.forEach((group) => {
-        //     const sub = group.name.slice(0, this.state.search.length);
-        //     if (sub.toLowerCase() === this.state.search.toLowerCase()) {
-        //         matches.push(group.id);
-        //     }
-        // });
+
         this.props.groups.forEach((group) => {
             let content = group.name + group.hometown + group.description;
             if (content.toLowerCase().includes(this.state.search.toLowerCase())) {
@@ -55,12 +50,7 @@ class FindPage extends React.Component {
                 matches.push(event.id);
             }
         });
-        // this.props.events.forEach((event) => {
-        //     const sub  = event.name.slice(0, this.state.search.length);
-        //     if (sub.toLowerCase() === this.state.search.toLowerCase()) {
-        //         matches.push(event.id);
-        //     }
-        // });
+
         if (matches.length === 0) {
             matches.push(-1);
         }
@@ -102,10 +92,7 @@ class FindPage extends React.Component {
         }
         return (
           <div className="member-home-banner">
-            {/* <Script
-              url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBReG7fbGJa7BQ_j887_om_hWgaX2XEP_c&libraries=places"
-              onLoad={this.handleScriptLoad}
-            /> */}
+
             <div className="find-banner">
               <div className="overlay" />
               <div className="banner-content">
@@ -133,17 +120,7 @@ class FindPage extends React.Component {
                   className="find-search"
                   placeholder="Search"
                 />
-                {/* <Search names={names}/> */}
-                {/* <div className="filter-text-div">
-                            <h3 className="filter-text">within 10 miles of </h3>
-                            <input
-                                type="text"
-                                value={this.state.query}
-                                onChange={this.update('query')}
-                                id="autocomplete-find"
-                                className="group-form-input"
-                            />
-                        </div>   */}
+
                 <div className="find-button-div">
                   {/* <button className="find-button find-groups" onClick={this.switchToGroups}>Groups</button> */}
                   <button

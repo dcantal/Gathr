@@ -60,13 +60,7 @@ class EventIndex extends React.Component {
                     <EventIndexItem key={day} day={day} events={events} />
                 );
             })
-            // events = this.props.events.map((event) => {
-            //     if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
-            //         return (
-            //             <EventIndexItem key={event.id} event={event} />
-            //         );
-            //     }
-            // });
+
         }
         else if (this.props.matches.length === 0){
             days = days_dates.map((day) => {
