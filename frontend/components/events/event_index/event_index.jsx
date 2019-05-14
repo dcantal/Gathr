@@ -31,8 +31,7 @@ class EventIndex extends React.Component {
         if (!this.props.matches) {
             return <div className="loading-icon"><img src="https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"></img></div>;
         }
-        // (this.state.selectedDay) ? (days_dates = [this.state.selectedDay]) : (days_dates = this.props.event_days);
-        if (this.state.selectedDayDate) {
+        if (this.state.selectedDayDate && (this.props.matches.length == 0 || this.props.matches[0] == -1)) {
             let selected_date = new Date(this.state.selectedDayDate);
             let days_dates_date = this.props.event_days.filter((date) => {
                 let check_day = new Date(date);

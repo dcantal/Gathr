@@ -2073,10 +2073,9 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "https://loading.io/spinners/spinner/index.ajax-spinner-preloader.svg"
         }));
-      } // (this.state.selectedDay) ? (days_dates = [this.state.selectedDay]) : (days_dates = this.props.event_days);
+      }
 
-
-      if (this.state.selectedDayDate) {
+      if (this.state.selectedDayDate && (this.props.matches.length == 0 || this.props.matches[0] == -1)) {
         var selected_date = new Date(this.state.selectedDayDate);
         var days_dates_date = this.props.event_days.filter(function (date) {
           var check_day = new Date(date);
@@ -2107,13 +2106,7 @@ function (_React$Component) {
             day: day,
             events: events
           });
-        }); // events = this.props.events.map((event) => {
-        //     if (this.props.matches.includes(event.id) && event.start_time > this.state.selectedDay) {
-        //         return (
-        //             <EventIndexItem key={event.id} event={event} />
-        //         );
-        //     }
-        // });
+        });
       } else if (this.props.matches.length === 0) {
         days = days_dates.map(function (day) {
           var events = [];
@@ -2902,13 +2895,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var matches = [];
-      if (this.state.search.length === 0) return []; // this.props.groups.forEach((group) => {
-      //     const sub = group.name.slice(0, this.state.search.length);
-      //     if (sub.toLowerCase() === this.state.search.toLowerCase()) {
-      //         matches.push(group.id);
-      //     }
-      // });
-
+      if (this.state.search.length === 0) return [];
       this.props.groups.forEach(function (group) {
         var content = group.name + group.hometown + group.description;
 
@@ -2936,12 +2923,7 @@ function (_React$Component) {
         if (content.toLowerCase().includes(_this3.state.search.toLowerCase())) {
           matches.push(event.id);
         }
-      }); // this.props.events.forEach((event) => {
-      //     const sub  = event.name.slice(0, this.state.search.length);
-      //     if (sub.toLowerCase() === this.state.search.toLowerCase()) {
-      //         matches.push(event.id);
-      //     }
-      // });
+      });
 
       if (matches.length === 0) {
         matches.push(-1);
@@ -3011,13 +2993,7 @@ function (_React$Component) {
         className: "banner-content-item gathring-content-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "banner-text"
-      }, "Find your next Gathring")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "banner-content-item-details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "find-banner-text-caption"
-      }, "98 gathrings in your groups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "find-banner-text-caption"
-      }, "5,261 gathrings near you")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Find your next Gathring")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-navbar-wrap"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "findNavBar"

@@ -101,15 +101,14 @@ class FindPage extends React.Component {
                     Find your next Gathring
                   </h1>
                 </div>
-                <div className="banner-content-item-details">
+                {/* <div className="banner-content-item-details">
                   <p className="find-banner-text-caption">
-                    {/* {this.props.events[0].name} */}
                     98 gathrings in your groups
                   </p>
                   <p className="find-banner-text-caption">
                     5,261 gathrings near you
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="find-navbar-wrap">
