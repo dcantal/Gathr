@@ -29,7 +29,17 @@ body {
      text-decoration: none;
  }
 
+ input:focus {
+    outline: none;
+ }
 
+ button:focus {
+  outline: none;
+ }
+
+ .DayPicker-Day:focus {
+   outline: none;
+ }
 
 /* BELOW NOT CURRENTLY USED BECAUSE NO LONGER USING MODAL FOR SIGN UP */
 
