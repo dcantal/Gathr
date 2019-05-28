@@ -24,19 +24,15 @@
     background-color: #0f1721;
     margin: -25px auto 0px auto;
     height: 100%;
-    /* width: 60%; */
     width: 980px;
     color: white;
     display: flex;
-    /* align-content: flex-end; */
-    /* justify-content: center; */
     z-index: 3;
 }
 
 .find-search {
     margin: 15px 15px 15px 15px;
     width: 70%;
-    /* width: 260px; */
     border-radius: 4px;
     border: none;
     line-height: 1.45;
@@ -94,8 +90,6 @@
 
 .find-groups {
     border-radius: 4px 0px 0px 4px;
-    /* background-color: #0f1721;
-    color: grey; */
 }
 
 .find-selected {
@@ -106,8 +100,6 @@
 
 .find-calendar {
     border-radius: 0 4px 4px 0;
-    /* background-color: #0f1721;
-    color: grey; */
 }
 
 

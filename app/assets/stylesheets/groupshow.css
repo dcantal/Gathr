@@ -485,7 +485,6 @@ i {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 0;
-        /* overflow: hidden; */
     }
 
     .group-actions-left > li {

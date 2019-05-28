@@ -1,6 +1,5 @@
 .group-index-item {
     height: 180px;
-    /* width: 309px; */
     width: 32%;
     border-radius: 3px;
     display: flex;
@@ -18,8 +17,6 @@
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    /* border: 1px solid red; */
-    /* width: 60%; */
     width: 980px;
     flex-wrap: wrap;
 }
@@ -30,9 +27,6 @@
     align-items: center;
     margin-top: 15px;
     margin-bottom: 15px;
-    /* justify-content: center; */
-
-    /* height: 1000px; */
 }
 
 .group-list > h1 {
@@ -56,7 +50,6 @@
 }
 
 .group-index-item-content {
-    /* margin-top: 50%; */
     display: flex;
     flex-direction: column-reverse;
 }

@@ -86,13 +86,11 @@
 
 .group-icon {
     width: 5%;
-    /* padding: 20px; */
 }
 
 .group-icon > img {
     width: 50px;
     height: 50px;
-    /* margin: 50px; */
 }
 
 .group-step-details {
@@ -113,11 +111,9 @@
 .group-form-input:focus {
     outline: none !important;
     border:1px solid blue;
-    /* box-shadow: 0 0 10px #719ECE; */
 }
 
 .group-form-input-description:focus {
     outline: none !important;
     border:1px solid blue;
-    /* box-shadow: 0 0 10px #719ECE; */
 }
