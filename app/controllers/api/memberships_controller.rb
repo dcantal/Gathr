@@ -12,11 +12,6 @@ class Api::MembershipsController < ApplicationController
 
     end
 
-    # def index
-    #     @memberships = Membership.where("group_id = ?", membership_params[:group_id])
-    #     render :index
-    # end
-
     def destroy
         @membership = Membership.find_by(id: params[:id])
         @membership.destroy
