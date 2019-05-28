@@ -6,7 +6,6 @@ const GroupMemberItem = props => {
 
         <>
             <img className="avatar" id="group-show-avatar"src="https://s3.amazonaws.com/gathr-dc-seeds/default-user.png" />
-            {/* <h1>{props.member.username}</h1> */}
         </>
     )
 }

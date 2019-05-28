@@ -8,13 +8,9 @@ const mapStateToProps = (state, ownProps) => {
     if (ownProps.matches) {
         matches = ownProps.matches;
     }
-    // let currentUserGroups = state.entities.users[state.session.id].groups;
     return {
         groups: groups,
-        // matches: [],
         matches: matches,
-        // currentUserGroups: currentUserGroups,
-        // groups: []
     };
 };
 

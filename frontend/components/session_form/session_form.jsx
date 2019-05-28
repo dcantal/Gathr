@@ -62,14 +62,6 @@ class SessionForm extends React.Component {
                     <div className="error-box">
                         <h1 className="error-text">Your email or password was entered incorrectly.</h1>
                         <p className="error-caption"> Please try again or <Link to="/register">Sign up</Link></p>
-                        {/* <p className="error-caption"> Please try again or {this.props.navLink} </p> */}
-                        {/* <ul>
-                            {this.props.errors.map((error, i) => (
-                                <li key={`error-${i}`}>
-                                    {error}
-                                </li>
-                            ))}
-                        </ul> */}
                     </div>
                 </div>
             )

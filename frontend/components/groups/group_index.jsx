@@ -6,7 +6,6 @@ class GroupIndex extends React.Component {
 
     componentDidMount() {
         this.props.fetchGroups();
-        // window.scrollTo(0, 0);
     }
 
     render() {

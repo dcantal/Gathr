@@ -34,10 +34,6 @@ class GroupEdit extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let that = this;
-        // this.props.updateGroup({ "id": this.props.group.id, "name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": this.state.private })
-        //     .then((payload) => {
-        //         that.props.history.push(`/groups/${payload.group.id}`);
-        //     });
 
         const formData = new FormData();
         formData.append('group[id]', this.props.group.id);

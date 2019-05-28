@@ -3361,11 +3361,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var that = this; // this.props.updateGroup({ "id": this.props.group.id, "name": this.state.name, "hometown": this.state.hometown, "description": this.state.description, "private": this.state.private })
-      //     .then((payload) => {
-      //         that.props.history.push(`/groups/${payload.group.id}`);
-      //     });
-
+      var that = this;
       var formData = new FormData();
       formData.append('group[id]', this.props.group.id);
       formData.append('group[name]', this.state.name);
@@ -3793,7 +3789,7 @@ function (_React$Component) {
   _createClass(GroupIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchGroups(); // window.scrollTo(0, 0);
+      this.props.fetchGroups();
     }
   }, {
     key: "render",
@@ -3869,15 +3865,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
   if (ownProps.matches) {
     matches = ownProps.matches;
-  } // let currentUserGroups = state.entities.users[state.session.id].groups;
-
+  }
 
   return {
     groups: groups,
-    // matches: [],
-    matches: matches // currentUserGroups: currentUserGroups,
-    // groups: []
-
+    matches: matches
   };
 };
 
@@ -4471,8 +4463,7 @@ function (_React$Component) {
   _createClass(GroupShowEditEvents, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Testing") // <GroupShowContainer/>
-      ;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Testing");
     }
   }]);
 
@@ -5332,62 +5323,7 @@ function (_React$Component) {
       }, "When you \"Continue\", you agree to Gathr's Terms of Service. We will manage information about you as described in our Privacy Policy, and Cookie Policy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-footer"
       }, "Already a member? ", this.props.navLink))));
-    } //WAS USED WHEN A MODAL SIGNUP FORM WAS MADE//
-    // renderErrors() {
-    //     let errors = Object.values(this.props.errors);
-    //     return (
-    //         <ul>
-    //             {errors.map((error, i) => (
-    //                 <li key={`error-${i}`}>
-    //                     {error}
-    //                 </li>
-    //             ))}
-    //         </ul>
-    //     );
-    // }
-    // render() {
-    //     return (
-    //         <div className="modal is-open signup-form-container">
-    //             <form onSubmit={this.handleSubmit} className="modal-form login-form-box">
-    //                 <span className="modal-close js-modal-close">&times;</span>
-    //                 <h1>Sign up</h1>
-    //       <br />
-    //                 Already a member? {this.props.navLink}
-    //                 {this.renderErrors()}
-    //                 <div className="login-form">
-    //                     <br />
-    //                     <label>Name:
-    //           <input type="text"
-    //                             value={this.state.username}
-    //                             onChange={this.update('username')}
-    //                             className="login-input"
-    //                         />
-    //                     </label>
-    //                     <br />
-    //                     <label>Email:
-    //           <input type="text"
-    //                             value={this.state.email}
-    //                             onChange={this.update('email')}
-    //                             className="login-input"
-    //                         />
-    //                     </label>
-    //                     <br />
-    //                     <label>Password:
-    //           <input type="password"
-    //                             value={this.state.password}
-    //                             onChange={this.update('password')}
-    //                             className="login-input"
-    //                         />
-    //                     </label>
-    //                     <br />
-    //                     <input className="session-submit" type="submit" value={this.props.formType} />
-    //                 </div>
-    //             </form>
-    //             <div className="modal-screen"></div>
-    //         </div>
-    //     );
-    // }
-
+    }
   }]);
 
   return SignupForm;
@@ -5973,15 +5909,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateGroup", function() { return updateGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteGroup", function() { return deleteGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMembers", function() { return fetchMembers; });
-// export const fetchGroups = (data) => {
-//     return (
-//         $.ajax({
-//             method: 'GET',
-//             url: 'api/groups',
-//             data
-//         })
-//     );
-// };
 var fetchGroups = function fetchGroups() {
   return $.ajax({
     method: 'GET',

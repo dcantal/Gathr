@@ -1,12 +1,3 @@
-// export const fetchGroups = (data) => {
-//     return (
-//         $.ajax({
-//             method: 'GET',
-//             url: 'api/groups',
-//             data
-//         })
-//     );
-// };
 
 export const fetchGroups = () => {
     return (

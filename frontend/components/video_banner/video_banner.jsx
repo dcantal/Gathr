@@ -15,8 +15,6 @@ class videoBanner extends React.Component {
                 <div className="video-banner">
                     <div className="overlay"></div>
                     <video src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4" className="video" autoPlay loop muted></video>
-                    {/* <video src={require("../../../app/assets/videos/meetupbanner.mp4")} className="video" autoPlay loop muted></video> */}
-                    {/* <img src={require("../../../app/assets/images/meetup_logo.svg")}></img> */}
                     <div className="banner-content">
                         <div className="banner-content-item">
                             <h1 className="banner-text">The real world is calling</h1>
@@ -29,7 +27,6 @@ class videoBanner extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/* <EventIndexContainer /> */}
                 <GroupIndexContainer />
             </>
         )
