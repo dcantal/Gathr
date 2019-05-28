@@ -9,9 +9,6 @@
 .event-form {
     display: flex;
     width: 80%;
-    /* padding-left: 100px;
-    padding-right: 100px; */
-    /* height: 2000px; */
     justify-content: space-between;
     padding-bottom: 50px;
 }
@@ -20,14 +17,12 @@
     width: 55%;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
     padding: 20px;
     padding-top: 30px;
 }
 
 .event-form-right {
     width: 35%;
-    /* border: 1px solid red; */
     padding: 20px;
     padding-top: 30px;
 }
@@ -77,12 +72,8 @@
     box-shadow: 0;
     color: rgb(46, 62, 72);
     cursor: text;
-    /* width: 100%; */
     width: 600px;
-    /* max-width: 600px; */
     padding: 16px;
-    /* padding-right: 0px;
-    padding-left: 0px; */
 }
 
 .DayPickerInput > input {
@@ -163,7 +154,6 @@
     bottom: 0px;
     left: 0px;
     width: 100%;
-    /* height: 30px; */
     background-color: white;
     box-sizing: border-box;
     padding: 20px;
@@ -186,8 +176,6 @@
 .upload-event-photo {
     overflow: hidden;
     position: relative;
-    /* min-width: 100%;
-    min-height: 100%; */
     border-radius: 4px;
     font-size: 14px;
     line-height: 1.6;
@@ -211,11 +199,6 @@
     display: block;
     font-size: 999px;
     filter: alpha(opacity=0);
-    /* width: 40px; */
-    /* max-height: 100%;
-    max-width: 100%; */
-    /* min-height: 100%;
-    min-width: 100%; */
     opacity: 0;
     position: absolute;
     right: 0;
@@ -231,12 +214,4 @@
     margin-bottom: 20px;
 }
 
-/* .inputfileevent:hover {
-    cursor: pointer;
-}
-
-.inputfileevent {
-} */
-
-/* actual form (inputs, form bounds, etc) styling */
 

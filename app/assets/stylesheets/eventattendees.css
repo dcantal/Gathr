@@ -11,10 +11,8 @@
     align-items: center;
     padding: 15px;
     width: 17%;
-    /* width: 80px; */
     height: 100px;
     border-radius: 7px;
-    /* height: 40%; */
 }
 
 .event-attendee-card-name {
@@ -25,7 +23,6 @@
 }
 
 .event-attendee-card:hover {
-    /* cursor: pointer; */
     box-shadow: 0 4px 12px 0 rgba(46,62,72,.12);
     transform: translateY(-1px);
 }

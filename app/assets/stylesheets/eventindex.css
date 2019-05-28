@@ -1,6 +1,5 @@
 .event-index-item {
     height: 180px;
-    /* width: 309px; */
     width: 32%;
     border-radius: 3px;
     display: flex;
@@ -15,8 +14,6 @@
     border: 1px solid rgba(46, 62, 72, 0.12);
     width: 36px;
     height: 36px; 
-    /* margin-left: -50px;  
-    margin-top: 20px; */
     border-radius: 7px;
     padding: 8px;
     display: flex;
@@ -29,7 +26,6 @@
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    /* border: 1px solid red; */
     width: 50%;
     flex-wrap: wrap;
 }
@@ -63,7 +59,6 @@
 }
 
 .event-index-item-content {
-    /* margin-top: 50%; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -84,10 +79,8 @@
 
 .find-event-content {
     display:flex;
-    /* width: 60%; */
     width: 980px;
 
-    /* border: 1px solid red; */
 }
 
 .find-event-left {
