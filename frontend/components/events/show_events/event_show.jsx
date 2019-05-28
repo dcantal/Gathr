@@ -122,24 +122,6 @@ class EventShow extends React.Component {
                         <div className="event-show-content-left-wrapper">
                             <div className="event-show-content-left">
                                 <div className="event-picture" style={{ backgroundImage: `url(${this.props.event.photoUrl})` }}>
-                                    {/* {this.state.organizer ?
-                                        <>
-                                            <form className="upload-group-photo-form" onSubmit={this.handleSubmit.bind(this)}>
-                                                <label htmlFor="file" className="upload-group-photo">Change photo
-                                                <input type="file" className="inputfile"
-                                                        onChange={this.handleFile.bind(this)} />
-                                                </label>
-                                                {
-                                                    this.state.photoFile ?
-                                                        <>
-                                                            <input className="group-form-submit" type="submit" value="Next" />
-                                                        </>
-                                                        : null
-                                                }
-                                            </form>
-                                        </>
-                                        : null
-                                    } */}
 
                                 </div>
                                 <div className="event-details">
@@ -147,7 +129,6 @@ class EventShow extends React.Component {
                                     <p className="event-show-details">{this.props.event.description}</p>
                                 </div>
                                 <div className="event-attendees">
-                                    {/* <h1 className="event-show-label">Attendees&nsbp;({this.props.event.attendee_count})</h1> */}
                                     <h1 className="event-show-label">Attendees&nbsp;({this.props.event.attendee_count})</h1>
                                     <EventAttendeesContainer attendees={this.props.event.attendees} attendee_info={this.props.event.attendee_info}/>
                                 </div>
@@ -155,9 +136,6 @@ class EventShow extends React.Component {
                         </div>
                         <div className="event-show-content-right-wrapper">
                             <div className="event-show-content-right">
-                                {/* <div className="event-card event-organizer">
-                                    <h1>Organizer Tools</h1>
-                                </div> */}
                                 <div className="event-card event-group-info">
                                     <Link to={`/groups/${this.props.event.group_id}/`} className="event-group-link">
                                         <div className="event-group-picture" style={{ backgroundImage: `url(${this.props.event.group.photoUrl})` }}></div>

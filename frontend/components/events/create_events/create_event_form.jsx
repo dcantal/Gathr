@@ -115,13 +115,6 @@ class CreateEventForm extends React.Component {
                 this.props.history.push(`/events/${payload.event.id}`);
         });
 
-        // $.ajax({
-        //     url: `api/groups/${event.groupId}/events`,
-        //     method: 'POST',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false
-        // });
     }
     
     handleStartDayClick(day) {
@@ -133,8 +126,6 @@ class CreateEventForm extends React.Component {
     }
 
     handleScriptLoad() {
-        // const options = { types: ['(cities)', 'address', 'establishment'] };
-        // const options = { types: ['(cities)'] };
         const options = { types: ['geocode','establishment'] };
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
         this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
@@ -197,10 +188,6 @@ class CreateEventForm extends React.Component {
                                                     className="event-form-input event-form-date"
                                                     onClick={ this.showStartDate }
                                                 />
-                                                {/* <DayPickerInput
-                                                    placeholder="Select a start date"
-                                                    onDayChange={day => this.setState({selectedStartDate: day})}/>
-                                                     */}
                                                 <input
                                                     type="time"
                                                     value={ (this.state.selectedStartTime) ? this.state.selectedStartTime : "19:00:00" }
@@ -304,13 +291,10 @@ class CreateEventForm extends React.Component {
                         <div className="event-form-right">
                             <div className="event-form-description">
                                 <h2>Tips for a great event</h2>
-                                {/* <br/> */}
                                 <h3>Be descriptive</h3>
                                 <p>A good title immediately gives people an idea of what the event is about.</p>
-                                {/* <br/> */}
                                 <h3>Get organized</h3>
                                 <p>Describe things in a clear order so it's easy to digest. Start with an overall description of the event and include a basic agenda, before you move into really specific details.</p>
-                                {/* <br/> */}
                                 <h3>Add an image</h3>
                                 <p>Upload a photo or image to give members a better feel for the event.</p>
                             </div>
@@ -318,9 +302,6 @@ class CreateEventForm extends React.Component {
 
                         
                     </div>
-                    {/* <div className="event-form-footer">
-                        <h1>Submit</h1>
-                    </div> */}
                 </div>
             </>
         )

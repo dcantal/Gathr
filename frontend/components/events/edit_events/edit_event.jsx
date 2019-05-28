@@ -100,23 +100,9 @@ class EditEvent extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let start_date = moment(this.state.selectedStartDay).format("MM-DD-YYYY");
-        // let start_datetime = moment(start_date + " " + this.state.selectedStartTime).format("MM-DD-YYYY hh:mm A");
         let start_datetime = moment(this.state.start_time).format("MM-DD-YYYY hh:mm A");
         let end_date = moment(this.state.selectedEndDay).format("MM-DD-YYYY");
-        // let end_datetime = moment(end_date + " " + this.state.selectedEndTime).format("MM-DD-YYYY hh:mm A");
         let end_datetime = moment(this.state.end_time).format("MM-DD-YYYY hh:mm A");
-        // const formData = new FormData();
-        // formData.append('event[group_id]', this.props.event.group_id);
-        // formData.append('event[name]', this.state.name);
-        // formData.append('event[description]', this.state.description);
-        // formData.append('event[latitude]', this.state.latitude);
-        // formData.append('event[longitude]', this.state.longitude);
-        // formData.append('event[address]', this.state.address);
-        // formData.append('event[start_time]', start_datetime);
-        // formData.append('event[end_time]', end_datetime);
-        // if (this.state.photoFile) {
-        //     formData.append('event[photo]', this.state.photoFile);
-        // }
         this.props.updateEvent({id: this.props.event.id, 
             group_id: this.props.event.group_id,
             name: this.state.name,
@@ -126,21 +112,6 @@ class EditEvent extends React.Component {
             address: this.state.address,
             start_time: start_datetime,
             end_time: end_datetime });
-        // $.ajax({
-        //     url: `api/events/${this.props.event.id}`,
-        //     method: 'PATCH',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false
-        // });
-
-        // $.ajax({
-        //     url: `api/groups/${event.groupId}/events`,
-        //     method: 'POST',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false
-        // });
     }
 
     handleStartDayClick(day) {
@@ -152,8 +123,6 @@ class EditEvent extends React.Component {
     }
 
     handleScriptLoad() {
-        // const options = { types: ['(cities)', 'address', 'establishment'] };
-        // const options = { types: ['(cities)'] };
         const options = { types: ['geocode', 'establishment'] };
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
         this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
@@ -211,19 +180,13 @@ class EditEvent extends React.Component {
                                             <div className="event-date-time">
                                                 <input
                                                     type="text"
-                                                    // value={(this.state.selectedStartDay) ? this.state.selectedStartDay.toLocaleDateString() : "Select a start date"}
                                                     value={(this.state.start_time) ? new Date(this.state.start_time).toLocaleDateString('en-US') : "Select a start date"}
                                                     onChange={this.update('selectedStartDay')}
                                                     className="event-form-input event-form-date"
                                                     onClick={this.showStartDate}
                                                 />
-                                                {/* <DayPickerInput
-                                                    placeholder="Select a start date"
-                                                    onDayChange={day => this.setState({selectedStartDate: day})}/>
-                                                     */}
                                                 <input
                                                     type="time"
-                                                    // value={(this.state.selectedStartTime) ? this.state.selectedStartTime : "19:00:00"}
                                                     value={(this.state.start_time) ? moment(this.state.start_time).format('kk:mm') : "19:00:00"}
                                                     onChange={this.update('selectedStartTime')}
                                                     className="event-form-input event-form-time"
@@ -251,7 +214,6 @@ class EditEvent extends React.Component {
                                             <div className="event-date-time">
                                                 <input
                                                     type="text"
-                                                    // value={(this.state.selectedEndDay) ? this.state.selectedEndDay.toLocaleDateString() : "Select an end date"}
                                                     value={(this.state.end_time) ? new Date(this.state.end_time).toLocaleDateString('en-US') : "Select an end date"}
                                                     onChange={this.update('selectedEndDay')}
                                                     className="event-form-input event-form-date"
@@ -259,7 +221,6 @@ class EditEvent extends React.Component {
                                                 />
                                                 <input
                                                     type="time"
-                                                    // value={(this.state.selectedEndTime) ? this.state.selectedEndTime : "19:00:00"}
                                                     value={(this.state.end_time) ? (moment(this.state.end_time).format('kk:mm')) : "19:00:00"}
                                                     onChange={this.update('selectedEndTime')}
                                                     className="event-form-input event-form-time"
@@ -280,19 +241,6 @@ class EditEvent extends React.Component {
                                             </div>
                                         ) : (null)
                                     }
-{/* 
-                                    <label className="event-step-container">
-                                        <div className="event-step-details">
-                                            <p className="event-step-label">Featured Photo</p>
-                                            <div className="event-upload-photo-div edit-event-upload" style={{backgroundImage: `url(${this.state.photoUrl})`}}>
-                                                <label htmlFor="file" className="upload-event-photo">Change photo
-                                                <input type="file" className="inputfileevent"
-                                                        onChange={this.handleFile.bind(this)}
-                                                    />
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </label> */}
 
                                     <label className="event-step-container">
                                         <div className="event-step-details" >
@@ -328,13 +276,10 @@ class EditEvent extends React.Component {
                         <div className="event-form-right">
                             <div className="event-form-description">
                                 <h2>Tips for a great event</h2>
-                                {/* <br/> */}
                                 <h3>Be descriptive</h3>
                                 <p>A good title immediately gives people an idea of what the event is about.</p>
-                                {/* <br/> */}
                                 <h3>Get organized</h3>
                                 <p>Describe things in a clear order so it's easy to digest. Start with an overall description of the event and include a basic agenda, before you move into really specific details.</p>
-                                {/* <br/> */}
                                 <h3>Add an image</h3>
                                 <p>Upload a photo or image to give members a better feel for the event.</p>
                             </div>
@@ -342,9 +287,6 @@ class EditEvent extends React.Component {
 
 
                     </div>
-                    {/* <div className="event-form-footer">
-                        <h1>Submit</h1>
-                    </div> */}
                 </div>
             </>
         )

@@ -628,12 +628,11 @@ function (_React$Component) {
     value: function closeMenu() {
       var _this3 = this;
 
-      // if (!this.dropdownMenu.contains(event.target)) {
       this.setState({
         showMenu: false
       }, function () {
         document.removeEventListener('click', _this3.closeMenu);
-      }); // }
+      });
     }
   }, {
     key: "showModal",
@@ -652,12 +651,11 @@ function (_React$Component) {
     value: function closeModal() {
       var _this5 = this;
 
-      // if (!this.dropdownMenu.contains(event.target)) {
       this.setState({
         showModal: false
       }, function () {
         document.removeEventListener('click', _this5.closeModal);
-      }); // }
+      });
     }
   }, {
     key: "render",
@@ -902,11 +900,6 @@ function (_React$Component) {
   }, {
     key: "leaveGroup",
     value: function leaveGroup() {
-      // let that = this;
-      // return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(() => {
-      //     //would like this to not reload but instead show the new button
-      //     location.reload();
-      // });
       this.setState({
         showMenu: false
       });
@@ -1143,13 +1136,7 @@ function (_React$Component) {
         });
       }).then(function (payload) {
         _this7.props.history.push("/events/".concat(payload.event.id));
-      }); // $.ajax({
-      //     url: `api/groups/${event.groupId}/events`,
-      //     method: 'POST',
-      //     data: formData,
-      //     contentType: false,
-      //     processData: false
-      // });
+      });
     }
   }, {
     key: "handleStartDayClick",
@@ -1168,8 +1155,6 @@ function (_React$Component) {
   }, {
     key: "handleScriptLoad",
     value: function handleScriptLoad() {
-      // const options = { types: ['(cities)', 'address', 'establishment'] };
-      // const options = { types: ['(cities)'] };
       var options = {
         types: ['geocode', 'establishment']
       };
@@ -1582,24 +1567,10 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var start_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedStartDay).format("MM-DD-YYYY"); // let start_datetime = moment(start_date + " " + this.state.selectedStartTime).format("MM-DD-YYYY hh:mm A");
-
+      var start_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedStartDay).format("MM-DD-YYYY");
       var start_datetime = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.start_time).format("MM-DD-YYYY hh:mm A");
-      var end_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedEndDay).format("MM-DD-YYYY"); // let end_datetime = moment(end_date + " " + this.state.selectedEndTime).format("MM-DD-YYYY hh:mm A");
-
-      var end_datetime = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.end_time).format("MM-DD-YYYY hh:mm A"); // const formData = new FormData();
-      // formData.append('event[group_id]', this.props.event.group_id);
-      // formData.append('event[name]', this.state.name);
-      // formData.append('event[description]', this.state.description);
-      // formData.append('event[latitude]', this.state.latitude);
-      // formData.append('event[longitude]', this.state.longitude);
-      // formData.append('event[address]', this.state.address);
-      // formData.append('event[start_time]', start_datetime);
-      // formData.append('event[end_time]', end_datetime);
-      // if (this.state.photoFile) {
-      //     formData.append('event[photo]', this.state.photoFile);
-      // }
-
+      var end_date = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.selectedEndDay).format("MM-DD-YYYY");
+      var end_datetime = moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.end_time).format("MM-DD-YYYY hh:mm A");
       this.props.updateEvent({
         id: this.props.event.id,
         group_id: this.props.event.group_id,
@@ -1610,20 +1581,7 @@ function (_React$Component) {
         address: this.state.address,
         start_time: start_datetime,
         end_time: end_datetime
-      }); // $.ajax({
-      //     url: `api/events/${this.props.event.id}`,
-      //     method: 'PATCH',
-      //     data: formData,
-      //     contentType: false,
-      //     processData: false
-      // });
-      // $.ajax({
-      //     url: `api/groups/${event.groupId}/events`,
-      //     method: 'POST',
-      //     data: formData,
-      //     contentType: false,
-      //     processData: false
-      // });
+      });
     }
   }, {
     key: "handleStartDayClick",
@@ -1642,8 +1600,6 @@ function (_React$Component) {
   }, {
     key: "handleScriptLoad",
     value: function handleScriptLoad() {
-      // const options = { types: ['(cities)', 'address', 'establishment'] };
-      // const options = { types: ['(cities)'] };
       var options = {
         types: ['geocode', 'establishment']
       };
@@ -1716,15 +1672,13 @@ function (_React$Component) {
       }, "Start"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-date-time"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text" // value={(this.state.selectedStartDay) ? this.state.selectedStartDay.toLocaleDateString() : "Select a start date"}
-        ,
+        type: "text",
         value: this.state.start_time ? new Date(this.state.start_time).toLocaleDateString('en-US') : "Select a start date",
         onChange: this.update('selectedStartDay'),
         className: "event-form-input event-form-date",
         onClick: this.showStartDate
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "time" // value={(this.state.selectedStartTime) ? this.state.selectedStartTime : "19:00:00"}
-        ,
+        type: "time",
         value: this.state.start_time ? moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.start_time).format('kk:mm') : "19:00:00",
         onChange: this.update('selectedStartTime'),
         className: "event-form-input event-form-time"
@@ -1745,15 +1699,13 @@ function (_React$Component) {
       }, "End"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-date-time"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text" // value={(this.state.selectedEndDay) ? this.state.selectedEndDay.toLocaleDateString() : "Select an end date"}
-        ,
+        type: "text",
         value: this.state.end_time ? new Date(this.state.end_time).toLocaleDateString('en-US') : "Select an end date",
         onChange: this.update('selectedEndDay'),
         className: "event-form-input event-form-date",
         onClick: this.showEndDate
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "time" // value={(this.state.selectedEndTime) ? this.state.selectedEndTime : "19:00:00"}
-        ,
+        type: "time",
         value: this.state.end_time ? moment__WEBPACK_IMPORTED_MODULE_5___default()(this.state.end_time).format('kk:mm') : "19:00:00",
         onChange: this.update('selectedEndTime'),
         className: "event-form-input event-form-time"
@@ -2079,7 +2031,7 @@ function (_React$Component) {
         var selected_date = new Date(this.state.selectedDayDate);
         var days_dates_date = this.props.event_days.filter(function (date) {
           var check_day = new Date(date);
-          return check_day >= selected_date; // test_day >= this.state.selectedDayDate;
+          return check_day >= selected_date;
         });
         days_dates = days_dates_date.map(function (date) {
           return moment__WEBPACK_IMPORTED_MODULE_3__(date).format('dddd, MMMM D');
@@ -2188,10 +2140,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var events = Object.values(state.entities.events);
   var event_days_date = events.map(function (event) {
     return event.start_time;
-  }); // let event_days = event_days_date.sort().map((date) => {
-  //     return (moment(date).format('dddd, MMMM D'));
-  // });
-
+  });
   var event_days = event_days_date.sort();
 
   var unique_days = _toConsumableArray(new Set(event_days));
@@ -2200,15 +2149,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
   if (ownProps.matches) {
     matches = ownProps.matches;
-  } // let currentUserGroups = state.entities.users[state.session.id].groups;
-
+  }
 
   return {
     events: events,
-    // matches: [],
     matches: matches,
-    event_days: unique_days // currentUserGroups: currentUserGroups,
-
+    event_days: unique_days
   };
 };
 
@@ -2257,20 +2203,7 @@ var EventIndexItem = function EventIndexItem(props) {
     className: "event-index-list-day-start-day"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.day)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "event-index-list-item-events"
-  }, events)) // <Link to={`/events/${props.event.id}`} className="event-index-list-item">
-  //     <div className="event-index-list-item-content">
-  //         <div className="event-index-list-start-time">
-  //             <p className="date-list-time">{moment(props.event.start_time).format('h:mm A')}</p>
-  //             {/* <h1 className="date-list-ampm">{moment(props.event.start_time).format('mm')}</h1> */}
-  //         </div>
-  //         <div className="event-index-list-item-text">
-  //             <h4>{props.event.group_name}</h4>
-  //             <h3>{props.event.name}</h3>
-  //             <h5>{props.event.attendee_count} people going</h5>
-  //         </div>
-  //     </div>
-  // </Link> 
-  ;
+  }, events));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EventIndexItem);
@@ -2296,39 +2229,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EventIndexItemEvent = function EventIndexItemEvent(props) {
-  return (// <Link to={`/events/${props.event.id}`} className="event-index-list-item">
-    //   <div className="event-index-list-item-content">
-    //     <div className="event-index-list-start-time">
-    //       <p className="date-list-time">
-    //         {moment(props.event.start_time).format("h:mm A")}
-    //       </p>
-    //       {/* <h1 className="date-list-ampm">{moment(props.event.start_time).format('mm')}</h1> */}
-    //     </div>
-    //     <div className="event-index-list-item-text">
-    //       <h4>{props.event.group_name}</h4>
-    //       <Link to={`/events/${props.event.id}`}>
-    //         <h3>{props.event.name}</h3>
-    //       </Link>
-    //       <h5>{props.event.attendee_count} people going</h5>
-    //     </div>
-    //   </div>
-    // </Link>
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "event-index-list-item-content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "event-index-list-start-time"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "date-list-time"
-    }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format("h:mm A"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "event-index-list-item-text"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/groups/".concat(props.event.group_id),
-      className: "event-index-list-item-group-name"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, props.event.group_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/events/".concat(props.event.id),
-      className: "event-index-list-item-event-name"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, props.event.attendee_count, " people going")))
-  );
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-item-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-start-time"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "date-list-time"
+  }, moment__WEBPACK_IMPORTED_MODULE_2___default()(props.event.start_time).format("h:mm A"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "event-index-list-item-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/groups/".concat(props.event.group_id),
+    className: "event-index-list-item-group-name"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, props.event.group_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/events/".concat(props.event.id),
+    className: "event-index-list-item-event-name"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.event.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, props.event.attendee_count, " people going")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EventIndexItemEvent);
@@ -2389,8 +2304,7 @@ function (_React$Component) {
         return null;
       }
 
-      var state = this.props.state; // let events = this.props.events.map((event) => {
-
+      var state = this.props.state;
       var events = Object.values(this.props.events).map(function (event) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_group_show_event_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: event.id,
@@ -2428,10 +2342,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  // let events = Object.values(state.entities.events);
-  return {// events: events
-    // groups: []
-  };
+  return {};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -56323,7 +56234,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

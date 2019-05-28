@@ -36,7 +36,6 @@ class EventIndex extends React.Component {
             let days_dates_date = this.props.event_days.filter((date) => {
                 let check_day = new Date(date);
                 return check_day >= selected_date;
-                // test_day >= this.state.selectedDayDate;
             })
             days_dates = days_dates_date.map((date) => {
                 return (moment(date).format('dddd, MMMM D'));

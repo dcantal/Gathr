@@ -101,14 +101,6 @@ class FindPage extends React.Component {
                     Find your next Gathring
                   </h1>
                 </div>
-                {/* <div className="banner-content-item-details">
-                  <p className="find-banner-text-caption">
-                    98 gathrings in your groups
-                  </p>
-                  <p className="find-banner-text-caption">
-                    5,261 gathrings near you
-                  </p>
-                </div> */}
               </div>
             </div>
             <div className="find-navbar-wrap">
@@ -121,7 +113,6 @@ class FindPage extends React.Component {
                 />
 
                 <div className="find-button-div">
-                  {/* <button className="find-button find-groups" onClick={this.switchToGroups}>Groups</button> */}
                   <button
                     className={`find-button find-groups ${
                       this.state.mode == "groups" ? "find-selected" : ""
@@ -130,7 +121,6 @@ class FindPage extends React.Component {
                   >
                     Groups
                   </button>
-                  {/* <button className="find-button find-calendar" onClick={this.switchToCalendar}>Calendar</button> */}
                   <button
                     className={`find-button find-calendar ${
                       this.state.mode == "calendar"

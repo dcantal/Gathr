@@ -46,11 +46,6 @@ class MemberButton extends React.Component {
     }
 
     leaveGroup() {
-        // let that = this;
-        // return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]).then(() => {
-        //     //would like this to not reload but instead show the new button
-        //     location.reload();
-        // });
         this.setState({showMenu: false});
         document.removeEventListener('click', this.closeMenu);
         return this.props.deleteMembership(this.props.group.memberships[this.props.currentUser]);
@@ -63,7 +58,6 @@ class MemberButton extends React.Component {
             <div className="group-button-dropdown-complete">
                 <button onClick={this.showMenu} className="group-button" id="leave">
                     <div className="group-button-content">
-                        {/* You're a member <i class="fal fa-chevron-down"></i> */}
                         You're a member
                     </div>
                 </button>

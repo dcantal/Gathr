@@ -43,7 +43,6 @@ class ManageButton extends React.Component {
             <div className="group-button-dropdown-complete">
                 <button onClick={this.showMenu} className="group-button" id="leave">
                     <div className="group-button-content">
-                        {/* Manage Group <i class="fal fa-chevron-down"></i> */}
                         Manage Group
                     </div>
                 </button>

@@ -34,11 +34,9 @@ class CreateEventButton extends React.Component {
     }
 
     closeMenu() {
-        // if (!this.dropdownMenu.contains(event.target)) {
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
             });
-        // }
     }
 
     showModal(event) {
@@ -52,11 +50,9 @@ class CreateEventButton extends React.Component {
     }
 
     closeModal() {
-        // if (!this.dropdownMenu.contains(event.target)) {
             this.setState({ showModal: false }, () => {
                 document.removeEventListener('click', this.closeModal);
             });
-        // }
     }
 
     render() {
